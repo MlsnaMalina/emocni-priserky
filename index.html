@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emoční příšerky — karty a hry na rozpoznávání emocí pro děti</title>
+<meta name="description" content="24 karet emocí pro povídání s dětmi od 4 let. Pět her online, tiskový balíček na doma i do školky a emoční deník. Vytvořila Kateřina Mlsnová." />
+<link rel="canonical" href="https://www.katerinamlsnova.cz/emoce/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Emoční příšerky — karty a hry na rozpoznávání emocí pro děti" />
+<meta property="og:description" content="24 karet emocí pro povídání s dětmi od 4 let. Pět her online, tiskový balíček a emoční deník." />
+<meta property="og:image" content="https://www.katerinamlsnova.cz/emoce/og-image.png" />
+<meta property="og:url" content="https://www.katerinamlsnova.cz/emoce/" />
+<meta property="og:locale" content="cs_CZ" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "./vendor/react.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "./vendor/react-dom.production.min.js"
+  };
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #FBFAF7; }
+  body { font-family: Montserrat, "Segoe UI", sans-serif; color: #221E2B; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #7B3DF5; text-decoration: none; }
+  a:hover { color: #FF2E9A; }
+  @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  @keyframes pop { 0% { transform: scale(.9); opacity: 0 } 100% { transform: scale(1); opacity: 1 } }
+  @media (max-width: 900px) {
+    [data-r="hero"], [data-r="draw"], [data-r="dl"], [data-r="daily"], [data-r="diary"] { grid-template-columns: 1fr !important; }
+    [data-r="hero-stack"] { position: static !important; height: auto !important; display: flex !important; gap: 10px !important; margin-top: 8px }
+    [data-r="hero-stack"] > div { position: static !important; width: 33.33% !important; animation: none !important; inset: auto !important }
+    [data-r="hero-stack"] img { transform: none !important }
+    [data-r="h1"] { font-size: 54px !important }
+    [data-r="h2"] { font-size: 36px !important }
+    [data-r="nav"] { display: none !important }
+    [data-r="menu-btn"] { display: inline-flex !important }
+    [data-r="dlthumbs"] { grid-template-columns: repeat(3, 1fr) !important }
+  }
+  @media (min-width: 901px) {
+    [data-r="mobile-nav"] { display: none !important }
+  }
+  @media (max-width: 620px) {
+    [data-r="h1"] { font-size: 42px !important }
+    [data-r="h2"] { font-size: 30px !important }
+    [data-r="grid"] { grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)) !important }
+    [data-r="quizgrid"] { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important }
+    [data-r="pexgrid"] { grid-template-columns: repeat(4, 1fr) !important }
+    [data-r="pad"] { padding: 22px !important }
+    [data-r="dlpad"] { padding: 26px !important }
+  }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; overflow-x: clip; position: relative">
+
+  <div style="position: absolute; top: -180px; right: -140px; width: 620px; height: 560px; background: #FFD23F; opacity: .5; border-radius: 58% 42% 47% 53% / 45% 52% 48% 55%; pointer-events: none"></div>
+  <div style="position: absolute; top: 420px; left: -220px; width: 520px; height: 480px; background: #22ADEE; opacity: .28; border-radius: 46% 54% 61% 39% / 55% 42% 58% 45%; pointer-events: none"></div>
+
+  <header style="position: sticky; top: 0; z-index: 40; backdrop-filter: blur(10px); background: rgba(251,250,247,.82); border-bottom: 1px solid rgba(34,30,43,.09)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px">
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-right: auto">
+        <span style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 24px; letter-spacing: .16em; text-transform: uppercase">Emoční</span>
+        <span style="font-weight: 800; font-size: 20px; color: #FF2E9A">příšerky</span>
+      </div>
+      <nav data-r="nav" style="display: flex; flex-wrap: wrap; gap: 22px; align-items: center; font-weight: 700; font-size: 14px">
+        <a href="#balicek" style="color: #221E2B">Balíček</a>
+        <a href="#hrat" style="color: #221E2B">Hrát online</a>
+        <a href="#dennik" style="color: #221E2B">Deník</a>
+        <a href="#hry" style="color: #221E2B">Pravidla her</a>
+        <button onClick="{{ toggleSound }}" title="Zvuk a předčítání" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 13px; padding: 9px 15px; border-radius: 999px; border: 2px solid #221E2B; background: {{ soundBg }}; color: {{ soundFg }}">{{ soundLabel }}</button>
+        <a href="#stahnout" style="background: #221E2B; color: #fff; padding: 10px 18px; border-radius: 999px" style-hover="background: #7B3DF5">Stáhnout</a>
+      </nav>
+      <button data-r="menu-btn" onClick="{{ toggleMenu }}" aria-label="Menu" style="display: none; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; border: 2px solid #221E2B; background: #fff; cursor: pointer; padding: 0; flex-shrink: 0; font-size: 17px; line-height: 1">{{ menuIcon }}</button>
+    </div>
+    <div data-r="mobile-nav" style="display: {{ mobileNavDisplay }}; flex-direction: column; gap: 2px; padding: 4px 24px 18px; border-top: 1px solid rgba(34,30,43,.09)">
+      <a href="#balicek" onClick="{{ closeMenu }}" style="color: #221E2B; font-weight: 700; font-size: 15px; padding: 13px 4px; border-bottom: 1px solid rgba(34,30,43,.08)">Balíček</a>
+      <a href="#hrat" onClick="{{ closeMenu }}" style="color: #221E2B; font-weight: 700; font-size: 15px; padding: 13px 4px; border-bottom: 1px solid rgba(34,30,43,.08)">Hrát online</a>
+      <a href="#dennik" onClick="{{ closeMenu }}" style="color: #221E2B; font-weight: 700; font-size: 15px; padding: 13px 4px; border-bottom: 1px solid rgba(34,30,43,.08)">Deník</a>
+      <a href="#hry" onClick="{{ closeMenu }}" style="color: #221E2B; font-weight: 700; font-size: 15px; padding: 13px 4px; border-bottom: 1px solid rgba(34,30,43,.08)">Pravidla her</a>
+      <div style="display: flex; gap: 10px; margin-top: 12px">
+        <button onClick="{{ toggleSound }}" style="flex: 1; font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 13px; padding: 12px 15px; border-radius: 999px; border: 2px solid #221E2B; background: {{ soundBg }}; color: {{ soundFg }}">{{ soundLabel }}</button>
+        <a href="#stahnout" onClick="{{ closeMenu }}" style="flex: 1; text-align: center; background: #221E2B; color: #fff; padding: 12px 15px; border-radius: 999px; font-weight: 700; font-size: 13px">Stáhnout</a>
+      </div>
+    </div>
+  </header>
+
+  <section data-r="hero" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 40px; position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 2px solid #221E2B; border-radius: 999px; padding: 7px 16px; font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase">24 karet &nbsp;·&nbsp; 7 her &nbsp;·&nbsp; od 4 let</div>
+      <h1 data-r="h1" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 86px; line-height: .95; letter-spacing: .02em; margin: 22px 0 0; text-transform: uppercase; text-wrap: balance">Emoční<br /><span style="font-weight: 600">příšerky</span></h1>
+      <p style="font-size: 19px; line-height: 1.6; max-width: 520px; margin: 22px 0 0; font-weight: 500; text-wrap: pretty">Každá příšerka nosí jednu emoci. Na druhé straně karty je popsané, jak ji dítě pozná, co při ní cítí v těle, kdy ji zažívá a co mu pomůže, aby mu bylo lépe. Vytiskněte si celý balíček, nebo si karty zahrajte tady online.</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px">
+        <a href="#stahnout" style="background: #FF2E9A; color: #fff; font-weight: 800; font-size: 16px; padding: 16px 26px; border-radius: 999px; border: 2px solid #221E2B; box-shadow: 4px 4px 0 #221E2B" style-hover="transform: translate(2px,2px); box-shadow: 2px 2px 0 #221E2B">Stáhnout karty a hry</a>
+        <a href="#hrat" style="background: #fff; color: #221E2B; font-weight: 800; font-size: 16px; padding: 16px 26px; border-radius: 999px; border: 2px solid #221E2B; box-shadow: 4px 4px 0 #221E2B" style-hover="transform: translate(2px,2px); box-shadow: 2px 2px 0 #221E2B">Hrát online</a>
+      </div>
+    </div>
+    <div data-r="hero-stack" style="position: relative; height: 460px">
+      <div style="position: absolute; left: 4%; top: 30px; width: 58%; animation: floaty 7s ease-in-out infinite">
+        <img src="thumbs/t06.webp" alt="Radostná příšerka" style="width: 100%; display: block; border-radius: 14px; background: #fff; box-shadow: 0 18px 40px rgba(34,30,43,.16); transform: rotate(-7deg)" />
+      </div>
+      <div style="position: absolute; right: 2%; top: 96px; width: 54%; animation: floaty 8.5s ease-in-out .8s infinite">
+        <img src="thumbs/t04.webp" alt="Vystrašená příšerka" style="width: 100%; display: block; border-radius: 14px; background: #fff; box-shadow: 0 18px 40px rgba(34,30,43,.16); transform: rotate(8deg)" />
+      </div>
+      <div style="position: absolute; left: 26%; bottom: -10px; width: 50%; animation: floaty 9.5s ease-in-out .4s infinite">
+        <img src="thumbs/t13.webp" alt="Smutná příšerka" style="width: 100%; display: block; border-radius: 14px; background: #fff; box-shadow: 0 18px 40px rgba(34,30,43,.16); transform: rotate(-2deg)" />
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 30px auto 0; padding: 0 24px">
+    <div data-r="daily" style="background: #fff; border: 2px solid #221E2B; border-radius: 28px; padding: 26px; display: grid; grid-template-columns: 180px 1fr auto; gap: 26px; align-items: center; box-shadow: 0 14px 32px rgba(34,30,43,.08)">
+      <div onClick="{{ openDaily }}" style="cursor: pointer; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; aspect-ratio: 0.676" style-hover="transform: translateY(-4px)">
+        <img src="{{ dailyFront }}" alt="{{ dailyName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FF2E9A">Karta dne</div>
+        <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 6px">{{ dailyName }}</div>
+        <div style="font-weight: 600; font-size: 17px; margin-top: 4px; max-width: 560px; text-wrap: pretty">{{ dailyQuote }}</div>
+        <div style="font-weight: 700; font-size: 15px; margin-top: 12px; color: rgba(34,30,43,.66); text-wrap: pretty">{{ dailyQuestion }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <button onClick="{{ speakDaily }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 999px; border: 2px solid #221E2B; background: #FFD23F; color: #221E2B">Přečti nahlas</button>
+        <button onClick="{{ openDaily }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Otevřít kartu</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="balicek" style="max-width: 1180px; margin: 0 auto; padding: 56px 24px 24px; position: relative">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+      <div>
+        <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #7B3DF5">Balíček</div>
+        <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Všech 24 emocí</h2>
+        <p style="font-weight: 500; font-size: 16px; margin: 10px 0 0; max-width: 560px">Klepnutím na kartu ji otočíte a přečtete si celý popis emoce — i s podobnými pocity a opakem. Jednotlivé karty si můžete stáhnout zvlášť.</p>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+          <button onClick="{{ f.pick }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 999px; border: 2px solid #221E2B; background: {{ f.bg }}; color: {{ f.fg }}" style-hover="transform: translateY(-2px)">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-r="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 20px; margin-top: 34px">
+      <sc-for list="{{ visibleCards }}" as="c" hint-placeholder-count="12">
+        <div onClick="{{ c.open }}" style="cursor: pointer; text-align: center" style-hover="transform: translateY(-6px)">
+          <div style="position: relative; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 24px rgba(34,30,43,.09); aspect-ratio: 0.676">
+            <img src="{{ c.front }}" alt="{{ c.name }}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+            <span style="position: absolute; left: 10px; top: 10px; width: 12px; height: 12px; border-radius: 999px; background: {{ c.color }}"></span>
+          </div>
+          <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 19px; letter-spacing: .11em; text-transform: uppercase; margin-top: 12px">{{ c.name }}</div>
+          <sc-if value="{{ showQuotes }}" hint-placeholder-val="{{ true }}">
+            <div style="font-weight: 600; font-size: 12px; line-height: 1.45; color: rgba(34,30,43,.6); margin-top: 4px; text-wrap: pretty">{{ c.quote }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="hrat" style="position: relative; margin-top: 70px; background: #221E2B; color: #fff; padding: 64px 24px 76px">
+    <div style="max-width: 1180px; margin: 0 auto">
+      <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FFD23F">Hrát online</div>
+      <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Pět her bez tisku</h2>
+      <p style="font-weight: 500; font-size: 16px; margin: 12px 0 0; max-width: 620px; color: rgba(255,255,255,.72)">Stejná pravidla jako s papírovými kartami — jen se karty rozdávají samy. Hrajte spolu u jednoho displeje a hlavně si o pocitech povídejte.</p>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="5">
+          <button onClick="{{ m.pick }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 999px; border: 2px solid {{ m.border }}; background: {{ m.bg }}; color: {{ m.fg }}">{{ m.label }}</button>
+        </sc-for>
+      </div>
+
+      <div data-r="pad" style="margin-top: 28px; background: #fff; color: #221E2B; border-radius: 26px; padding: 32px; min-height: 440px">
+
+        <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+              <div>
+                <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7B3DF5">Hra 1 · Ukaž mi emoci</div>
+                <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 44px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ quizName }}</div>
+                <div style="font-weight: 600; font-size: 17px; margin-top: 6px; max-width: 560px">{{ quizQuote }}</div>
+              </div>
+              <div style="text-align: right; font-weight: 800">
+                <div style="font-size: 34px">{{ quizScoreLabel }}</div>
+                <div style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(34,30,43,.5)">správně</div>
+              </div>
+            </div>
+            <div style="font-weight: 700; font-size: 15px; margin-top: 18px; color: {{ quizFeedbackColor }}; min-height: 24px">{{ quizFeedback }}</div>
+            <div data-r="quizgrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-top: 12px">
+              <sc-for list="{{ quizOptions }}" as="o" hint-placeholder-count="6">
+                <div onClick="{{ o.choose }}" style="cursor: pointer; background: #fff; border: 3px solid {{ o.border }}; border-radius: 14px; overflow: hidden; aspect-ratio: 0.676; box-shadow: 0 8px 18px rgba(34,30,43,.08)" style-hover="transform: translateY(-5px)">
+                  <img src="{{ o.front }}" alt="Příšerka" decoding="async" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+              <button onClick="{{ nextQuiz }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #FFD23F; color: #221E2B">Další emoce</button>
+              <button onClick="{{ speakQuiz }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Přečti zadání</button>
+              <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Tip: zkuste se dítěte zeptat, jak na příšerce emoci poznalo.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPexeso }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+              <div>
+                <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #E8730C">Hra 5 · Emoční pexeso</div>
+                <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Paměťová hra s tvářemi</div>
+                <div style="font-weight: 600; font-size: 16px; margin-top: 6px; max-width: 620px">Otáčejte dvě karty. Když se shodují, zůstanou odkryté — a řekněte si, jakou emoci ta příšerka cítí.</div>
+              </div>
+              <div style="text-align: right; font-weight: 800">
+                <div style="font-size: 34px">{{ pexFoundLabel }}</div>
+                <div style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(34,30,43,.5)">nalezené dvojice</div>
+              </div>
+            </div>
+            <div style="font-weight: 700; font-size: 15px; margin-top: 14px; color: #E8730C; min-height: 24px">{{ pexMessage }}</div>
+            <div data-r="pexgrid" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 8px">
+              <sc-for list="{{ pexTiles }}" as="t" hint-placeholder-count="16">
+                <div onClick="{{ t.flip }}" style="cursor: pointer; position: relative; aspect-ratio: 0.676; border-radius: 12px; overflow: hidden; border: 2px solid #221E2B; opacity: {{ t.opacity }}; display: grid">
+                  <div style="position: absolute; inset: 0; background: {{ t.backBg }}; opacity: {{ t.backOpacity }}; display: grid; place-items: center">
+                    <span style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-size: 30px; color: rgba(255,255,255,.85); font-weight: 600">?</span>
+                  </div>
+                  <img src="{{ t.src }}" alt="{{ t.alt }}" decoding="async" style="width: 100%; height: 100%; align-self: stretch; justify-self: stretch; object-fit: contain; display: block; opacity: {{ t.imgOpacity }}; background: #fff" />
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+              <button onClick="{{ newPexeso }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #E8730C; color: #fff">Nová hra</button>
+              <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Pro čtyřleté děti stačí poloviční sada — zkuste nejdřív osm karet.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPairs }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #6E8C4A">Hry 3 a 4 · Podobné, nebo opak?</div>
+            <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ pairsTitle }}</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; margin-top: 22px; max-width: 620px">
+              <sc-for list="{{ pairsCards }}" as="p" hint-placeholder-count="2">
+                <div style="text-align: center">
+                  <div style="background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.1); aspect-ratio: 0.676">
+                    <img src="{{ p.front }}" alt="{{ p.name }}" decoding="async" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+                  </div>
+                  <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 18px; letter-spacing: .1em; text-transform: uppercase; margin-top: 10px">{{ p.name }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
+              <sc-for list="{{ pairsChoices }}" as="ch" hint-placeholder-count="3">
+                <button onClick="{{ ch.choose }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: {{ ch.bg }}; color: {{ ch.fg }}">{{ ch.label }}</button>
+              </sc-for>
+            </div>
+            <div style="font-weight: 700; font-size: 16px; margin-top: 20px; color: {{ pairsFeedbackColor }}; min-height: 26px; max-width: 640px; text-wrap: pretty">{{ pairsFeedback }}</div>
+            <button onClick="{{ nextPairs }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #6E8C4A; color: #fff; margin-top: 12px">Další dvojice</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isDraw }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #22ADEE">Hra 2 a 6 · Vytáhni kartu</div>
+            <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Co se jí stalo?</div>
+            <div data-r="draw" style="display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 34px; margin-top: 22px; align-items: start">
+              <div onClick="{{ flipDrawn }}" style="cursor: pointer; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px rgba(34,30,43,.14); aspect-ratio: 0.676">
+                <img src="{{ drawnImage }}" alt="Vytažená karta" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 16px; line-height: 1.65">Vytáhněte kartu a povídejte si:</div>
+                <ul style="font-weight: 500; font-size: 16px; line-height: 1.7; padding-left: 20px; margin: 10px 0 0">
+                  <li>Co myslíš, že se téhle příšerce stalo, že se takhle cítí?</li>
+                  <li>Kdy ses ty cítil podobně jako ona?</li>
+                  <li>Co by jí pomohlo, aby jí bylo lépe?</li>
+                </ul>
+                <div style="font-weight: 600; font-size: 14px; color: rgba(34,30,43,.55); margin-top: 14px">Klepnutím na kartu ji otočíte na popis emoce.</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px">
+                  <button onClick="{{ drawCard }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #22ADEE; color: #fff">Vytáhnout kartu</button>
+                  <button onClick="{{ flipDrawn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Otočit</button>
+                  <button onClick="{{ speakDrawn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Přečti nahlas</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isStory }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #FF2E9A">Hra 7 · Příběh z balíčku</div>
+            <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ storyChain }}</div>
+            <p style="font-weight: 500; font-size: 16px; max-width: 640px; margin: 12px 0 0">Vytáhněte si karty a spojte je do jednoho příběhu — co se příšerce stalo nejdřív, co potom a jak to skončilo.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; margin-top: 24px">
+              <sc-for list="{{ storyCards }}" as="s" hint-placeholder-count="4">
+                <div style="text-align: center">
+                  <div style="background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.1); aspect-ratio: 0.676">
+                    <img src="{{ s.front }}" alt="{{ s.name }}" decoding="async" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+                  </div>
+                  <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; margin-top: 10px">{{ s.name }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; align-items: center">
+              <button onClick="{{ dealStory }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #FF2E9A; color: #fff">Nové karty</button>
+              <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Zapojte se taky — dospělý si vytáhne kartu a sdílí vlastní zkušenost.</span>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="dennik" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 24px">
+    <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #22ADEE">Emoční deník</div>
+    <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Jak se dnes cítím</h2>
+    <p style="font-weight: 500; font-size: 16px; margin: 10px 0 0; max-width: 640px">Vyberte příšerku, která dnešnímu dni odpovídá. Za týden uvidíte, co se v dítěti dělo — a bude o čem mluvit. Deník zůstává jen v tomto prohlížeči, nikam se neposílá.</p>
+
+    <div data-r="diary" style="display: grid; grid-template-columns: 1.3fr .7fr; gap: 30px; margin-top: 30px; align-items: start">
+      <div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px">
+          <sc-for list="{{ diarySlots }}" as="sl" hint-placeholder-count="3">
+            <button onClick="{{ sl.pick }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 999px; border: 2px solid #221E2B; background: {{ sl.bg }}; color: {{ sl.fg }}">{{ sl.label }}{{ sl.marker }}</button>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 10px">
+          <sc-for list="{{ diaryPicker }}" as="d" hint-placeholder-count="24">
+            <div onClick="{{ d.log }}" title="{{ d.name }}" style="cursor: pointer; text-align: center" style-hover="transform: translateY(-4px)">
+              <div style="background: #fff; border: 2px solid {{ d.border }}; border-radius: 10px; overflow: hidden; aspect-ratio: 0.676">
+                <img src="{{ d.front }}" alt="{{ d.name }}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+              </div>
+              <div style="font-weight: 700; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; margin-top: 5px; color: rgba(34,30,43,.7)">{{ d.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background: #fff; border: 2px solid #221E2B; border-radius: 22px; padding: 24px">
+        <div style="font-weight: 800; font-size: 17px">Posledních 7 dní</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px">
+          <sc-for list="{{ diaryWeek }}" as="w" hint-placeholder-count="7">
+            <div style="border-bottom: 1px solid rgba(34,30,43,.1); padding-bottom: 10px">
+              <div style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.6); margin-bottom: 6px">{{ w.label }}</div>
+              <div style="display: flex; gap: 8px">
+                <sc-for list="{{ w.slots }}" as="e" hint-placeholder-count="3">
+                  <div title="{{ e.title }}" style="flex: 1; text-align: center">
+                    <div style="width: 100%; aspect-ratio: 0.9; border-radius: 6px; overflow: hidden; border: 1px solid rgba(34,30,43,.2); background: {{ e.bg }}; display: grid; place-items: center">
+                      <sc-if value="{{ e.front }}" hint-placeholder-val="{{ false }}">
+                        <img src="{{ e.front }}" alt="{{ e.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+                      </sc-if>
+                    </div>
+                    <div style="font-size: 9px; font-weight: 700; color: rgba(34,30,43,.4); margin-top: 2px; text-transform: uppercase">{{ e.tag }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <button onClick="{{ clearToday }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 13px; padding: 11px 18px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B; margin-top: 18px">Vymazat dnešní záznam</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="hry" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 24px">
+    <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #6E8C4A">Pravidla</div>
+    <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Hry s balíčkem</h2>
+    <p style="font-weight: 500; font-size: 16px; margin: 10px 0 0; max-width: 620px">Každá hra má jeden list s pravidly — příprava, jak na to a cíl. Klepnutím se list zvětší, tlačítkem si ho uložíte.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 26px; margin-top: 34px">
+      <sc-for list="{{ games }}" as="g" hint-placeholder-count="8">
+        <div style="background: #fff; border: 1px solid rgba(34,30,43,.14); border-radius: 22px; padding: 22px; box-shadow: 0 12px 28px rgba(34,30,43,.07)">
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+            <span style="width: 44px; height: 44px; border-radius: 999px; background: {{ g.color }}; color: #fff; font-weight: 800; font-size: 18px; display: grid; place-items: center">{{ g.num }}</span>
+            <div style="margin-right: auto">
+              <div style="font-weight: 800; font-size: 21px">{{ g.title }}</div>
+              <div style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.6); margin-top: 2px">{{ g.meta }}</div>
+            </div>
+            <sc-if value="{{ g.hasSheet }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ g.src }}" download="{{ g.file }}" style="font-weight: 800; font-size: 13px; border: 2px solid #221E2B; border-radius: 999px; padding: 10px 16px; color: #221E2B" style-hover="background: #221E2B; color: #fff">Stáhnout list</a>
+            </sc-if>
+          </div>
+          <sc-if value="{{ g.hasSheet }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ g.open }}" style="cursor: zoom-in; margin-top: 18px; border-radius: 14px; overflow: hidden; background: #FBFAF7">
+              <img src="{{ g.src }}" alt="{{ g.title }}" loading="lazy" decoding="async" style="width: 100%; display: block" />
+            </div>
+          </sc-if>
+          <sc-if value="{{ g.isPexesoRules }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top: 18px; background: #FFF3E6; border-radius: 16px; padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px">
+              <div>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #E8730C; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">1 · Příprava</div>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Vytiskněte balíček dvakrát (nebo jen polovinu sady). Rozložte karty na stůl obrázky dolů.</p>
+              </div>
+              <div>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #E8730C; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">2 · Jak na to</div>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Hráči střídavě otáčejí dvě karty. Pokud se shodují, nechají si je. U každé dvojice řekněte, jakou emoci příšerka cítí.</p>
+              </div>
+              <div>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #221E2B; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">3 · Tipy pro hru</div>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Zkuste hledat i „emoční sousedy“ — například <strong>vztek × frustrace</strong>. Cíl: rozvíjet paměť a schopnost porovnávat emoce.</p>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="stahnout" style="max-width: 1180px; margin: 60px auto 0; padding: 0 24px 90px">
+    <div data-r="dlpad" style="background: #FFD23F; border: 2px solid #221E2B; border-radius: 30px; padding: 44px; position: relative; overflow: hidden">
+      <div style="position: absolute; right: -80px; bottom: -120px; width: 380px; height: 340px; background: #fff; opacity: .45; border-radius: 52% 48% 43% 57% / 48% 55% 45% 52%"></div>
+      <div data-r="dl" style="position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 40px">
+        <div>
+          <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 48px; letter-spacing: .04em; text-transform: uppercase; margin: 0">Stáhnout<br /><span style="font-weight: 600">a vytisknout</span></h2>
+          <p style="font-weight: 600; font-size: 16px; line-height: 1.6; margin: 18px 0 0; max-width: 460px">Nejjednodušší je hotový dokument k tisku — archy A4 se čtyřmi kartami, plakát do třídy a metodický list. Vytiskněte obousměrně, překlopení po delší straně.</p>
+          <a href="karty-k-tisku.html" style="display: inline-flex; align-items: center; gap: 12px; background: #221E2B; color: #fff; font-weight: 800; font-size: 16px; padding: 16px 24px; border-radius: 999px; margin-top: 22px" style-hover="background: #7B3DF5; color: #fff">Otevřít dokument k tisku (PDF) →</a>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px; max-width: 440px">
+            <sc-for list="{{ bundles }}" as="b" hint-placeholder-count="4">
+              <button onClick="{{ b.go }}" style="font-family: Montserrat, sans-serif; cursor: {{ b.cursor }}; text-align: left; display: flex; align-items: center; gap: 14px; background: #fff; border: 2px solid #221E2B; border-radius: 16px; padding: 16px 18px; box-shadow: 3px 3px 0 #221E2B; opacity: {{ b.opacity }}" style-hover="transform: translate(2px,2px); box-shadow: 1px 1px 0 #221E2B">
+                <span style="font-weight: 800; font-size: 16px; margin-right: auto">{{ b.label }}</span>
+                <span style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.55)">{{ b.hint }}</span>
+                <span style="font-weight: 800; font-size: 18px">↓</span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="font-weight: 600; font-size: 12px; margin-top: 14px; max-width: 440px; color: rgba(34,30,43,.62)">Stáhne se jeden soubor ZIP — rozbalte ho a máte všechny obrázky pohromadě.</div>
+        </div>
+        <div data-r="dlthumbs" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-content: start">
+          <img src="thumbs/t19.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="cards/c36.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="thumbs/t17.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="cards/c40.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="thumbs/t21.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="cards/c34.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid rgba(34,30,43,.1); padding: 30px 24px 60px">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap; font-weight: 600; font-size: 13px; color: rgba(34,30,43,.6)">
+      <span>Emoční příšerky — karty pro povídání o pocitech s dětmi od 4 let.</span>
+      <span>Bavte se objevováním světa v sobě.</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ overlay }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeOverlay }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(20,17,26,.78); backdrop-filter: blur(6px); display: grid; place-items: center; padding: 32px; cursor: zoom-out; animation: pop .18s ease-out">
+      <div style="max-width: 1180px; width: 100%; max-height: 100%; overflow: auto">
+        {{ overlayContent }}
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showQuotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Balíček&quot;},&quot;storyLength&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:3,&quot;max&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hraní&quot;}}">
+const FAM = { vztek: "#6E8C4A", smutek: "#22ADEE", radost: "#FF2E9A", strach: "#FFD23F", telo: "#7B3DF5" };
+
+const DECK = [
+  { f: 1, b: 43, name: "Vztek", fam: "vztek", slug: "vztek", quote: "Něco mě hodně štve a mám chuť s tím něco udělat!", q: "Co by mohlo tuhle příšerku naštvat?", sim: ["frustrace", "netrpelivost", "znechuceni"], opp: "radost" },
+  { f: 2, b: 42, name: "Frustrace", fam: "vztek", slug: "frustrace", quote: "Snažím se, ale pořád mi to nejde.", q: "Co se téhle příšerce nedaří?", sim: ["vztek", "netrpelivost", "zavist"], opp: "hrdost" },
+  { f: 16, b: 41, name: "Netrpělivost", fam: "vztek", slug: "netrpelivost", quote: "Chci, aby to už bylo. Nechci dál čekat!", q: "Na co tahle příšerka čeká a už to nemůže vydržet?", sim: ["vztek", "frustrace", "ocekavani"], opp: null },
+  { f: 17, b: 40, name: "Znechucení", fam: "vztek", slug: "znechuceni", quote: "Fuj! Tohle se mi vůbec nelíbí a nechci to.", q: "U čeho si může tahle příšerka říct „fuj“?", sim: ["vztek", "smutek"], opp: null },
+  { f: 8, b: 33, name: "Smutek", fam: "smutek", slug: "smutek", quote: "Něco mě rozesmutnilo a není mi dobře.", q: "Proč je asi takhle příšerka tak smutná?", sim: ["nestesti", "osamelost", "znechuceni"], opp: "radost" },
+  { f: 13, b: 32, name: "Neštěstí", fam: "smutek", slug: "nestesti", quote: "Je mi opravdu moc smutno. Tohle je na mě teď strašně těžké.", q: "Co se mohlo téhle příšerce stát, že je jí tak moc smutno?", sim: ["smutek", "litost"], opp: "radost" },
+  { f: 14, b: 31, name: "Lítost", fam: "smutek", slug: "litost", quote: "Mrzí mě, co jsem udělal nebo řekl, a přál bych si to napravit.", q: "Co mohla tahle příšerka udělat, že toho teď lituje?", sim: ["nestesti", "osamelost"], opp: null },
+  { f: 23, b: 29, name: "Osamělost", fam: "smutek", slug: "osamelost", quote: "Chybí mi někdo, s kým bych chtěl být.", q: "Kdo asi téhle příšerce chybí?", sim: ["smutek", "litost", "nuda"], opp: "laska" },
+  { f: 15, b: 30, name: "Nuda", fam: "smutek", slug: "nuda", quote: "Nic mě teď nezajímá a nevím, co bych dělal.", q: "Potřebuje tahle příšerka odpočinek, nebo ji jen nic nebaví?", sim: ["osamelost", "unava"], opp: "nadseni" },
+  { f: 5, b: 39, name: "Radost", fam: "radost", slug: "radost", quote: "Je mi dobře a mám z něčeho příjemný pocit.", q: "Z čeho by mohla mít takhle příšerka radost?", sim: ["nadseni", "laska", "hrdost"], opp: "smutek" },
+  { f: 6, b: 38, name: "Nadšení", fam: "radost", slug: "nadseni", quote: "Tohle je úžasné!", q: "Na co by se tahle příšerka mohla těšit tak moc, že by nevydržela sedět na místě?", sim: ["radost", "ocekavani"], opp: "nuda" },
+  { f: 12, b: 37, name: "Očekávání", fam: "radost", slug: "ocekavani", quote: "Něco hezkého přijde a já se na to moc těším.", q: "Na co se tahle příšerka asi těší?", sim: ["nadseni", "netrpelivost"], opp: null },
+  { f: 19, b: 36, name: "Hrdost", fam: "radost", slug: "hrdost", quote: "Dokázal jsem něco, na co jsem pyšný.", q: "Co tahle příšerka dokázala, na co může být pyšná?", sim: ["radost", "duvera"], opp: "stydlivost" },
+  { f: 21, b: 35, name: "Láska", fam: "radost", slug: "laska", quote: "Mám někoho moc rád a záleží mi na něm.", q: "Koho asi má tahle příšerka tolik ráda?", sim: ["duvera", "radost"], opp: "osamelost" },
+  { f: 22, b: 34, name: "Důvěra", fam: "radost", slug: "duvera", quote: "Věřím ti. Vím, že mi neublížíš a můžeš mi pomoct.", q: "Komu by tahle příšerka mohla opravdu věřit?", sim: ["laska", "hrdost"], opp: "strach" },
+  { f: 4, b: 47, name: "Strach", fam: "strach", slug: "strach", quote: "Něco mi připadá nebezpečné a chci být v bezpečí.", q: "Čeho by se tahle příšerka mohla bát?", sim: ["nervozita", "stydlivost"], opp: "duvera" },
+  { f: 3, b: 48, name: "Nervozita", fam: "strach", slug: "nervozita", quote: "Něco nového se děje a já nevím, jak to dopadne.", q: "Kvůli čemu může být takhle příšerka nervózní?", sim: ["strach", "nejistota", "stydlivost", "ocekavani"], opp: null },
+  { f: 9, b: 46, name: "Nejistota", fam: "strach", slug: "nejistota", quote: "Nevím, co mám udělat, nebo co se stane.", q: "Proč je asi tahle příšerka nejistá?", sim: ["zmatenost", "nervozita", "stydlivost"], opp: "duvera" },
+  { f: 10, b: 45, name: "Stydlivost", fam: "strach", slug: "stydlivost", quote: "Je mi nepříjemné, že se na mě ostatní dívají.", q: "Kdy ses naposledy takhle styděl a proč?", sim: ["nejistota", "strach"], opp: "hrdost" },
+  { f: 11, b: 44, name: "Zmatenost", fam: "strach", slug: "zmatenost", quote: "Nerozumím tomu. Nevím, co se děje.", q: "Co tahle příšerka asi nechápe?", sim: ["nejistota", "prekvapeni"], opp: null },
+  { f: 18, b: 26, name: "Překvapení", fam: "telo", slug: "prekvapeni", quote: "Tohle jsem vůbec nečekal!", q: "Co by tuhle příšerku mohlo úplně překvapit?", sim: ["zmatenost"], opp: null },
+  { f: 20, b: 27, name: "Závist", fam: "telo", slug: "zavist", quote: "Chci mít něco, co má někdo jiný.", q: "Co má někdo jiný, co by tahle příšerka chtěla?", sim: ["frustrace"], opp: null },
+  { f: 7, b: 28, name: "Bolest", fam: "telo", slug: "bolest", quote: "Něco mě bolí a je to nepříjemné!", q: "Kdy mě naposledy takhle moc něco bolelo a proč?", sim: ["smutek"], opp: null },
+  { f: 24, b: 25, name: "Únava", fam: "telo", slug: "unava", quote: "Moje tělo už nemá dost energie.", q: "Potřebuje tahle příšerka něco dělat, nebo si hlavně odpočinout?", sim: ["nuda"], opp: "nadseni" }
+];
+
+const GAMES = [
+  { num: "1", slug: "ukaz-mi-emoci", title: "Ukaž mi emoci", meta: "Věk 4+ · 2+ hráči · všechny karty · Poznat emoci podle obličeje a postoje těla", src: "games/hra1.webp", color: "#7B3DF5" },
+  { num: "2", slug: "co-se-ji-stalo", title: "Co se jí stalo?", meta: "Věk 5+ · 2+ hráči · balíček karet · Spojit pocit s konkrétní situací", src: "games/hra2.webp", color: "#22ADEE" },
+  { num: "3", slug: "najdi-kamarada-emoce", title: "Najdi kamaráda — porovnávejte emoce", meta: "Věk 5+ · 2+ hráči · vybrané dvojice karet · Rozlišovat jemné rozdíly a opaky", src: "games/hra3.webp", color: "#7B3DF5" },
+  { num: "4", slug: "najdi-kamarada-rozdily", title: "Najdi kamaráda — jemné rozdíly", meta: "Věk 5+ · 2+ hráči · vybrané dvojice a trojice · Vztek × netrpělivost, smutek × osamělost", src: "games/hra4.webp", color: "#6E8C4A" },
+  { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · celý balíček nebo polovina · Paměťová hra s tvářemi", color: "#E8730C", rules: "pexeso" },
+  { num: "6", slug: "hadej-kdo-jsem", title: "Hádej, kdo jsem? — emoční pantomima", meta: "Věk 5+ · 2+ hráči · balíček karet · Rozvíjet výrazové schopnosti", src: "games/hra6.webp", color: "#FF2E9A" },
+  { num: "7", slug: "pribeh-z-balicku", title: "Příběh z balíčku", meta: "Věk 5+ · 2+ hráči · 3–5 karet · Propojit karty s vlastní zkušeností", src: "games/hra7.webp", color: "#FF2E9A" },
+  { num: "+", slug: "superschopnosti", title: "Další superschopnosti karet", meta: "Rozvíjející aktivity — více emocí najednou, co se děje v těle, co by pomohlo", src: "games/superschopnosti.webp", color: "#221E2B" }
+];
+
+const DAYS = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"];
+const DIARY_KEY = "emocni-priserky-dennik-v1";
+const SOUND_KEY = "emocni-priserky-zvuk-v1";
+
+const img = n => "cards/c" + String(n).padStart(2, "0") + ".png";
+const thumb = n => n <= 24 ? "thumbs/t" + String(n).padStart(2, "0") + ".webp" : img(n);
+const shuffle = arr => arr.slice().sort(() => Math.random() - 0.5);
+const pick = (arr, n) => shuffle(arr).slice(0, n);
+const bySlug = s => DECK.find(d => d.slug === s);
+const isoDay = d => d.toLocaleDateString("sv-SE");
+
+/* ---------- minimal ZIP (store method, no komprese — obrázky jsou už komprimované) ---------- */
+const CRC_TABLE = (() => {
+  const t = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = c & 1 ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+    t[n] = c >>> 0;
+  }
+  return t;
+})();
+const crc32 = bytes => {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < bytes.length; i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+};
+const dosDateTime = d => ({
+  time: ((d.getHours() & 0x1F) << 11) | ((d.getMinutes() & 0x3F) << 5) | ((d.getSeconds() >> 1) & 0x1F),
+  date: (((d.getFullYear() - 1980) & 0x7F) << 9) | (((d.getMonth() + 1) & 0xF) << 5) | (d.getDate() & 0x1F)
+});
+function makeZip(files) {
+  const { time, date } = dosDateTime(new Date());
+  const enc = new TextEncoder();
+  const parts = [];
+  const central = [];
+  let offset = 0;
+  for (const f of files) {
+    const nameBytes = enc.encode(f.name);
+    const crc = crc32(f.bytes);
+    const size = f.bytes.length;
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0, true);
+    lh.setUint16(8, 0, true); lh.setUint16(10, time, true); lh.setUint16(12, date, true);
+    lh.setUint32(14, crc, true); lh.setUint32(18, size, true); lh.setUint32(22, size, true);
+    lh.setUint16(26, nameBytes.length, true); lh.setUint16(28, 0, true);
+    parts.push(new Uint8Array(lh.buffer), nameBytes, f.bytes);
+
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true);
+    ch.setUint16(8, 0, true); ch.setUint16(10, 0, true); ch.setUint16(12, time, true); ch.setUint16(14, date, true);
+    ch.setUint32(16, crc, true); ch.setUint32(20, size, true); ch.setUint32(24, size, true);
+    ch.setUint16(28, nameBytes.length, true); ch.setUint16(30, 0, true); ch.setUint16(32, 0, true);
+    ch.setUint16(34, 0, true); ch.setUint16(36, 0, true); ch.setUint32(38, 0, true); ch.setUint32(42, offset, true);
+    central.push(new Uint8Array(ch.buffer), nameBytes);
+
+    offset += 30 + nameBytes.length + size;
+  }
+  const centralStart = offset;
+  let centralSize = 0;
+  for (const c of central) { parts.push(c); centralSize += c.length; }
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(4, 0, true); end.setUint16(6, 0, true);
+  end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+  end.setUint32(12, centralSize, true); end.setUint32(16, centralStart, true); end.setUint16(20, 0, true);
+  parts.push(new Uint8Array(end.buffer));
+  return new Blob(parts, { type: "application/zip" });
+}
+
+class Component extends DCLogic {
+  state = {
+    filter: "vse", mode: "quiz", overlay: null, sound: true, menuOpen: false, zipBusy: null,
+    quiz: null, score: 0, asked: 0, feedback: "", feedbackOk: true,
+    drawn: DECK[0], drawnSide: "front", story: [],
+    pex: [], pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
+    pairs: null, pairsAnswer: null,
+    diary: {}, today: isoDay(new Date()), activeSlot: "morning"
+  };
+
+  componentDidMount() {
+    let diary = {}, sound = true;
+    try {
+      diary = JSON.parse(localStorage.getItem(DIARY_KEY) || "{}") || {};
+      const st = localStorage.getItem(SOUND_KEY);
+      if (st !== null) sound = st === "1";
+    } catch (e) { diary = {}; }
+    this.setState({
+      quiz: this.makeQuiz(), drawn: pick(DECK, 1)[0], story: pick(DECK, this.props.storyLength ?? 4),
+      pairs: this.makePairs(), pex: this.makePexeso(), diary, sound
+    });
+  }
+
+  /* ---------- zvuk a hlas ---------- */
+  speak(text) {
+    if (!window.speechSynthesis) return;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "cs-CZ";
+      u.rate = 0.92;
+      const v = window.speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().indexOf("cs") === 0);
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    } catch (e) { /* prohlížeč hlas nepodporuje */ }
+  }
+
+  tone(freqs) {
+    if (!this.state.sound) return;
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      this._ac = this._ac || new Ctx();
+      const ac = this._ac;
+      freqs.forEach((f, i) => {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.type = "sine"; o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, ac.currentTime + i * 0.12);
+        g.gain.exponentialRampToValueAtTime(0.14, ac.currentTime + i * 0.12 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + i * 0.12 + 0.18);
+        o.connect(g); g.connect(ac.destination);
+        o.start(ac.currentTime + i * 0.12); o.stop(ac.currentTime + i * 0.12 + 0.2);
+      });
+    } catch (e) { /* zvuk nedostupný */ }
+  }
+
+  cardSpeech(c) { return c.name + ". " + c.quote + " " + c.q; }
+
+  /* ---------- hra 1 ---------- */
+  makeQuiz() {
+    const target = pick(DECK, 1)[0];
+    const others = pick(DECK.filter(d => d.slug !== target.slug), 5);
+    return { target, options: shuffle(others.concat([target])) };
+  }
+
+  answer(card) {
+    const q = this.state.quiz;
+    if (!q) return;
+    const ok = card.slug === q.target.slug;
+    this.tone(ok ? [660, 880] : [300]);
+    this.setState(s => ({
+      score: ok ? s.score + 1 : s.score,
+      asked: s.asked + 1,
+      feedback: ok ? "Správně! " + q.target.name.toUpperCase() + " — jak jsi to poznal?" : "Tahle příšerka cítí něco jiného. Zkus to ještě.",
+      feedbackOk: ok,
+      quiz: ok ? this.makeQuiz() : s.quiz
+    }));
+  }
+
+  /* ---------- hra 5: pexeso ---------- */
+  makePexeso() {
+    const chosen = pick(DECK, 8);
+    return shuffle(chosen.concat(chosen).map((c, i) => ({ key: i + "-" + c.slug, slug: c.slug, f: c.f, name: c.name, done: false })));
+  }
+
+  flipTile(i) {
+    const s = this.state;
+    if (s.pexLock) return;
+    const tile = s.pex[i];
+    if (!tile || tile.done || s.pexOpen.indexOf(i) > -1) return;
+    const open = s.pexOpen.concat([i]);
+    if (open.length < 2) { this.setState({ pexOpen: open, pexMessage: "" }); return; }
+    const a = s.pex[open[0]], b = s.pex[open[1]];
+    if (a.slug === b.slug) {
+      this.tone([660, 880]);
+      const pex = s.pex.map(t => t.slug === a.slug ? Object.assign({}, t, { done: true }) : t);
+      const found = s.pexFound + 1;
+      this.setState({
+        pex, pexOpen: [], pexFound: found,
+        pexMessage: found === 8 ? "Máte všechny dvojice! Chcete si zahrát znovu?" : "Dvojice! " + a.name.toUpperCase() + " — jak se taková příšerka cítí?"
+      });
+    } else {
+      this.tone([300]);
+      this.setState({ pexOpen: open, pexLock: true, pexMessage: "Tyhle dvě k sobě nepatří." });
+      setTimeout(() => this.setState({ pexOpen: [], pexLock: false }), 900);
+    }
+  }
+
+  /* ---------- hry 3 a 4: podobné a opaky ---------- */
+  makePairs() {
+    const r = Math.random();
+    if (r < 0.42) {
+      const pool = DECK.filter(d => d.sim.length);
+      const a = pick(pool, 1)[0];
+      const b = bySlug(pick(a.sim, 1)[0]);
+      return { a, b, kind: "podobne" };
+    }
+    if (r < 0.72) {
+      const pool = DECK.filter(d => d.opp);
+      const a = pick(pool, 1)[0];
+      return { a, b: bySlug(a.opp), kind: "opaky" };
+    }
+    for (let i = 0; i < 30; i++) {
+      const two = pick(DECK, 2);
+      const a = two[0], b = two[1];
+      if (a.sim.indexOf(b.slug) < 0 && b.sim.indexOf(a.slug) < 0 && a.opp !== b.slug && b.opp !== a.slug && a.fam !== b.fam) {
+        return { a, b, kind: "nic" };
+      }
+    }
+    const a = DECK[0];
+    return { a, b: bySlug("prekvapeni"), kind: "nic" };
+  }
+
+  answerPairs(kind) {
+    const p = this.state.pairs;
+    if (!p) return;
+    const ok = kind === p.kind;
+    this.tone(ok ? [660, 880] : [300]);
+    const texts = {
+      podobne: p.a.name + " a " + p.b.name + " jsou si podobné — jsou to emoční sousedé. V čem se ale liší?",
+      opaky: p.a.name + " a " + p.b.name + " jsou opaky. Zkuste si říct, jak se každá z nich cítí v těle.",
+      nic: p.a.name + " a " + p.b.name + " si nejsou ani podobné, ani opačné — jsou to prostě dva různé pocity."
+    };
+    this.setState({ pairsAnswer: { ok, text: (ok ? "Správně. " : "Ne tak úplně. ") + texts[p.kind] } });
+  }
+
+  /* ---------- deník ---------- */
+  saveDiary(diary) {
+    this.setState({ diary });
+    try { localStorage.setItem(DIARY_KEY, JSON.stringify(diary)); } catch (e) { /* soukromý režim */ }
+  }
+
+  logToday(slug) {
+    const today = isoDay(new Date());
+    const slot = this.state.activeSlot;
+    const diary = Object.assign({}, this.state.diary);
+    const entry = Object.assign({ morning: null, day: null, evening: null }, diary[today]);
+    entry[slot] = entry[slot] === slug ? null : slug;
+    diary[today] = entry;
+    this.tone([520]);
+    this.saveDiary(diary);
+  }
+
+  /* ---------- detail karty ---------- */
+  cardOverlay(c) {
+    const sheet = { background: "#fff", borderRadius: "16px", overflow: "hidden", display: "block", width: "100%" };
+    const btn = { fontWeight: 800, fontSize: "14px", padding: "12px 18px", borderRadius: "999px", background: "#fff", color: "#221E2B", border: "2px solid #221E2B", display: "inline-block", cursor: "pointer", fontFamily: "Montserrat, sans-serif" };
+    const chip = bg => ({ fontWeight: 700, fontSize: "13px", padding: "8px 14px", borderRadius: "999px", background: bg, color: "#fff", cursor: "pointer" });
+    const rel = [];
+    c.sim.forEach(s => { const d = bySlug(s); if (d) rel.push({ d, label: "podobné: " + d.name, bg: "#6E8C4A" }); });
+    if (c.opp) { const d = bySlug(c.opp); if (d) rel.push({ d, label: "opak: " + d.name, bg: "#FF2E9A" }); }
+    return React.createElement("div", { onClick: e => e.stopPropagation(), style: { cursor: "auto" } },
+      React.createElement("div", { style: { display: "flex", alignItems: "flex-end", gap: "16px", flexWrap: "wrap", marginBottom: "16px", color: "#fff" } },
+        React.createElement("div", { style: { fontFamily: "'Josefin Sans', Montserrat, sans-serif", fontWeight: 300, fontSize: "44px", letterSpacing: ".12em", textTransform: "uppercase", marginRight: "auto" } }, c.name),
+        React.createElement("button", { style: btn, onClick: () => this.speak(this.cardSpeech(c)) }, "Přečti nahlas"),
+        React.createElement("a", { href: img(c.f), download: "priserka-" + c.slug + "-obrazek.png", style: btn }, "↓ Obrázek"),
+        React.createElement("a", { href: img(c.b), download: "priserka-" + c.slug + "-popis.png", style: btn }, "↓ Popis")
+      ),
+      rel.length ? React.createElement("div", { style: { display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" } },
+        rel.map(r => React.createElement("span", {
+          key: r.label, style: chip(r.bg), onClick: () => this.setState({ overlay: this.cardOverlay(r.d) })
+        }, r.label))
+      ) : null,
+      React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px", alignItems: "start" } },
+        React.createElement("img", { src: img(c.f), alt: c.name, style: sheet }),
+        React.createElement("img", { src: img(c.b), alt: "Popis emoce " + c.name, style: sheet })
+      )
+    );
+  }
+
+  async download(list, zipName) {
+    if (this.state.zipBusy) return;
+    this.setState({ zipBusy: { label: zipName, done: 0, total: list.length } });
+    try {
+      const files = [];
+      for (const item of list) {
+        const res = await fetch(item.href);
+        const buf = await res.arrayBuffer();
+        files.push({ name: item.name, bytes: new Uint8Array(buf) });
+        this.setState(s => ({ zipBusy: s.zipBusy && { ...s.zipBusy, done: s.zipBusy.done + 1 } }));
+      }
+      const blob = makeZip(files);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = zipName;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    } catch (e) {
+      alert("Stažení se nepovedlo. Zkontrolujte připojení a zkuste to prosím znovu.");
+    } finally {
+      this.setState({ zipBusy: null });
+    }
+  }
+
+  renderVals() {
+    const s = this.state;
+    const daily = DECK[Math.floor(Date.now() / 86400000) % DECK.length];
+
+    const filters = [
+      { key: "vse", label: "Všechny" }, { key: "radost", label: "Radost" }, { key: "smutek", label: "Smutek" },
+      { key: "vztek", label: "Vztek" }, { key: "strach", label: "Strach" }, { key: "telo", label: "Tělo a překvapení" }
+    ].map(f => ({
+      label: f.label,
+      bg: s.filter === f.key ? (FAM[f.key] || "#221E2B") : "#fff",
+      fg: s.filter === f.key ? (f.key === "strach" ? "#221E2B" : "#fff") : "#221E2B",
+      pick: () => this.setState({ filter: f.key })
+    }));
+
+    const modes = [
+      { key: "quiz", label: "Ukaž mi emoci", accent: "#FFD23F" },
+      { key: "pexeso", label: "Emoční pexeso", accent: "#E8730C" },
+      { key: "pairs", label: "Podobné, nebo opak?", accent: "#6E8C4A" },
+      { key: "draw", label: "Vytáhni kartu", accent: "#22ADEE" },
+      { key: "story", label: "Příběh z balíčku", accent: "#FF2E9A" }
+    ].map(m => ({
+      label: m.label,
+      bg: s.mode === m.key ? m.accent : "transparent",
+      fg: s.mode === m.key ? (m.key === "quiz" ? "#221E2B" : "#fff") : "rgba(255,255,255,.85)",
+      border: s.mode === m.key ? m.accent : "rgba(255,255,255,.35)",
+      pick: () => this.setState({ mode: m.key })
+    }));
+
+    const q = s.quiz;
+    const p = s.pairs;
+    const pa = s.pairsAnswer;
+
+    const SLOT_TAGS = { morning: "ráno", day: "den", evening: "večer" };
+    const slotBg = { morning: "#FFD23F", day: "#22ADEE", evening: "#7B3DF5" };
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const key = isoDay(d);
+      const entry = s.diary[key] || {};
+      const slots = ["morning", "day", "evening"].map(slot => {
+        const c = entry[slot] ? bySlug(entry[slot]) : null;
+        return { tag: SLOT_TAGS[slot], title: c ? c.name : SLOT_TAGS[slot], front: c ? thumb(c.f) : null, bg: c ? "#fff" : "#FBFAF7" };
+      });
+      week.push({ label: i === 0 ? "Dnes" : DAYS[d.getDay()] + " " + d.getDate() + "." + (d.getMonth() + 1) + ".", slots });
+    }
+    const todayEntry = s.diary[isoDay(new Date())] || {};
+
+    return {
+      filters, modes,
+      showQuotes: this.props.showQuotes ?? true,
+
+      menuIcon: s.menuOpen ? "✕" : "☰",
+      mobileNavDisplay: s.menuOpen ? "flex" : "none",
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+
+      soundLabel: s.sound ? "Zvuk zapnutý" : "Zvuk vypnutý",
+      soundBg: s.sound ? "#FFD23F" : "#fff",
+      soundFg: "#221E2B",
+      toggleSound: () => {
+        const v = !s.sound;
+        this.setState({ sound: v });
+        try { localStorage.setItem(SOUND_KEY, v ? "1" : "0"); } catch (e) { /* soukromý režim */ }
+        if (v) this.tone([660, 880]);
+      },
+
+      dailyFront: thumb(daily.f), dailyName: daily.name, dailyQuote: daily.quote, dailyQuestion: daily.q,
+      speakDaily: () => this.speak(this.cardSpeech(daily)),
+      openDaily: () => this.setState({ overlay: this.cardOverlay(daily) }),
+
+      visibleCards: DECK.filter(c => s.filter === "vse" || c.fam === s.filter).map(c => ({
+        name: c.name, quote: c.quote, front: thumb(c.f), color: FAM[c.fam],
+        open: () => this.setState({ overlay: this.cardOverlay(c) })
+      })),
+
+      isQuiz: s.mode === "quiz", isPexeso: s.mode === "pexeso", isPairs: s.mode === "pairs",
+      isDraw: s.mode === "draw", isStory: s.mode === "story",
+
+      quizName: q ? q.target.name : "",
+      quizQuote: q ? q.target.quote : "",
+      quizScoreLabel: s.score + "/" + s.asked,
+      quizFeedback: s.feedback,
+      quizFeedbackColor: s.feedbackOk ? "#6E8C4A" : "#FF2E9A",
+      quizOptions: (q ? q.options : []).map(o => ({ front: thumb(o.f), border: "rgba(34,30,43,.14)", choose: () => this.answer(o) })),
+      nextQuiz: () => this.setState({ quiz: this.makeQuiz(), feedback: "" }),
+      speakQuiz: () => q && this.speak("Najdi příšerku, která cítí " + q.target.name + ". " + q.target.quote),
+
+      pexTiles: s.pex.map((t, i) => {
+        const shown = t.done || s.pexOpen.indexOf(i) > -1;
+        return {
+          src: shown ? thumb(t.f) : "thumbs/t01.webp",
+          alt: shown ? t.name : "Rubová strana karty",
+          backBg: "repeating-linear-gradient(135deg, #FFD23F 0px, #FFD23F 14px, #FF2E9A 14px, #FF2E9A 16px)",
+          opacity: t.done ? "0.55" : "1",
+          backOpacity: shown ? "0" : "1",
+          imgOpacity: shown ? "1" : "0",
+          flip: () => this.flipTile(i)
+        };
+      }),
+      pexFoundLabel: s.pexFound + "/8",
+      pexMessage: s.pexMessage,
+      newPexeso: () => this.setState({ pex: this.makePexeso(), pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false }),
+
+      pairsTitle: p ? p.a.name + " × " + p.b.name : "",
+      pairsCards: p ? [{ front: thumb(p.a.f), name: p.a.name }, { front: thumb(p.b.f), name: p.b.name }] : [],
+      pairsChoices: [
+        { key: "podobne", label: "Jsou si podobné", bg: "#fff", fg: "#221E2B" },
+        { key: "opaky", label: "Jsou to opaky", bg: "#fff", fg: "#221E2B" },
+        { key: "nic", label: "Ani jedno", bg: "#fff", fg: "#221E2B" }
+      ].map(ch => ({ label: ch.label, bg: ch.bg, fg: ch.fg, choose: () => this.answerPairs(ch.key) })),
+      pairsFeedback: pa ? pa.text : "",
+      pairsFeedbackColor: pa && pa.ok ? "#6E8C4A" : "#FF2E9A",
+      nextPairs: () => this.setState({ pairs: this.makePairs(), pairsAnswer: null }),
+
+      drawnImage: img(s.drawnSide === "front" ? s.drawn.f : s.drawn.b),
+      drawCard: () => this.setState({ drawn: pick(DECK, 1)[0], drawnSide: "front" }),
+      flipDrawn: () => this.setState(st => ({ drawnSide: st.drawnSide === "front" ? "back" : "front" })),
+      speakDrawn: () => this.speak(this.cardSpeech(s.drawn)),
+
+      storyCards: s.story.map(c => ({ front: thumb(c.f), name: c.name })),
+      storyChain: s.story.map(c => c.name.toUpperCase()).join(" → "),
+      dealStory: () => this.setState({ story: pick(DECK, this.props.storyLength ?? 4) }),
+
+      diarySlots: [
+        { key: "morning", label: "Ráno" }, { key: "day", label: "Přes den" }, { key: "evening", label: "Večer" }
+      ].map(sl => ({
+        label: sl.label,
+        marker: todayEntry[sl.key] ? " ✓" : "",
+        bg: s.activeSlot === sl.key ? slotBg[sl.key] : "#fff",
+        fg: s.activeSlot === sl.key ? (sl.key === "day" || sl.key === "evening" ? "#fff" : "#221E2B") : "#221E2B",
+        pick: () => this.setState({ activeSlot: sl.key })
+      })),
+      diaryPicker: DECK.map(c => ({
+        name: c.name, front: thumb(c.f),
+        border: todayEntry[s.activeSlot] === c.slug ? FAM[c.fam] : "rgba(34,30,43,.14)",
+        log: () => this.logToday(c.slug)
+      })),
+      diaryWeek: week,
+      clearToday: () => {
+        const diary = Object.assign({}, s.diary);
+        delete diary[isoDay(new Date())];
+        this.saveDiary(diary);
+      },
+
+      games: GAMES.map(g => ({
+        num: g.num, title: g.title, meta: g.meta, src: g.src || "", color: g.color,
+        hasSheet: !!g.src, isPexesoRules: g.rules === "pexeso",
+        file: "emocni-priserky-" + g.slug + ".webp",
+        open: () => g.src && this.setState({ overlay: React.createElement("img", { src: g.src, alt: g.title, style: { width: "100%", borderRadius: "16px", background: "#fff" } }) })
+      })),
+
+      bundles: [
+        { label: "Celý balíček", zip: "emocni-priserky-cely-balicek.zip", hint: "48 obrázků, 1 soubor ZIP", list: DECK.flatMap(c => [
+            { href: img(c.f), name: "priserka-" + c.slug + "-obrazek.png" },
+            { href: img(c.b), name: "priserka-" + c.slug + "-popis.png" }
+          ]) },
+        { label: "Jen příšerky", zip: "emocni-priserky-obrazky.zip", hint: "24 obrázků, 1 soubor ZIP", list: DECK.map(c => ({ href: img(c.f), name: "priserka-" + c.slug + "-obrazek.png" })) },
+        { label: "Jen popisy emocí", zip: "emocni-priserky-popisy.zip", hint: "24 obrázků, 1 soubor ZIP", list: DECK.map(c => ({ href: img(c.b), name: "priserka-" + c.slug + "-popis.png" })) },
+        { label: "Omalovánky", zip: "emocni-priserky-omalovanky.zip", hint: "24 obrázků, 1 soubor ZIP", list: DECK.map(c => ({ href: "coloring/o" + String(c.f).padStart(2, "0") + ".png", name: "omalovanka-" + c.slug + ".png" })) },
+        { label: "Pravidla všech her", zip: "emocni-priserky-pravidla.zip", hint: "7 listů, 1 soubor ZIP", list: GAMES.filter(g => g.src).map(g => ({ href: g.src, name: "emocni-priserky-" + g.slug + ".webp" })) }
+      ].map(b => {
+        const busy = s.zipBusy && s.zipBusy.label === b.zip ? s.zipBusy : null;
+        return {
+          label: b.label,
+          hint: busy ? `Stahuji… ${busy.done}/${busy.total}` : b.hint,
+          opacity: s.zipBusy ? .55 : 1,
+          cursor: s.zipBusy ? "default" : "pointer",
+          go: () => this.download(b.list, b.zip)
+        };
+      }),
+
+      overlay: s.overlay, overlayContent: s.overlay,
+      closeOverlay: () => this.setState({ overlay: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

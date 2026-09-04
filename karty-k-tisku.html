@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emoční příšerky — karty k tisku (PDF)</title>
+<meta name="description" content="Tiskový dokument s 24 kartami emocí, omalovánkami a pravidly her. Vytiskněte doma nebo do školky, formát A4." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "./vendor/react.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "./vendor/react-dom.production.min.js"
+  };
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden }
+  body { margin: 0; font-family: Montserrat, sans-serif; color: #221E2B }
+  a { color: #7B3DF5 }
+  a:hover { color: #FF2E9A }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page size="a4">
+
+  <section class="page" style="padding: 24mm 22mm; display: flex; flex-direction: column; gap: 10mm">
+    <div>
+      <div style="font-weight: 800; font-size: 10pt; letter-spacing: .18em; text-transform: uppercase; color: #7B3DF5">Karty ke stažení a tisku</div>
+      <h1 style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 46pt; line-height: .95; letter-spacing: .04em; text-transform: uppercase; margin: 4mm 0 0">Emoční<br /><span style="font-weight: 600">příšerky</span></h1>
+      <p style="font-size: 12pt; line-height: 1.6; max-width: 130mm; margin: 6mm 0 0; font-weight: 500">24 karet emocí pro povídání s dětmi od 4 let. Na jedné straně příšerka, která emoci prožívá, na druhé popis — jak ji dítě pozná, co cítí v těle, kdy ji zažívá a co mu pomůže.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm">
+      <div style="border: 1.5pt solid #221E2B; border-radius: 6mm; padding: 7mm">
+        <div style="font-weight: 800; font-size: 13pt; margin-bottom: 3mm">Jak tisknout</div>
+        <ol style="font-size: 11.5pt; line-height: 1.65; padding-left: 6mm; margin: 0; font-weight: 500">
+          <li>Papír 250 g, formát A4, kvalita „nejlepší“.</li>
+          <li>Zapněte <strong>obousměrný tisk — překlopení po delší straně</strong>.</li>
+          <li>V nastavení tisku vyberte <strong>100 % / bez přizpůsobení</strong>.</li>
+          <li>Rozřežte podle slabých linek na 4 karty A6.</li>
+          <li>Volitelně zakulaťte hrany a zalaminujte.</li>
+        </ol>
+      </div>
+      <div style="background: #FFD23F; border: 1.5pt solid #221E2B; border-radius: 6mm; padding: 7mm">
+        <div style="font-weight: 800; font-size: 13pt; margin-bottom: 3mm">Co v dokumentu najdete</div>
+        <ul style="font-size: 11.5pt; line-height: 1.7; padding-left: 6mm; margin: 0; font-weight: 600">
+          <li>6 archů s příšerkami + 6 archů s popisy</li>
+          <li>24 omalovánek — příšerky jako kontury k vybarvení</li>
+          <li>Plakát se všemi 24 emocemi na zeď</li>
+          <li>Metodický list pro školky a poradny</li>
+        </ul>
+        <div style="font-size: 10.5pt; line-height: 1.55; margin-top: 4mm; font-weight: 600">Archy jsou už seřazené tak, aby po obousměrném tisku popis vyšel na správné příšerce.</div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; margin-top: auto">
+      <img src="thumbs/t01.webp" alt="" style="width: 100%; border: .5pt solid rgba(34,30,43,.3); border-radius: 2mm" />
+      <img src="thumbs/t06.webp" alt="" style="width: 100%; border: .5pt solid rgba(34,30,43,.3); border-radius: 2mm" />
+      <img src="thumbs/t13.webp" alt="" style="width: 100%; border: .5pt solid rgba(34,30,43,.3); border-radius: 2mm" />
+      <img src="thumbs/t21.webp" alt="" style="width: 100%; border: .5pt solid rgba(34,30,43,.3); border-radius: 2mm" />
+    </div>
+    <div style="font-size: 9.5pt; font-weight: 600; color: rgba(34,30,43,.55); text-align: center">Bavte se objevováním světa v sobě.</div>
+  </section>
+
+  <sc-for list="{{ sheets }}" as="sh" hint-placeholder-count="12">
+    <section class="page" style="padding: 0; position: relative">
+      <div style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr">
+        <sc-for list="{{ sh.slots }}" as="q" hint-placeholder-count="4">
+          <div style="position: relative; overflow: hidden; display: grid; min-height: 0; min-width: 0; border: .25pt dashed rgba(34,30,43,.35)">
+            <img src="{{ q.src }}" alt="{{ q.alt }}" style="width: 100%; height: 100%; align-self: stretch; justify-self: stretch; object-fit: contain; display: block" />
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <sc-for list="{{ coloring }}" as="cp" hint-placeholder-count="24">
+    <section class="page" style="padding: 14mm; display: flex; flex-direction: column; align-items: center">
+      <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 600; font-size: 20pt; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6mm">{{ cp.name }} — omalovánka</div>
+      <img src="{{ cp.src }}" alt="Omalovánka {{ cp.name }}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; flex: 1; min-height: 0" />
+    </section>
+  </sc-for>
+
+  <section class="page" style="padding: 12mm 12mm 10mm; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: baseline; gap: 6mm; margin-bottom: 6mm">
+      <h2 style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 30pt; letter-spacing: .06em; text-transform: uppercase; margin: 0">Emoční příšerky</h2>
+      <div style="font-weight: 700; font-size: 11pt; color: rgba(34,30,43,.6)">plakát se všemi 24 emocemi</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); gap: 4mm; flex: 1; min-height: 0">
+      <sc-for list="{{ poster }}" as="p" hint-placeholder-count="24">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 1.5mm; min-height: 0; overflow: hidden">
+          <img src="{{ p.src }}" alt="{{ p.name }}" style="max-width: 100%; max-height: 100%; width: auto; flex: 1; object-fit: contain; min-height: 0" />
+          <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 600; font-size: 11pt; letter-spacing: .1em; text-transform: uppercase; text-align: center">{{ p.name }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="page" style="padding: 20mm 20mm 16mm">
+    <div style="font-weight: 800; font-size: 10pt; letter-spacing: .16em; text-transform: uppercase; color: #6E8C4A">Metodický list</div>
+    <h2 style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 32pt; letter-spacing: .04em; text-transform: uppercase; margin: 3mm 0 6mm">Pro školky a poradny</h2>
+
+    <div style="font-size: 11.5pt; line-height: 1.6; font-weight: 500">
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">K čemu karty slouží</h3>
+      <p style="margin: 0 0 4mm">Karty pomáhají dětem <strong>pojmenovat</strong>, co se v nich děje. Dítě nejdřív pozná emoci na obličeji a v postoji příšerky, potom si pro ni najde vlastní situaci a nakonec zkusí říct, co by mu pomohlo. Právě tohle třetí je cíl — emoce se nemá „vypnout“, ale zvládnout.</p>
+
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Jak s kartami mluvit</h3>
+      <ul style="margin: 0 0 4mm; padding-left: 5mm">
+        <li>Ptejte se otevřeně: „Co myslíš, že se jí stalo?“</li>
+        <li>Nabídněte tělo: „Kde bys to cítil — v bříšku, v srdíčku?“</li>
+        <li>Nehodnoťte. Žádná emoce na kartách není špatná.</li>
+        <li>Sdílejte i sebe: „Já to znám, taky mě to někdy…“</li>
+        <li>Končete otázkou „Co by pomohlo?“</li>
+      </ul>
+
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Zařazení do dne</h3>
+      <ul style="margin: 0 0 4mm; padding-left: 5mm">
+        <li><strong>Ranní kruh:</strong> každé dítě si vybere kartu „takhle jsem dnes přišel“.</li>
+        <li><strong>Po konfliktu:</strong> obě děti najdou kartu toho, co cítily.</li>
+        <li><strong>Před spaním / na odpočinek:</strong> karta dne a krátké povídání.</li>
+        <li><strong>Individuální práce:</strong> hry 3 a 4 na jemné rozdíly mezi pocity.</li>
+      </ul>
+
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Věkové rozvržení</h3>
+      <ul style="margin: 0 0 4mm; padding-left: 5mm">
+        <li><strong>4 roky:</strong> hra 1 (Ukaž mi emoci) a pexeso s poloviční sadou.</li>
+        <li><strong>5 let:</strong> hry 2, 3, 6 — situace, dvojice, pantomima.</li>
+        <li><strong>6 let a víc:</strong> hry 4 a 7 — jemné rozdíly a příběh z balíčku.</li>
+      </ul>
+
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Podobné emoce a opaky</h3>
+      <p style="margin: 0 0 4mm">Na každé kartě je řádek <em>Podobné emoce</em>. Dvojice jako <strong>vztek × netrpělivost</strong>, <strong>smutek × osamělost</strong> nebo <strong>strach × nervozita</strong> jsou nejcennější materiál — děti se na nich učí, že pocity mají odstíny. Opaky (<strong>radost × smutek</strong>, <strong>důvěra × strach</strong>, <strong>nadšení × nuda</strong>) pomáhají ukázat, že se pocity mění.</p>
+
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Na co si dát pozor</h3>
+      <p style="margin: 0">Když se dítě u nějaké karty opakovaně zasekne nebo o ní odmítá mluvit, není to chyba hry — je to informace. Nenuťte, kartu odložte a vraťte se k ní jindy, případně to zmiňte rodičům.</p>
+    </div>
+  </section>
+
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DECK = [
+  { f: 1, b: 43, name: "Vztek" }, { f: 2, b: 42, name: "Frustrace" },
+  { f: 16, b: 41, name: "Netrpělivost" }, { f: 17, b: 40, name: "Znechucení" },
+  { f: 13, b: 33, name: "Smutek" }, { f: 15, b: 32, name: "Neštěstí" },
+  { f: 14, b: 31, name: "Lítost" }, { f: 23, b: 29, name: "Osamělost" },
+  { f: 8, b: 30, name: "Nuda" }, { f: 22, b: 39, name: "Radost" },
+  { f: 6, b: 38, name: "Nadšení" }, { f: 12, b: 37, name: "Očekávání" },
+  { f: 19, b: 36, name: "Hrdost" }, { f: 5, b: 35, name: "Láska" },
+  { f: 21, b: 34, name: "Důvěra" }, { f: 4, b: 47, name: "Strach" },
+  { f: 3, b: 48, name: "Nervozita" }, { f: 9, b: 46, name: "Nejistota" },
+  { f: 10, b: 45, name: "Stydlivost" }, { f: 11, b: 44, name: "Zmatenost" },
+  { f: 18, b: 26, name: "Překvapení" }, { f: 20, b: 27, name: "Závist" },
+  { f: 7, b: 28, name: "Bolest" }, { f: 24, b: 25, name: "Únava" }
+];
+
+const img = n => "cards/c" + String(n).padStart(2, "0") + ".png";
+
+class Component extends DCLogic {
+  renderVals() {
+    const sheets = [];
+    for (let i = 0; i < DECK.length; i += 4) {
+      const group = DECK.slice(i, i + 4);
+      sheets.push({ slots: group.map(c => ({ src: img(c.f), alt: "Příšerka " + c.name })) });
+      const mirrored = [group[1], group[0], group[3], group[2]];
+      sheets.push({ slots: mirrored.map(c => ({ src: img(c.b), alt: "Popis emoce " + c.name })) });
+    }
+    return {
+      sheets,
+      poster: DECK.map(c => ({ src: img(c.f), name: c.name })),
+      coloring: DECK.map(c => ({ src: "coloring/o" + String(c.f).padStart(2, "0") + ".png", name: c.name }))
+    };
+  }
+}
+</script>
+</body>
+</html>
