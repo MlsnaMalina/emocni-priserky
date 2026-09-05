@@ -559,7 +559,12 @@
                 <div style="display: inline-flex; align-items: center; gap: 8px; background: #221E2B; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">3 · Tipy pro hru</div>
                 <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">{{ g.rules.tipy }}</p>
               </div>
-              <sc-if value="{{ g.rules.hero }}" hint-placeholder-val="{{ false }}">
+              <sc-if value="{{ g.rules.heroBlend }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; align-items: flex-end; justify-content: center">
+                  <img src="{{ g.rules.hero }}" alt="{{ g.rules.heroAlt }}" loading="lazy" decoding="async" style="max-width: 100%; max-height: 260px; object-fit: contain; display: block; mix-blend-mode: multiply" />
+                </div>
+              </sc-if>
+              <sc-if value="{{ g.rules.heroPlain }}" hint-placeholder-val="{{ false }}">
                 <div style="display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 14px; overflow: hidden; min-height: 160px">
                   <img src="{{ g.rules.hero }}" alt="{{ g.rules.heroAlt }}" loading="lazy" decoding="async" style="max-width: 100%; max-height: 220px; object-fit: contain; display: block" />
                 </div>
@@ -607,6 +612,7 @@
       <span>Emoční příšerky — karty pro povídání o pocitech s dětmi od 4 let.</span>
       <span>Bavte se objevováním světa v sobě.</span>
     </div>
+    <div style="max-width: 1180px; margin: 14px auto 0; font-weight: 600; font-size: 12px; color: rgba(34,30,43,.45)">© {{ copyrightYear }} Kateřina Mlsnová. Všechna práva vyhrazena.</div>
   </footer>
 
   <sc-if value="{{ overlay }}" hint-placeholder-val="{{ false }}">
@@ -655,25 +661,25 @@ const GAMES = [
     prep: "Rozložte karty na stůl obrázky nahoru.",
     jak: "Řekněte dítěti, ať vám ukáže příšerku, která se třeba bojí, nebo má velkou radost. Zeptejte se: „Aha, tahle se taky bojí? Čím to je?“",
     tipy: "Hledejte situace („Najdi příšerku, která právě dostala zmrzlinu.“) i emoční sousedy („Najdi, která se cítí skoro stejně jako tahle smutná, ale jenom trošičku.“). Cíl: poznat emoci podle obličeje a postoje těla.",
-    hero: "games/crops/hra1-hero.webp", heroAlt: "Vystrašená příšerka"
+    hero: "games/crops/t04-noborder.webp", heroAlt: "Vystrašená příšerka", heroBlend: true
   } },
   { num: "2", slug: "co-se-ji-stalo", title: "Co se jí stalo?", meta: "Věk 5+ · 2+ hráči · balíček karet · Spojit pocit s konkrétní situací", src: "games/hra2.webp", color: "#22ADEE", rules: {
     prep: "Karty jsou na hromádce obrázky dolů.",
     jak: "Dítě si vytáhne jednu kartu a prohlédne si ji. Zeptejte se: „Co myslíš, že se téhle příšerce stalo, že se takhle cítí?“ Dítě vymyslí krátký příběh.",
     tipy: "Koukejte na její ruce — co asi dělaly, než se takhle naštvala? Zeptejte se dítěte, kdy se cítilo podobně. Cíl: spojit pocit s konkrétní situací a rozvíjet představivost.",
-    hero: "games/crops/hra2-hero.webp", heroAlt: "Naštvaná příšerka"
+    hero: "games/crops/t01-noborder.webp", heroAlt: "Naštvaná příšerka", heroBlend: true
   } },
   { num: "3", slug: "najdi-kamarada-emoce", title: "Najdi kamaráda — porovnávejte emoce", meta: "Věk 5+ · 2+ hráči · vybrané dvojice karet · Rozlišovat jemné rozdíly a opaky", src: "games/hra3.webp", color: "#7B3DF5", rules: {
     prep: "Vyberte z balíčku karty, které jsou si podobné. Rozložte je na stůl obrázky nahoru.",
     jak: "Hráči hrají střídavě. Když najdou podobný pár, řeknou, čím se liší a co mají společného.",
     tipy: "Zkuste najít i opaky — porovnejte, jak se cítí radost a jak smutek. Ptejte se, jak se tyto emoce cítí v těle. Cíl: naučit se rozlišovat jemné rozdíly a opaky mezi emocemi a rozvíjet empatii.",
-    hero: "games/crops/hra3-hero.webp", heroAlt: "Zmatená příšerka"
+    hero: "games/crops/t11-noborder.webp", heroAlt: "Zmatená příšerka", heroBlend: true
   } },
   { num: "4", slug: "najdi-kamarada-rozdily", title: "Najdi kamaráda — jemné rozdíly", meta: "Věk 5+ · 2+ hráči · vybrané dvojice a trojice · Vztek × netrpělivost, smutek × osamělost", src: "games/hra4.webp", color: "#6E8C4A", rules: {
     prep: "Rozložte karty na stůl obrázky nahoru.",
     jak: "Ukažte dítěti dvě příšerky, které jsou si hrozně podobné. Zeptejte se: „V čem jsou stejné? A v čem se liší?“",
     tipy: "Zkuste dvojice vztek × netrpělivost, smutek × osamělost nebo strach × překvapení. Pomozte si příběhem: „Tuhle příšerku bolí nohy, protože celý den běhala — to je únava. Tahle nemá co dělat a nic ji nebaví — to je nuda.“ Cíl: rozlišovat jemné rozdíly mezi podobnými pocity.",
-    hero: "games/crops/hra4-hero.webp", heroAlt: "Unavená příšerka"
+    hero: "games/crops/t24-noborder.webp", heroAlt: "Unavená příšerka", heroBlend: true
   } },
   { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · celý balíček nebo polovina · Paměťová hra s tvářemi", color: "#E8730C", rules: {
     prep: "Vytiskněte balíček dvakrát (nebo jen polovinu sady). Rozložte karty na stůl obrázky dolů.",
@@ -684,13 +690,13 @@ const GAMES = [
     prep: "Karty jsou na hromádce obrázky dolů.",
     jak: "Jeden hráč si vytáhne kartu a předvádí emoci obličejem a tělem — beze slov. Ostatní hádají. Pro pětileté děti jsou povoleny i zvuky.",
     tipy: "Vyzkoušejte různé pózy a gesta, buďte co nejvíce jasní. Cíl: rozvíjet výrazové schopnosti a pochopení emocí.",
-    hero: "games/crops/hra6-hero.webp", heroAlt: "Udivené příšerky"
+    hero: "games/crops/hra6-hero.webp", heroAlt: "Udivené příšerky", heroPlain: true
   } },
   { num: "7", slug: "pribeh-z-balicku", title: "Příběh z balíčku", meta: "Věk 5+ · 2+ hráči · 3–5 karet · Propojit karty s vlastní zkušeností", src: "games/hra7.webp", color: "#FF2E9A", rules: {
     prep: "Karty jsou na hromádce obrázky dolů.",
     jak: "Dítě si vybere 3–5 náhodných karet. Společně z nich vytvořte příběh — třeba radost → zklamání → vztek („Jdeme ven!“ → „Začalo pršet…“ → „Nemůžu si hrát!“).",
     tipy: "Zapojte se i vy — vytáhněte si kartu a sdílejte vlastní zkušenost. Cíl: propojit karty s vlastní zkušeností a normalizovat všechny pocity.",
-    hero: "games/crops/hra7-hero.webp", heroAlt: "Příběh příšerek — radost, zklamání, vztek"
+    hero: "games/crops/hra7-hero.webp", heroAlt: "Příběh příšerek — radost, zklamání, vztek", heroPlain: true
   } },
   { num: "+", slug: "superschopnosti", title: "Další superschopnosti karet", meta: "Rozvíjející aktivity — více emocí najednou, co se děje v těle, co by pomohlo", src: "games/superschopnosti.webp", color: "#221E2B" }
 ];
@@ -1176,6 +1182,7 @@ class Component extends DCLogic {
 
     return {
       filters, modes,
+      copyrightYear: new Date().getFullYear(),
       showQuotes: this.props.showQuotes ?? true,
 
       menuIcon: s.menuOpen ? "✕" : "☰",
