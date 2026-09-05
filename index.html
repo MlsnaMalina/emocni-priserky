@@ -466,6 +466,43 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{ isWheel }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7B3DF5">Kolo vzpomínek</div>
+            <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Na co si vzpomeneš?</div>
+            <p style="font-weight: 500; font-size: 16px; max-width: 620px; margin: 12px 0 0">Roztočte kolo. Na jakou příšerku se zastaví, u té si spolu zkuste vzpomenout na skutečnou chvíli, kdy jste se takhle cítili.</p>
+            <div style="display: grid; grid-template-columns: minmax(0, 240px) 1fr; gap: 34px; margin-top: 26px; align-items: center">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
+                <div style="position: relative; width: 210px; height: 210px">
+                  <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); z-index: 2; width: 0; height: 0; border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 18px solid #221E2B"></div>
+                  <div style="{{ wheelDiscStyle }}"></div>
+                  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 3px solid #221E2B; z-index: 1"></div>
+                </div>
+                <button onClick="{{ spinWheel }}" style="font-family: Montserrat, sans-serif; cursor: {{ wheelSpinBtnCursor }}; opacity: {{ wheelSpinBtnOpacity }}; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #7B3DF5; color: #fff">{{ wheelSpinBtnLabel }}</button>
+              </div>
+              <div>
+                <sc-if value="{{ wheelHasResult }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+                    <div style="width: 90px; height: 90px; flex-shrink: 0; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.12)">
+                      <img src="{{ wheelResultFront }}" alt="{{ wheelResultName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+                    </div>
+                    <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 30px; letter-spacing: .08em; text-transform: uppercase">{{ wheelResultName }}</div>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 18px; max-width: 480px">
+                    <div style="font-weight: 700; font-size: 17px; line-height: 1.55">{{ wheelPrompt }}</div>
+                    <button onClick="{{ speakWheelPrompt }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                    </button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ wheelNoResult }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-weight: 600; font-size: 16px; color: rgba(34,30,43,.55); max-width: 420px">Roztočte kolo a uvidíte, na kterou příšerku narazíte.</div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
       </div>
     </div>
   </section>
@@ -732,6 +769,9 @@ const DECK = [
   { f: 24, b: 25, name: "Únava", fam: "telo", slug: "unava", quote: "Moje tělo už nemá dost energie.", q: "Potřebuje tahle příšerka něco dělat, nebo si hlavně odpočinout?", sim: ["nuda"], opp: "nadseni", help: "Dovol si odpočinek — chvíli sedět, nebo si i schrupnout.", helpShort: "Dovolit si odpočinek", helpUniversal: true }
 ];
 
+const WHEEL_STEP = 360 / DECK.length;
+const WHEEL_GRADIENT = DECK.map((c, i) => FAM[c.fam] + " " + (i * WHEEL_STEP) + "deg " + ((i + 1) * WHEEL_STEP) + "deg").join(", ");
+
 const GAMES = [
   { num: "1", slug: "ukaz-mi-emoci", title: "Ukaž mi emoci", meta: "Věk 4+ · 2+ hráči · všechny karty · Poznat emoci podle obličeje a postoje těla", src: "games/hra1.webp", color: "#7B3DF5", rules: {
     prep: "Rozložte karty na stůl obrázky nahoru.",
@@ -855,6 +895,7 @@ class Component extends DCLogic {
     filter: "vse", mode: "quiz", overlay: null, sound: true, menuOpen: false, zipBusy: null,
     quiz: null, score: 0, asked: 0, feedback: "", feedbackOk: true,
     drawn: DECK[0], drawnSide: "front", story: [], helpQuiz: null, helpAnswer: null,
+    wheelRotation: 0, wheelSpinning: false, wheelResult: null,
     pex: [], pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
     pexSize: "small", pexStartedAt: null, pexElapsedSec: 0, pexBest: {},
     pairs: null, pairsAnswer: null,
@@ -879,6 +920,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this._pexInterval) clearInterval(this._pexInterval);
+    if (this._wheelTimer) clearTimeout(this._wheelTimer);
   }
 
   /* ---------- zvuk a hlas ---------- */
@@ -955,6 +997,23 @@ class Component extends DCLogic {
     const ok = this.state.helpQuiz.options[i].correct;
     this.tone(ok ? [660, 880] : [300]);
     this.setState({ helpAnswer: i });
+  }
+
+  /* ---------- kolo vzpomínek ---------- */
+  spinWheel() {
+    if (this.state.wheelSpinning) return;
+    const idx = Math.floor(Math.random() * DECK.length);
+    const card = DECK[idx];
+    const segCenter = idx * WHEEL_STEP + WHEEL_STEP / 2;
+    const targetMod = (360 - segCenter + 360) % 360;
+    const base = Math.ceil((this.state.wheelRotation + 1) / 360) * 360;
+    const newRotation = base + 360 * 4 + targetMod;
+    this.setState({ wheelSpinning: true, wheelRotation: newRotation, wheelResult: null });
+    if (this._wheelTimer) clearTimeout(this._wheelTimer);
+    this._wheelTimer = setTimeout(() => {
+      this.tone([660, 880]);
+      this.setState({ wheelSpinning: false, wheelResult: card });
+    }, 3400);
   }
 
   /* ---------- hra 5: pexeso ---------- */
@@ -1212,7 +1271,8 @@ class Component extends DCLogic {
       { key: "pairs", label: "Podobné, nebo opak?", accent: "#6E8C4A" },
       { key: "draw", label: "Vytáhni kartu", accent: "#22ADEE" },
       { key: "story", label: "Příběh z balíčku", accent: "#FF2E9A" },
-      { key: "help", label: "Co mi pomůže?", accent: "#fff" }
+      { key: "help", label: "Co mi pomůže?", accent: "#fff" },
+      { key: "wheel", label: "Kolo vzpomínek", accent: "#7B3DF5" }
     ].map(m => ({
       label: m.label,
       bg: s.mode === m.key ? m.accent : "transparent",
@@ -1309,7 +1369,7 @@ class Component extends DCLogic {
       })),
 
       isQuiz: s.mode === "quiz", isPexeso: s.mode === "pexeso", isPairs: s.mode === "pairs",
-      isDraw: s.mode === "draw", isStory: s.mode === "story", isHelp: s.mode === "help",
+      isDraw: s.mode === "draw", isStory: s.mode === "story", isHelp: s.mode === "help", isWheel: s.mode === "wheel",
 
       quizName: q ? q.target.name : "",
       quizQuote: q ? q.target.quote : "",
@@ -1388,6 +1448,20 @@ class Component extends DCLogic {
       nextHelp: () => this.setState({ helpQuiz: this.makeHelpQuiz(), helpAnswer: null }),
       speakHelpQuestion: () => this.speak(hq.card.name + ". Co mi pomůže, když cítím " + hq.card.name.toLowerCase() + "? " + hq.options.map((o, i) => "Možnost " + (i + 1) + ": " + o.text + ".").join(" ")),
       speakHelpExplain: () => this.speak(hq.card.help),
+
+      spinWheel: () => this.spinWheel(),
+      wheelRotationStyle: s.wheelRotation + "deg",
+      wheelSpinning: s.wheelSpinning,
+      wheelSpinBtnLabel: s.wheelSpinning ? "Kolo se točí…" : "Roztočit kolo",
+      wheelSpinBtnOpacity: s.wheelSpinning ? .6 : 1,
+      wheelSpinBtnCursor: s.wheelSpinning ? "default" : "pointer",
+      wheelDiscStyle: "width:100%;height:100%;border-radius:50%;border:6px solid #221E2B;box-shadow:0 12px 28px rgba(34,30,43,.25);background:conic-gradient(" + WHEEL_GRADIENT + ");transform:rotate(" + s.wheelRotation + "deg);transition:transform 3.4s cubic-bezier(.12,.67,.1,.99)",
+      wheelHasResult: !!s.wheelResult,
+      wheelNoResult: !s.wheelResult,
+      wheelResultFront: s.wheelResult ? img(s.wheelResult.f) : "",
+      wheelResultName: s.wheelResult ? s.wheelResult.name : "",
+      wheelPrompt: s.wheelResult ? ("Kdy ses takhle naposledy cítil ty sám, a proč? Nebo kdy sis všiml, že se takhle cítí někdo jiný?") : "",
+      speakWheelPrompt: () => s.wheelResult && this.speak(s.wheelResult.name + ". Kdy ses takhle naposledy cítil ty sám, a proč? Nebo kdy sis všiml, že se takhle cítí někdo jiný?"),
 
       storyCards: s.story.map(c => ({ front: thumb(c.f), name: c.name })),
       storyChain: s.story.map(c => c.name.toUpperCase()).join(" → "),
