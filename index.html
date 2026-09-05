@@ -471,8 +471,8 @@
             <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7B3DF5">Kolo vzpomínek</div>
             <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Na co si vzpomeneš?</div>
             <p style="font-weight: 500; font-size: 16px; max-width: 620px; margin: 12px 0 0">Roztočte kolo. Na jakou příšerku se zastaví, u té si spolu zkuste vzpomenout na skutečnou chvíli, kdy jste se takhle cítili.</p>
-            <div style="display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 400px); gap: 34px; margin-top: 26px; align-items: center; max-width: 680px">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 26px; align-items: center; max-width: 900px">
+              <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px">
                 <div style="position: relative; width: 210px; height: 210px">
                   <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); z-index: 2; width: 0; height: 0; border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 18px solid #221E2B"></div>
                   <div style="{{ wheelDiscStyle }}"></div>
@@ -480,15 +480,22 @@
                 </div>
                 <button onClick="{{ spinWheel }}" style="font-family: Montserrat, sans-serif; cursor: {{ wheelSpinBtnCursor }}; opacity: {{ wheelSpinBtnOpacity }}; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #7B3DF5; color: #fff">{{ wheelSpinBtnLabel }}</button>
               </div>
-              <div>
+              <div style="flex: 0 0 auto; width: 210px; height: 210px">
                 <sc-if value="{{ wheelHasResult }}" hint-placeholder-val="{{ false }}">
-                  <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-                    <div style="width: 90px; height: 90px; flex-shrink: 0; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.12)">
-                      <img src="{{ wheelResultFront }}" alt="{{ wheelResultName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
-                    </div>
-                    <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 30px; letter-spacing: .08em; text-transform: uppercase">{{ wheelResultName }}</div>
+                  <div style="width: 100%; height: 100%; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.12)">
+                    <img src="{{ wheelResultFront }}" alt="{{ wheelResultName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
                   </div>
-                  <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 18px; max-width: 480px">
+                </sc-if>
+                <sc-if value="{{ wheelNoResult }}" hint-placeholder-val="{{ true }}">
+                  <div style="width: 100%; height: 100%; border-radius: 16px; border: 2px dashed rgba(34,30,43,.2); display: grid; place-items: center; padding: 20px; text-align: center">
+                    <span style="font-weight: 700; font-size: 13px; color: rgba(34,30,43,.4)">Tady se objeví vylosovaná příšerka</span>
+                  </div>
+                </sc-if>
+              </div>
+              <div style="flex: 1 1 260px; min-width: 260px">
+                <sc-if value="{{ wheelHasResult }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 34px; letter-spacing: .08em; text-transform: uppercase">{{ wheelResultName }}</div>
+                  <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 14px">
                     <div style="font-weight: 700; font-size: 17px; line-height: 1.55">{{ wheelPrompt }}</div>
                     <button onClick="{{ speakWheelPrompt }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -496,7 +503,7 @@
                   </div>
                 </sc-if>
                 <sc-if value="{{ wheelNoResult }}" hint-placeholder-val="{{ true }}">
-                  <div style="font-weight: 600; font-size: 16px; color: rgba(34,30,43,.55); max-width: 420px">Roztočte kolo a uvidíte, na kterou příšerku narazíte.</div>
+                  <div style="font-weight: 600; font-size: 16px; color: rgba(34,30,43,.55)">Roztočte kolo a uvidíte, na kterou příšerku narazíte.</div>
                 </sc-if>
               </div>
             </div>
