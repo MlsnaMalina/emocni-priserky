@@ -61,6 +61,63 @@
     [data-r="pexgrid"] { grid-template-columns: repeat(4, 1fr) !important }
     [data-r="pad"] { padding: 22px !important }
     [data-r="dlpad"] { padding: 26px !important }
+    [data-r="preview3"] { gap: 8px !important }
+    .diary-peek { padding: 10px 6px 10px 12px !important }
+    .diary-peek-slots { gap: 3px !important }
+    .diary-peek-chip { width: 19px !important; height: 19px !important }
+    .diary-peek-note { font-size: 9.5px !important }
+  }
+
+  /* ---------- emoční deník: náhled dní ---------- */
+  .diary-peek { flex: 1; min-width: 0; cursor: pointer; position: relative; background: #fff;
+    border-radius: 4px 4px 10px 10px; box-shadow: 0 10px 22px rgba(34,30,43,.14), inset 0 0 0 1px rgba(34,30,43,.06);
+    padding: 12px 10px 12px 16px; transition: transform .15s; }
+  .diary-peek:hover { transform: rotate(0deg) translateY(-3px) !important; }
+  .diary-peek::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 7px;
+    background: repeating-linear-gradient(180deg, rgba(34,30,43,.12) 0 2px, transparent 2px 6px); border-radius: 4px 0 0 10px; }
+  .diary-peek-dow { font-family: 'Josefin Sans', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #7B3DF5; }
+  .diary-peek-date { font-weight: 800; font-size: 12.5px; margin: 1px 0 8px; }
+  .diary-peek-slots { display: flex; gap: 4px; margin-bottom: 8px; }
+  .diary-peek-chip { width: 24px; height: 24px; border-radius: 50%; background: rgba(34,30,43,.05); border: 1.5px dashed rgba(34,30,43,.2); overflow: hidden; }
+  .diary-peek-chip img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .diary-peek-chip:has(img) { border-style: solid; border-color: #fff; box-shadow: 0 0 0 1.5px rgba(34,30,43,.15); }
+  .diary-peek-note { font-size: 10.5px; line-height: 1.35; font-family: 'Josefin Sans', sans-serif; font-style: italic;
+    border-top: 1px dotted rgba(34,30,43,.18); padding-top: 7px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* ---------- emoční deník: kniha (pop-up) ---------- */
+  .book-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(34,30,43,.55); backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center; padding: 24px; animation: pop .2s ease; }
+  .book-shell { position: relative; width: min(760px, 100%); aspect-ratio: 16/10;
+    background: linear-gradient(90deg, rgba(0,0,0,.06) 0%, transparent 4%, transparent 96%, rgba(0,0,0,.06) 100%), #FEFBF3;
+    border-radius: 16px; box-shadow: 0 30px 70px rgba(0,0,0,.4); display: flex; overflow: hidden; }
+  .book-close { position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%;
+    border: none; background: rgba(34,30,43,.08); cursor: pointer; font-size: 15px; color: #221E2B; }
+  .book-ribbon { position: absolute; top: -2px; right: 52px; width: 22px; height: 68px; background: #FF2E9A; border-radius: 0 0 4px 4px; z-index: 1; }
+  .book-ribbon::after { content: ""; position: absolute; bottom: -13px; left: 0; right: 0; height: 0;
+    border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 13px solid #FF2E9A; }
+  .book-page { flex: 1; min-width: 0; padding: 34px 32px; display: flex; flex-direction: column; overflow-y: auto; }
+  .book-eyebrow { font-family: 'Josefin Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #7B3DF5; }
+  .book-date { font-family: 'Josefin Sans', sans-serif; font-weight: 300; font-size: 28px; text-transform: uppercase; letter-spacing: .02em; margin: 2px 0 16px; }
+  .book-monsters { display: flex; gap: 12px; margin-bottom: 16px; }
+  .book-monster { text-align: center; }
+  .book-monster-circle { width: 50px; height: 50px; border-radius: 50%; background: rgba(34,30,43,.05); border: 1.5px dashed rgba(34,30,43,.22); overflow: hidden; }
+  .book-monster-circle:has(img) { border-style: solid; border-color: #fff; box-shadow: 0 4px 10px rgba(34,30,43,.18); }
+  .book-monster-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .book-monster span { display: block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(34,30,43,.5); margin-top: 4px; }
+  .book-lines { flex: 1; background-image: repeating-linear-gradient(180deg, transparent, transparent 27px, rgba(34,30,43,.14) 28px); min-height: 140px; }
+  .book-lines textarea { width: 100%; height: 100%; min-height: 140px; border: none; background: transparent; resize: none;
+    font-family: 'Josefin Sans', cursive; font-size: 16px; line-height: 28px; color: #221E2B; outline: none; box-sizing: border-box }
+  .book-lines textarea::placeholder { color: rgba(34,30,43,.35); font-style: italic; }
+  .book-page-right { background: linear-gradient(160deg, #FFF7DE, #FFE9B8); align-items: center; justify-content: center; text-align: center; }
+  .book-page-right img { max-width: 78%; max-height: 78%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(34,30,43,.2)); }
+  .book-quote { font-family: 'Josefin Sans', sans-serif; font-style: italic; font-weight: 400; font-size: 13px; color: rgba(34,30,43,.6); margin-top: 12px; }
+  .book-nav { position: absolute; bottom: 16px; width: 36px; height: 36px; border-radius: 50%; background: #fff;
+    box-shadow: 0 6px 16px rgba(34,30,43,.2); border: none; cursor: pointer; font-size: 15px; z-index: 2; }
+  .book-nav-prev { left: 16px; } .book-nav-next { right: 16px; }
+  .book-page-count { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: rgba(34,30,43,.4); }
+  @media (max-width: 640px) {
+    .book-shell { aspect-ratio: auto; height: min(640px, 82vh); }
+    .book-page-right { display: none !important; }
   }
 </style>
 </helmet>
@@ -322,7 +379,7 @@
   <section id="dennik" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 24px">
     <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #22ADEE">Emoční deník</div>
     <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Jak se dnes cítím</h2>
-    <p style="font-weight: 500; font-size: 16px; margin: 10px 0 0; max-width: 640px">Vyberte příšerku, která dnešnímu dni odpovídá. Za týden uvidíte, co se v dítěti dělo — a bude o čem mluvit. Deník zůstává jen v tomto prohlížeči, nikam se neposílá.</p>
+    <p style="font-weight: 500; font-size: 16px; margin: 10px 0 0; max-width: 640px">Vyberte příšerku, která dnešnímu dni odpovídá, a napište pár slov proč. Celý příběh — den po dni — najdete v knize deníku.</p>
 
     <div data-r="diary" style="display: grid; grid-template-columns: 1.3fr .7fr; gap: 30px; margin-top: 30px; align-items: start">
       <div>
@@ -341,31 +398,76 @@
             </div>
           </sc-for>
         </div>
+        <div style="margin-top: 20px">
+          <label style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.6); display: block; margin-bottom: 7px">Co se dnes dělo?</label>
+          <textarea value="{{ todayNote }}" onChange="{{ onTodayNoteChange }}" placeholder="Napište pár slov, proč se dnes takhle cítil/a…" style="width: 100%; min-height: 76px; border: 2px solid rgba(34,30,43,.16); border-radius: 16px; padding: 13px 15px; font-family: Montserrat, sans-serif; font-size: 14px; line-height: 1.5; resize: vertical; outline: none; box-sizing: border-box"></textarea>
+        </div>
       </div>
       <div style="background: #fff; border: 2px solid #221E2B; border-radius: 22px; padding: 24px">
-        <div style="font-weight: 800; font-size: 17px">Posledních 7 dní</div>
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px">
-          <sc-for list="{{ diaryWeek }}" as="w" hint-placeholder-count="7">
-            <div style="border-bottom: 1px solid rgba(34,30,43,.1); padding-bottom: 10px">
-              <div style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.6); margin-bottom: 6px">{{ w.label }}</div>
-              <div style="display: flex; gap: 8px">
-                <sc-for list="{{ w.slots }}" as="e" hint-placeholder-count="3">
-                  <div title="{{ e.title }}" style="flex: 1; text-align: center">
-                    <div style="width: 100%; aspect-ratio: 0.9; border-radius: 6px; overflow: hidden; border: 1px solid rgba(34,30,43,.2); background: {{ e.bg }}; display: grid; place-items: center">
-                      <sc-if value="{{ e.front }}" hint-placeholder-val="{{ false }}">
-                        <img src="{{ e.front }}" alt="{{ e.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; display: block" />
-                      </sc-if>
-                    </div>
-                    <div style="font-size: 9px; font-weight: 700; color: rgba(34,30,43,.4); margin-top: 2px; text-transform: uppercase">{{ e.tag }}</div>
+        <div style="font-weight: 800; font-size: 17px; margin-bottom: 16px">Poslední dny</div>
+        <div data-r="preview3" style="display: flex; gap: 12px">
+          <sc-for list="{{ preview3 }}" as="pv" hint-placeholder-count="3">
+            <div onClick="{{ pv.open }}" class="diary-peek" style="transform: {{ pv.rotateStyle }}">
+              <div class="diary-peek-dow">{{ pv.label }}</div>
+              <div class="diary-peek-date">{{ pv.dateStr }}</div>
+              <div class="diary-peek-slots">
+                <sc-for list="{{ pv.slots }}" as="sl" hint-placeholder-count="3">
+                  <div class="diary-peek-chip">
+                    <sc-if value="{{ sl.front }}" hint-placeholder-val="{{ false }}">
+                      <img src="{{ sl.front }}" alt="" />
+                    </sc-if>
                   </div>
                 </sc-for>
               </div>
+              <div class="diary-peek-note" style="color: {{ pv.notePeekColor }}; font-weight: {{ pv.notePeekWeight }}">{{ pv.notePeek }}</div>
             </div>
           </sc-for>
         </div>
-        <button onClick="{{ clearToday }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 13px; padding: 11px 18px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B; margin-top: 18px">Vymazat dnešní záznam</button>
+        <button onClick="{{ openBookBtn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; font-weight: 800; font-size: 15px; padding: 15px 18px; border-radius: 999px; border: none; background: #221E2B; color: #fff; margin-top: 20px" style-hover="background: #7B3DF5">📖 Otevřít celý deník</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px">
+          <span onClick="{{ downloadBackup }}" style="cursor: pointer; font-weight: 700; font-size: 12px; color: #7B3DF5">⤓ Stáhnout zálohu</span>
+          <span onClick="{{ triggerRestore }}" style="cursor: pointer; font-weight: 700; font-size: 12px; color: rgba(34,30,43,.5)">Nahrát zálohu</span>
+        </div>
+        <button onClick="{{ clearToday }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 12px; padding: 10px 16px; border-radius: 999px; border: 1.5px solid rgba(34,30,43,.2); background: #fff; color: rgba(34,30,43,.6); margin-top: 14px; width: 100%">Vymazat dnešní záznam</button>
       </div>
     </div>
+
+    <sc-if value="{{ bookOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="book-overlay" onClick="{{ closeBook }}">
+        <div class="book-shell" onClick="{{ stopClick }}">
+          <button class="book-close" onClick="{{ closeBook }}" aria-label="Zavřít">✕</button>
+          <div class="book-ribbon"></div>
+          <div class="book-page">
+            <div class="book-eyebrow">{{ bookPage.dayName }}</div>
+            <div class="book-date">{{ bookPage.dateBig }}</div>
+            <div class="book-monsters">
+              <sc-for list="{{ bookPage.monsters }}" as="m" hint-placeholder-count="3">
+                <div class="book-monster">
+                  <div class="book-monster-circle">
+                    <sc-if value="{{ m.front }}" hint-placeholder-val="{{ false }}">
+                      <img src="{{ m.front }}" alt="" />
+                    </sc-if>
+                  </div>
+                  <span>{{ m.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div class="book-lines">
+              <textarea value="{{ bookPage.note }}" onChange="{{ bookPage.onNoteChange }}" placeholder="Co se ten den stalo?"></textarea>
+            </div>
+          </div>
+          <sc-if value="{{ bookPage.hasIllustration }}" hint-placeholder-val="{{ false }}">
+            <div class="book-page book-page-right">
+              <img src="{{ bookPage.illustrationSrc }}" alt="" />
+              <div class="book-quote">„{{ bookPage.illustrationQuote }}"</div>
+            </div>
+          </sc-if>
+          <button class="book-nav book-nav-prev" onClick="{{ navPrev }}" style="opacity: {{ bookPage.prevOpacity }}">‹</button>
+          <div class="book-page-count">{{ bookPage.pageLabel }}</div>
+          <button class="book-nav book-nav-next" onClick="{{ navNext }}" style="opacity: {{ bookPage.nextOpacity }}">›</button>
+        </div>
+      </div>
+    </sc-if>
   </section>
 
   <section id="hry" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 24px">
@@ -576,7 +678,8 @@ class Component extends DCLogic {
     drawn: DECK[0], drawnSide: "front", story: [],
     pex: [], pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
     pairs: null, pairsAnswer: null,
-    diary: {}, today: isoDay(new Date()), activeSlot: "morning"
+    diary: {}, today: isoDay(new Date()), activeSlot: "morning",
+    bookOpen: false, bookDate: null
   };
 
   componentDidMount() {
@@ -725,11 +828,77 @@ class Component extends DCLogic {
     const today = isoDay(new Date());
     const slot = this.state.activeSlot;
     const diary = Object.assign({}, this.state.diary);
-    const entry = Object.assign({ morning: null, day: null, evening: null }, diary[today]);
+    const entry = Object.assign({ morning: null, day: null, evening: null, note: "" }, diary[today]);
     entry[slot] = entry[slot] === slug ? null : slug;
     diary[today] = entry;
     this.tone([520]);
     this.saveDiary(diary);
+  }
+
+  updateNote(dateKey, text) {
+    const diary = Object.assign({}, this.state.diary);
+    const entry = Object.assign({ morning: null, day: null, evening: null, note: "" }, diary[dateKey]);
+    entry.note = text;
+    diary[dateKey] = entry;
+    this.saveDiary(diary);
+  }
+
+  diaryDates() {
+    const hasData = e => e && (e.morning || e.day || e.evening || (e.note && e.note.trim()));
+    const dates = Object.keys(this.state.diary).filter(k => hasData(this.state.diary[k]));
+    const today = isoDay(new Date());
+    if (!dates.includes(today)) dates.push(today);
+    return dates.sort();
+  }
+
+  openBook(dateKey) {
+    this.tone([520, 660]);
+    this.setState({ bookOpen: true, bookDate: dateKey || isoDay(new Date()) });
+  }
+
+  closeBook() {
+    this.setState({ bookOpen: false });
+  }
+
+  navBook(dir) {
+    const dates = this.diaryDates();
+    const idx = dates.indexOf(this.state.bookDate);
+    const next = idx + dir;
+    if (next >= 0 && next < dates.length) this.setState({ bookDate: dates[next] });
+  }
+
+  downloadBackup() {
+    const payload = { app: "emocni-priserky-denik", version: 1, exportedAt: new Date().toISOString(), diary: this.state.diary };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "emocni-priserky-denik-zaloha-" + isoDay(new Date()) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
+
+  restoreBackup(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        const incoming = parsed && parsed.diary && typeof parsed.diary === "object" ? parsed.diary : null;
+        if (!incoming) throw new Error("neplatný formát");
+        this.saveDiary(Object.assign({}, this.state.diary, incoming));
+        alert("Záloha byla obnovena.");
+      } catch (e) {
+        alert("Tenhle soubor se nepodařilo načíst — zkontrolujte, že jde o zálohu staženou z tohoto deníku.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  triggerRestore() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+    input.onchange = e => { const file = e.target.files[0]; if (file) this.restoreBackup(file); };
+    input.click();
   }
 
   /* ---------- detail karty ---------- */
@@ -817,19 +986,55 @@ class Component extends DCLogic {
 
     const SLOT_TAGS = { morning: "ráno", day: "den", evening: "večer" };
     const slotBg = { morning: "#FFD23F", day: "#22ADEE", evening: "#7B3DF5" };
-    const week = [];
-    for (let i = 0; i < 7; i++) {
+    const MONTHS_GEN = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
+    const emptyEntry = { morning: null, day: null, evening: null, note: "" };
+    const todayKey = isoDay(new Date());
+    const todayEntry = Object.assign({}, emptyEntry, s.diary[todayKey]);
+
+    const PREVIEW_ROTATE = [-4, 2, -2];
+    const preview3 = [0, 1, 2].map(i => {
       const d = new Date();
       d.setDate(d.getDate() - i);
       const key = isoDay(d);
-      const entry = s.diary[key] || {};
-      const slots = ["morning", "day", "evening"].map(slot => {
-        const c = entry[slot] ? bySlug(entry[slot]) : null;
-        return { tag: SLOT_TAGS[slot], title: c ? c.name : SLOT_TAGS[slot], front: c ? thumb(c.f) : null, bg: c ? "#fff" : "#FBFAF7" };
-      });
-      week.push({ label: i === 0 ? "Dnes" : DAYS[d.getDay()] + " " + d.getDate() + "." + (d.getMonth() + 1) + ".", slots });
-    }
-    const todayEntry = s.diary[isoDay(new Date())] || {};
+      const entry = Object.assign({}, emptyEntry, s.diary[key]);
+      const slots = ["morning", "day", "evening"].map(slot => ({ front: entry[slot] ? thumb(bySlug(entry[slot]).f) : "" }));
+      const noteText = (entry.note || "").trim();
+      return {
+        dateKey: key,
+        label: i === 0 ? "Dnes" : i === 1 ? "Včera" : DAYS[d.getDay()],
+        dateStr: d.getDate() + ". " + (d.getMonth() + 1) + ".",
+        rotateStyle: "rotate(" + PREVIEW_ROTATE[i] + "deg)",
+        slots,
+        notePeek: noteText ? (noteText.length > 46 ? noteText.slice(0, 46) + "…" : noteText) : "Klepnutím napište, co se dělo →",
+        notePeekColor: noteText ? "rgba(34,30,43,.7)" : "#7B3DF5",
+        notePeekWeight: noteText ? "500" : "700",
+        open: () => this.openBook(key)
+      };
+    });
+
+    const bookDates = this.diaryDates();
+    const bookKey = s.bookDate || todayKey;
+    const bookIdx = bookDates.indexOf(bookKey);
+    const bookEntry = Object.assign({}, emptyEntry, s.diary[bookKey]);
+    const bookD = new Date(bookKey + "T00:00:00");
+    const bookMonsterSlug = bookEntry.morning || bookEntry.day || bookEntry.evening || null;
+    const bookMonster = bookMonsterSlug ? bySlug(bookMonsterSlug) : null;
+    const bookPage = {
+      dayName: DAYS[bookD.getDay()],
+      dateBig: bookD.getDate() + ". " + MONTHS_GEN[bookD.getMonth()],
+      monsters: ["morning", "day", "evening"].map(slot => {
+        const c = bookEntry[slot] ? bySlug(bookEntry[slot]) : null;
+        return { front: c ? thumb(c.f) : "", label: SLOT_TAGS[slot], filled: !!c };
+      }),
+      note: bookEntry.note || "",
+      hasIllustration: !!bookMonster,
+      illustrationSrc: bookMonster ? img(bookMonster.f) : "",
+      illustrationQuote: bookMonster ? bookMonster.quote : "",
+      pageLabel: bookDates.length ? (bookIdx + 1) + " / " + bookDates.length : "1 / 1",
+      prevOpacity: bookIdx > 0 ? 1 : .3,
+      nextOpacity: (bookIdx >= 0 && bookIdx < bookDates.length - 1) ? 1 : .3,
+      onNoteChange: e => this.updateNote(bookKey, e.target.value)
+    };
 
     return {
       filters, modes,
@@ -921,7 +1126,20 @@ class Component extends DCLogic {
         border: todayEntry[s.activeSlot] === c.slug ? FAM[c.fam] : "rgba(34,30,43,.14)",
         log: () => this.logToday(c.slug)
       })),
-      diaryWeek: week,
+      preview3,
+      todayNote: todayEntry.note || "",
+      onTodayNoteChange: e => this.updateNote(todayKey, e.target.value),
+      openBookBtn: () => this.openBook(),
+      downloadBackup: () => this.downloadBackup(),
+      triggerRestore: () => this.triggerRestore(),
+
+      bookOpen: s.bookOpen,
+      bookPage,
+      closeBook: () => this.closeBook(),
+      stopClick: e => e.stopPropagation(),
+      navPrev: () => this.navBook(-1),
+      navNext: () => this.navBook(1),
+
       clearToday: () => {
         const diary = Object.assign({}, s.diary);
         delete diary[isoDay(new Date())];
