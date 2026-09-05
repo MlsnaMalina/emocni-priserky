@@ -247,7 +247,7 @@
   <section id="hrat" style="position: relative; z-index: 0; margin-top: 70px; background: #7B3DF5; color: #fff; padding: 64px 24px 76px; overflow: hidden">
     <div style="max-width: 1180px; margin: 0 auto">
       <div style="font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FFD23F">Hrát online</div>
-      <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Pět her bez tisku</h2>
+      <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 52px; letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0">Hry bez tisku</h2>
       <p style="font-weight: 500; font-size: 16px; margin: 12px 0 0; max-width: 620px; color: rgba(255,255,255,.72)">Stejná pravidla jako s papírovými kartami — jen se karty rozdávají samy. Hrajte spolu u jednoho displeje a hlavně si o pocitech povídejte.</p>
 
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px">
@@ -391,6 +391,31 @@
                   <button onClick="{{ drawCard }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #22ADEE; color: #fff">Vytáhnout kartu</button>
                   <button onClick="{{ flipDrawn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Otočit</button>
                   <button onClick="{{ speakDrawn }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isHelp }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7B3DF5">Co mi pomůže?</div>
+            <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ helpName }}</div>
+            <div style="display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 34px; margin-top: 22px; align-items: start">
+              <div style="background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px rgba(34,30,43,.14); aspect-ratio: 0.676">
+                <img src="{{ helpFront }}" alt="{{ helpName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
+              </div>
+              <div>
+                <p style="font-weight: 600; font-size: 16px; line-height: 1.6; font-style: italic; color: rgba(34,30,43,.7)">„{{ helpQuote }}"</p>
+                <div style="background: rgba(123,61,245,.08); border-left: 4px solid #7B3DF5; border-radius: 4px 14px 14px 4px; padding: 16px 20px; margin-top: 6px">
+                  <div style="font-weight: 800; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #7B3DF5">Co pomůže</div>
+                  <div style="font-weight: 700; font-size: 17px; line-height: 1.55; margin-top: 6px">{{ helpTip }}</div>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; align-items: center">
+                  <button onClick="{{ drawHelp }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #7B3DF5; color: #fff">Další příšerka</button>
+                  <button onClick="{{ speakHelp }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
                   </button>
                 </div>
@@ -661,30 +686,30 @@
 const FAM = { vztek: "#6E8C4A", smutek: "#22ADEE", radost: "#FF2E9A", strach: "#FFD23F", telo: "#7B3DF5" };
 
 const DECK = [
-  { f: 1, b: 43, name: "Vztek", fam: "vztek", slug: "vztek", quote: "Něco mě hodně štve a mám chuť s tím něco udělat!", q: "Co by mohlo tuhle příšerku naštvat?", sim: ["frustrace", "netrpelivost", "znechuceni"], opp: "radost" },
-  { f: 2, b: 42, name: "Frustrace", fam: "vztek", slug: "frustrace", quote: "Snažím se, ale pořád mi to nejde.", q: "Co se téhle příšerce nedaří?", sim: ["vztek", "netrpelivost", "zavist"], opp: "hrdost" },
-  { f: 16, b: 41, name: "Netrpělivost", fam: "vztek", slug: "netrpelivost", quote: "Chci, aby to už bylo. Nechci dál čekat!", q: "Na co tahle příšerka čeká a už to nemůže vydržet?", sim: ["vztek", "frustrace", "ocekavani"], opp: null },
-  { f: 17, b: 40, name: "Znechucení", fam: "vztek", slug: "znechuceni", quote: "Fuj! Tohle se mi vůbec nelíbí a nechci to.", q: "U čeho si může tahle příšerka říct „fuj“?", sim: ["vztek", "smutek"], opp: null },
-  { f: 8, b: 33, name: "Smutek", fam: "smutek", slug: "smutek", quote: "Něco mě rozesmutnilo a není mi dobře.", q: "Proč je asi takhle příšerka tak smutná?", sim: ["nestesti", "osamelost", "znechuceni"], opp: "radost" },
-  { f: 13, b: 32, name: "Neštěstí", fam: "smutek", slug: "nestesti", quote: "Je mi opravdu moc smutno. Tohle je na mě teď strašně těžké.", q: "Co se mohlo téhle příšerce stát, že je jí tak moc smutno?", sim: ["smutek", "litost"], opp: "radost" },
-  { f: 14, b: 31, name: "Lítost", fam: "smutek", slug: "litost", quote: "Mrzí mě, co jsem udělal nebo řekl, a přál bych si to napravit.", q: "Co mohla tahle příšerka udělat, že toho teď lituje?", sim: ["nestesti", "osamelost"], opp: null },
-  { f: 23, b: 29, name: "Osamělost", fam: "smutek", slug: "osamelost", quote: "Chybí mi někdo, s kým bych chtěl být.", q: "Kdo asi téhle příšerce chybí?", sim: ["smutek", "litost", "nuda"], opp: "laska" },
-  { f: 15, b: 30, name: "Nuda", fam: "smutek", slug: "nuda", quote: "Nic mě teď nezajímá a nevím, co bych dělal.", q: "Potřebuje tahle příšerka odpočinek, nebo ji jen nic nebaví?", sim: ["osamelost", "unava"], opp: "nadseni" },
-  { f: 5, b: 39, name: "Radost", fam: "radost", slug: "radost", quote: "Je mi dobře a mám z něčeho příjemný pocit.", q: "Z čeho by mohla mít takhle příšerka radost?", sim: ["nadseni", "laska", "hrdost"], opp: "smutek" },
-  { f: 6, b: 38, name: "Nadšení", fam: "radost", slug: "nadseni", quote: "Tohle je úžasné!", q: "Na co by se tahle příšerka mohla těšit tak moc, že by nevydržela sedět na místě?", sim: ["radost", "ocekavani"], opp: "nuda" },
-  { f: 12, b: 37, name: "Očekávání", fam: "radost", slug: "ocekavani", quote: "Něco hezkého přijde a já se na to moc těším.", q: "Na co se tahle příšerka asi těší?", sim: ["nadseni", "netrpelivost"], opp: null },
-  { f: 19, b: 36, name: "Hrdost", fam: "radost", slug: "hrdost", quote: "Dokázal jsem něco, na co jsem pyšný.", q: "Co tahle příšerka dokázala, na co může být pyšná?", sim: ["radost", "duvera"], opp: "stydlivost" },
-  { f: 21, b: 35, name: "Láska", fam: "radost", slug: "laska", quote: "Mám někoho moc rád a záleží mi na něm.", q: "Koho asi má tahle příšerka tolik ráda?", sim: ["duvera", "radost"], opp: "osamelost" },
-  { f: 22, b: 34, name: "Důvěra", fam: "radost", slug: "duvera", quote: "Věřím ti. Vím, že mi neublížíš a můžeš mi pomoct.", q: "Komu by tahle příšerka mohla opravdu věřit?", sim: ["laska", "hrdost"], opp: "strach" },
-  { f: 4, b: 47, name: "Strach", fam: "strach", slug: "strach", quote: "Něco mi připadá nebezpečné a chci být v bezpečí.", q: "Čeho by se tahle příšerka mohla bát?", sim: ["nervozita", "stydlivost"], opp: "duvera" },
-  { f: 3, b: 48, name: "Nervozita", fam: "strach", slug: "nervozita", quote: "Něco nového se děje a já nevím, jak to dopadne.", q: "Kvůli čemu může být takhle příšerka nervózní?", sim: ["strach", "nejistota", "stydlivost", "ocekavani"], opp: null },
-  { f: 9, b: 46, name: "Nejistota", fam: "strach", slug: "nejistota", quote: "Nevím, co mám udělat, nebo co se stane.", q: "Proč je asi tahle příšerka nejistá?", sim: ["zmatenost", "nervozita", "stydlivost"], opp: "duvera" },
-  { f: 10, b: 45, name: "Stydlivost", fam: "strach", slug: "stydlivost", quote: "Je mi nepříjemné, že se na mě ostatní dívají.", q: "Kdy ses naposledy takhle styděl a proč?", sim: ["nejistota", "strach"], opp: "hrdost" },
-  { f: 11, b: 44, name: "Zmatenost", fam: "strach", slug: "zmatenost", quote: "Nerozumím tomu. Nevím, co se děje.", q: "Co tahle příšerka asi nechápe?", sim: ["nejistota", "prekvapeni"], opp: null },
-  { f: 18, b: 26, name: "Překvapení", fam: "telo", slug: "prekvapeni", quote: "Tohle jsem vůbec nečekal!", q: "Co by tuhle příšerku mohlo úplně překvapit?", sim: ["zmatenost"], opp: null },
-  { f: 20, b: 27, name: "Závist", fam: "telo", slug: "zavist", quote: "Chci mít něco, co má někdo jiný.", q: "Co má někdo jiný, co by tahle příšerka chtěla?", sim: ["frustrace"], opp: null },
-  { f: 7, b: 28, name: "Bolest", fam: "telo", slug: "bolest", quote: "Něco mě bolí a je to nepříjemné!", q: "Kdy mě naposledy takhle moc něco bolelo a proč?", sim: ["smutek"], opp: null },
-  { f: 24, b: 25, name: "Únava", fam: "telo", slug: "unava", quote: "Moje tělo už nemá dost energie.", q: "Potřebuje tahle příšerka něco dělat, nebo si hlavně odpočinout?", sim: ["nuda"], opp: "nadseni" }
+  { f: 1, b: 43, name: "Vztek", fam: "vztek", slug: "vztek", quote: "Něco mě hodně štve a mám chuť s tím něco udělat!", q: "Co by mohlo tuhle příšerku naštvat?", sim: ["frustrace", "netrpelivost", "znechuceni"], opp: "radost", help: "Zkus dupnout, zamávat rukama, nebo si dej pauzu a počítej pomalu do deseti." },
+  { f: 2, b: 42, name: "Frustrace", fam: "vztek", slug: "frustrace", quote: "Snažím se, ale pořád mi to nejde.", q: "Co se téhle příšerce nedaří?", sim: ["vztek", "netrpelivost", "zavist"], opp: "hrdost", help: "Odpočiň si na chvíli od toho, co nejde, a pak to zkus znovu — nebo popros o pomoc." },
+  { f: 16, b: 41, name: "Netrpělivost", fam: "vztek", slug: "netrpelivost", quote: "Chci, aby to už bylo. Nechci dál čekat!", q: "Na co tahle příšerka čeká a už to nemůže vydržet?", sim: ["vztek", "frustrace", "ocekavani"], opp: null, help: "Najdi si něco malého na hraní, než na tebe přijde řada." },
+  { f: 17, b: 40, name: "Znechucení", fam: "vztek", slug: "znechuceni", quote: "Fuj! Tohle se mi vůbec nelíbí a nechci to.", q: "U čeho si může tahle příšerka říct „fuj“?", sim: ["vztek", "smutek"], opp: null, help: "Řekni nahlas, že se ti to nelíbí, a odejdi od toho pryč." },
+  { f: 8, b: 33, name: "Smutek", fam: "smutek", slug: "smutek", quote: "Něco mě rozesmutnilo a není mi dobře.", q: "Proč je asi takhle příšerka tak smutná?", sim: ["nestesti", "osamelost", "znechuceni"], opp: "radost", help: "Řekni někomu, co tě trápí, nebo se pomazli s někým, koho máš rád." },
+  { f: 13, b: 32, name: "Neštěstí", fam: "smutek", slug: "nestesti", quote: "Je mi opravdu moc smutno. Tohle je na mě teď strašně těžké.", q: "Co se mohlo téhle příšerce stát, že je jí tak moc smutno?", sim: ["smutek", "litost"], opp: "radost", help: "Dovol si trochu poplakat a pak si sedni k někomu, kdo tě pohladí." },
+  { f: 14, b: 31, name: "Lítost", fam: "smutek", slug: "litost", quote: "Mrzí mě, co jsem udělal nebo řekl, a přál bych si to napravit.", q: "Co mohla tahle příšerka udělat, že toho teď lituje?", sim: ["nestesti", "osamelost"], opp: null, help: "Zkus říct promiň a přemýšlet, co bys příště udělal jinak." },
+  { f: 23, b: 29, name: "Osamělost", fam: "smutek", slug: "osamelost", quote: "Chybí mi někdo, s kým bych chtěl být.", q: "Kdo asi téhle příšerce chybí?", sim: ["smutek", "litost", "nuda"], opp: "laska", help: "Zavolej nebo napiš kamarádovi, nebo si najdi někoho blízkého na obejmutí." },
+  { f: 15, b: 30, name: "Nuda", fam: "smutek", slug: "nuda", quote: "Nic mě teď nezajímá a nevím, co bych dělal.", q: "Potřebuje tahle příšerka odpočinek, nebo ji jen nic nebaví?", sim: ["osamelost", "unava"], opp: "nadseni", help: "Vyber si jednu hračku nebo knížku a začni si s ní hrát." },
+  { f: 5, b: 39, name: "Radost", fam: "radost", slug: "radost", quote: "Je mi dobře a mám z něčeho příjemný pocit.", q: "Z čeho by mohla mít takhle příšerka radost?", sim: ["nadseni", "laska", "hrdost"], opp: "smutek", help: "Podělte se o radost s někým dalším — je to ještě lepší, když ji zažíváte spolu." },
+  { f: 6, b: 38, name: "Nadšení", fam: "radost", slug: "nadseni", quote: "Tohle je úžasné!", q: "Na co by se tahle příšerka mohla těšit tak moc, že by nevydržela sedět na místě?", sim: ["radost", "ocekavani"], opp: "nuda", help: "Pusť tu energii ven — poskákej, zatancuj, nebo o tom někomu vyprávěj." },
+  { f: 12, b: 37, name: "Očekávání", fam: "radost", slug: "ocekavani", quote: "Něco hezkého přijde a já se na to moc těším.", q: "Na co se tahle příšerka asi těší?", sim: ["nadseni", "netrpelivost"], opp: null, help: "Zkrať si čekání hraním, nebo si spočítej, kolik dní ještě zbývá." },
+  { f: 19, b: 36, name: "Hrdost", fam: "radost", slug: "hrdost", quote: "Dokázal jsem něco, na co jsem pyšný.", q: "Co tahle příšerka dokázala, na co může být pyšná?", sim: ["radost", "duvera"], opp: "stydlivost", help: "Pochlub se tím, co se ti povedlo — zasloužíš si pochvalu." },
+  { f: 21, b: 35, name: "Láska", fam: "radost", slug: "laska", quote: "Mám někoho moc rád a záleží mi na něm.", q: "Koho asi má tahle příšerka tolik ráda?", sim: ["duvera", "radost"], opp: "osamelost", help: "Řekni tomu, koho máš rád, že ho máš rád — udělá to radost vám oběma." },
+  { f: 22, b: 34, name: "Důvěra", fam: "radost", slug: "duvera", quote: "Věřím ti. Vím, že mi neublížíš a můžeš mi pomoct.", q: "Komu by tahle příšerka mohla opravdu věřit?", sim: ["laska", "hrdost"], opp: "strach", help: "Řekni té osobě, co potřebuješ — důvěra roste, když si to řekneme." },
+  { f: 4, b: 47, name: "Strach", fam: "strach", slug: "strach", quote: "Něco mi připadá nebezpečné a chci být v bezpečí.", q: "Čeho by se tahle příšerka mohla bát?", sim: ["nervozita", "stydlivost"], opp: "duvera", help: "Zhluboka se nadechni a řekni dospělému, čeho se bojíš." },
+  { f: 3, b: 48, name: "Nervozita", fam: "strach", slug: "nervozita", quote: "Něco nového se děje a já nevím, jak to dopadne.", q: "Kvůli čemu může být takhle příšerka nervózní?", sim: ["strach", "nejistota", "stydlivost", "ocekavani"], opp: null, help: "Pomůže pár pomalých nádechů a připomenout si, že to zvládneš." },
+  { f: 9, b: 46, name: "Nejistota", fam: "strach", slug: "nejistota", quote: "Nevím, co mám udělat, nebo co se stane.", q: "Proč je asi tahle příšerka nejistá?", sim: ["zmatenost", "nervozita", "stydlivost"], opp: "duvera", help: "Zeptej se na to, čemu nerozumíš — je v pořádku se ptát." },
+  { f: 10, b: 45, name: "Stydlivost", fam: "strach", slug: "stydlivost", quote: "Je mi nepříjemné, že se na mě ostatní dívají.", q: "Kdy ses naposledy takhle styděl a proč?", sim: ["nejistota", "strach"], opp: "hrdost", help: "Nemusíš spěchat — nejdřív jen pozoruj a přidej se, až budeš chtít." },
+  { f: 11, b: 44, name: "Zmatenost", fam: "strach", slug: "zmatenost", quote: "Nerozumím tomu. Nevím, co se děje.", q: "Co tahle příšerka asi nechápe?", sim: ["nejistota", "prekvapeni"], opp: null, help: "Promluv si o tom s někým — společně to snáz rozmotáte." },
+  { f: 18, b: 26, name: "Překvapení", fam: "telo", slug: "prekvapeni", quote: "Tohle jsem vůbec nečekal!", q: "Co by tuhle příšerku mohlo úplně překvapit?", sim: ["zmatenost"], opp: null, help: "Dej si chviličku, než zareaguješ — je v pořádku být překvapený." },
+  { f: 20, b: 27, name: "Závist", fam: "telo", slug: "zavist", quote: "Chci mít něco, co má někdo jiný.", q: "Co má někdo jiný, co by tahle příšerka chtěla?", sim: ["frustrace"], opp: null, help: "Zkus přemýšlet, co ty sám umíš a co máš rád na sobě." },
+  { f: 7, b: 28, name: "Bolest", fam: "telo", slug: "bolest", quote: "Něco mě bolí a je to nepříjemné!", q: "Kdy mě naposledy takhle moc něco bolelo a proč?", sim: ["smutek"], opp: null, help: "Řekni dospělému, co a kde tě bolí, ať ti může pomoct." },
+  { f: 24, b: 25, name: "Únava", fam: "telo", slug: "unava", quote: "Moje tělo už nemá dost energie.", q: "Potřebuje tahle příšerka něco dělat, nebo si hlavně odpočinout?", sim: ["nuda"], opp: "nadseni", help: "Dovol si odpočinek — chvíli sedět, nebo si i schrupnout." }
 ];
 
 const GAMES = [
@@ -809,7 +834,7 @@ class Component extends DCLogic {
   state = {
     filter: "vse", mode: "quiz", overlay: null, sound: true, menuOpen: false, zipBusy: null,
     quiz: null, score: 0, asked: 0, feedback: "", feedbackOk: true,
-    drawn: DECK[0], drawnSide: "front", story: [],
+    drawn: DECK[0], drawnSide: "front", story: [], helpCard: DECK[0],
     pex: [], pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
     pexSize: "small", pexStartedAt: null, pexElapsedSec: 0, pexBest: {},
     pairs: null, pairsAnswer: null,
@@ -826,7 +851,7 @@ class Component extends DCLogic {
       pexBest = JSON.parse(localStorage.getItem(PEX_BEST_KEY) || "{}") || {};
     } catch (e) { diary = {}; }
     this.setState({
-      quiz: this.makeQuiz(), drawn: pick(DECK, 1)[0], story: pick(DECK, this.props.storyLength ?? 4),
+      quiz: this.makeQuiz(), drawn: pick(DECK, 1)[0], story: pick(DECK, this.props.storyLength ?? 4), helpCard: pick(DECK, 1)[0],
       pairs: this.makePairs(), diary, sound, pexBest
     });
     this.startPexeso("small");
@@ -1146,11 +1171,12 @@ class Component extends DCLogic {
       { key: "pexeso", label: "Emoční pexeso", accent: "#E8730C" },
       { key: "pairs", label: "Podobné, nebo opak?", accent: "#6E8C4A" },
       { key: "draw", label: "Vytáhni kartu", accent: "#22ADEE" },
-      { key: "story", label: "Příběh z balíčku", accent: "#FF2E9A" }
+      { key: "story", label: "Příběh z balíčku", accent: "#FF2E9A" },
+      { key: "help", label: "Co mi pomůže?", accent: "#fff" }
     ].map(m => ({
       label: m.label,
       bg: s.mode === m.key ? m.accent : "transparent",
-      fg: s.mode === m.key ? (m.key === "quiz" ? "#221E2B" : "#fff") : "rgba(255,255,255,.85)",
+      fg: s.mode === m.key ? (m.key === "quiz" || m.key === "help" ? "#221E2B" : "#fff") : "rgba(255,255,255,.85)",
       border: s.mode === m.key ? m.accent : "rgba(255,255,255,.35)",
       pick: () => this.setState({ mode: m.key })
     }));
@@ -1242,7 +1268,7 @@ class Component extends DCLogic {
       })),
 
       isQuiz: s.mode === "quiz", isPexeso: s.mode === "pexeso", isPairs: s.mode === "pairs",
-      isDraw: s.mode === "draw", isStory: s.mode === "story",
+      isDraw: s.mode === "draw", isStory: s.mode === "story", isHelp: s.mode === "help",
 
       quizName: q ? q.target.name : "",
       quizQuote: q ? q.target.quote : "",
@@ -1297,6 +1323,10 @@ class Component extends DCLogic {
       drawCard: () => this.setState({ drawn: pick(DECK, 1)[0], drawnSide: "front" }),
       flipDrawn: () => this.setState(st => ({ drawnSide: st.drawnSide === "front" ? "back" : "front" })),
       speakDrawn: () => this.speak(this.cardSpeech(s.drawn)),
+
+      helpFront: img(s.helpCard.f), helpName: s.helpCard.name, helpQuote: s.helpCard.quote, helpTip: s.helpCard.help,
+      drawHelp: () => this.setState({ helpCard: pick(DECK, 1)[0] }),
+      speakHelp: () => this.speak(this.cardSpeech(s.helpCard) + " Co pomůže? " + s.helpCard.help),
 
       storyCards: s.story.map(c => ({ front: thumb(c.f), name: c.name })),
       storyChain: s.story.map(c => c.name.toUpperCase()).join(" → "),
