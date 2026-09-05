@@ -92,15 +92,25 @@
   </sc-for>
 
   <section class="page" style="padding: 12mm 12mm 10mm; display: flex; flex-direction: column">
-    <div style="display: flex; align-items: baseline; gap: 6mm; margin-bottom: 6mm">
+    <div style="display: flex; align-items: baseline; gap: 6mm; margin-bottom: 4mm">
       <h2 style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 30pt; letter-spacing: .06em; text-transform: uppercase; margin: 0">Emoční příšerky</h2>
       <div style="font-weight: 700; font-size: 11pt; color: rgba(34,30,43,.6)">plakát se všemi 24 emocemi</div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 2mm 5mm; margin-bottom: 4mm; font-size: 9pt; font-weight: 700">
+      <span style="display: inline-flex; align-items: center; gap: 2mm"><span style="width: 3mm; height: 3mm; border-radius: 999px; background: #6E8C4A; display: inline-block"></span>Vztek</span>
+      <span style="display: inline-flex; align-items: center; gap: 2mm"><span style="width: 3mm; height: 3mm; border-radius: 999px; background: #22ADEE; display: inline-block"></span>Smutek</span>
+      <span style="display: inline-flex; align-items: center; gap: 2mm"><span style="width: 3mm; height: 3mm; border-radius: 999px; background: #FF2E9A; display: inline-block"></span>Radost</span>
+      <span style="display: inline-flex; align-items: center; gap: 2mm"><span style="width: 3mm; height: 3mm; border-radius: 999px; background: #FFD23F; display: inline-block"></span>Strach</span>
+      <span style="display: inline-flex; align-items: center; gap: 2mm"><span style="width: 3mm; height: 3mm; border-radius: 999px; background: #7B3DF5; display: inline-block"></span>Tělo a překvapení</span>
     </div>
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); gap: 4mm; flex: 1; min-height: 0">
       <sc-for list="{{ poster }}" as="p" hint-placeholder-count="24">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 1.5mm; min-height: 0; overflow: hidden">
           <img src="{{ p.src }}" alt="{{ p.name }}" style="max-width: 100%; max-height: 100%; width: auto; flex: 1; object-fit: contain; min-height: 0" />
-          <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 600; font-size: 11pt; letter-spacing: .1em; text-transform: uppercase; text-align: center">{{ p.name }}</div>
+          <div style="display: inline-flex; align-items: center; gap: 1.5mm">
+            <span style="width: 2.5mm; height: 2.5mm; border-radius: 999px; background: {{ p.famColor }}; display: inline-block; flex-shrink: 0"></span>
+            <span style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 600; font-size: 11pt; letter-spacing: .1em; text-transform: uppercase; text-align: center">{{ p.name }}</span>
+          </div>
         </div>
       </sc-for>
     </div>
@@ -138,6 +148,9 @@
         <li><strong>6 let a víc:</strong> hry 4 a 7 — jemné rozdíly a příběh z balíčku.</li>
       </ul>
 
+      <h3 style="font-size: 13pt; margin: 0 0 2mm">Proč mají karty barevné rodiny</h3>
+      <p style="margin: 0 0 4mm">Všech 24 emocí je rozdělených do pěti barevných rodin — <strong style="color: #6E8C4A">vztek</strong>, <strong style="color: #22ADEE">smutek</strong>, <strong style="color: #FF2E9A">radost</strong>, <strong style="color: #FFD23F">strach</strong> a <strong style="color: #7B3DF5">tělo a překvapení</strong>. Emoce ve stejné rodině spolu úzce souvisí a liší se hlavně silou — třeba <em>netrpělivost</em> a <em>vztek</em> jsou obě ze žluto-zelené rodiny vzteku, jen v jiné intenzitě. Díky barvě dítě snadno pozná příbuzné pocity, i když ještě neumí přesná slova, a časem se naučí rozlišovat jemné odstíny v rámci jedné rodiny.</p>
+
       <h3 style="font-size: 13pt; margin: 0 0 2mm">Podobné emoce a opaky</h3>
       <p style="margin: 0 0 4mm">Na každé kartě je řádek <em>Podobné emoce</em>. Dvojice jako <strong>vztek × netrpělivost</strong>, <strong>smutek × osamělost</strong> nebo <strong>strach × nervozita</strong> jsou nejcennější materiál — děti se na nich učí, že pocity mají odstíny. Opaky (<strong>radost × smutek</strong>, <strong>důvěra × strach</strong>, <strong>nadšení × nuda</strong>) pomáhají ukázat, že se pocity mění.</p>
 
@@ -150,19 +163,20 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const DECK = [
-  { f: 1, b: 43, name: "Vztek" }, { f: 2, b: 42, name: "Frustrace" },
-  { f: 16, b: 41, name: "Netrpělivost" }, { f: 17, b: 40, name: "Znechucení" },
-  { f: 13, b: 33, name: "Smutek" }, { f: 15, b: 32, name: "Neštěstí" },
-  { f: 14, b: 31, name: "Lítost" }, { f: 23, b: 29, name: "Osamělost" },
-  { f: 8, b: 30, name: "Nuda" }, { f: 22, b: 39, name: "Radost" },
-  { f: 6, b: 38, name: "Nadšení" }, { f: 12, b: 37, name: "Očekávání" },
-  { f: 19, b: 36, name: "Hrdost" }, { f: 5, b: 35, name: "Láska" },
-  { f: 21, b: 34, name: "Důvěra" }, { f: 4, b: 47, name: "Strach" },
-  { f: 3, b: 48, name: "Nervozita" }, { f: 9, b: 46, name: "Nejistota" },
-  { f: 10, b: 45, name: "Stydlivost" }, { f: 11, b: 44, name: "Zmatenost" },
-  { f: 18, b: 26, name: "Překvapení" }, { f: 20, b: 27, name: "Závist" },
-  { f: 7, b: 28, name: "Bolest" }, { f: 24, b: 25, name: "Únava" }
+  { f: 1, b: 43, name: "Vztek", fam: "vztek" }, { f: 2, b: 42, name: "Frustrace", fam: "vztek" },
+  { f: 16, b: 41, name: "Netrpělivost", fam: "vztek" }, { f: 17, b: 40, name: "Znechucení", fam: "vztek" },
+  { f: 13, b: 33, name: "Smutek", fam: "smutek" }, { f: 15, b: 32, name: "Neštěstí", fam: "smutek" },
+  { f: 14, b: 31, name: "Lítost", fam: "smutek" }, { f: 23, b: 29, name: "Osamělost", fam: "smutek" },
+  { f: 8, b: 30, name: "Nuda", fam: "smutek" }, { f: 22, b: 39, name: "Radost", fam: "radost" },
+  { f: 6, b: 38, name: "Nadšení", fam: "radost" }, { f: 12, b: 37, name: "Očekávání", fam: "radost" },
+  { f: 19, b: 36, name: "Hrdost", fam: "radost" }, { f: 5, b: 35, name: "Láska", fam: "radost" },
+  { f: 21, b: 34, name: "Důvěra", fam: "radost" }, { f: 4, b: 47, name: "Strach", fam: "strach" },
+  { f: 3, b: 48, name: "Nervozita", fam: "strach" }, { f: 9, b: 46, name: "Nejistota", fam: "strach" },
+  { f: 10, b: 45, name: "Stydlivost", fam: "strach" }, { f: 11, b: 44, name: "Zmatenost", fam: "strach" },
+  { f: 18, b: 26, name: "Překvapení", fam: "telo" }, { f: 20, b: 27, name: "Závist", fam: "telo" },
+  { f: 7, b: 28, name: "Bolest", fam: "telo" }, { f: 24, b: 25, name: "Únava", fam: "telo" }
 ];
+const FAM_COLOR = { vztek: "#6E8C4A", smutek: "#22ADEE", radost: "#FF2E9A", strach: "#FFD23F", telo: "#7B3DF5" };
 
 const img = n => "cards/c" + String(n).padStart(2, "0") + ".png";
 
@@ -177,7 +191,7 @@ class Component extends DCLogic {
     }
     return {
       sheets,
-      poster: DECK.map(c => ({ src: img(c.f), name: c.name })),
+      poster: DECK.map(c => ({ src: img(c.f), name: c.name, famColor: FAM_COLOR[c.fam] })),
       coloring: DECK.map(c => ({ src: "coloring/o" + String(c.f).padStart(2, "0") + ".png", name: c.name }))
     };
   }

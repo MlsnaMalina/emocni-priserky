@@ -59,6 +59,8 @@
     [data-r="grid"] { grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)) !important }
     [data-r="quizgrid"] { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important }
     [data-r="pexgrid"] { grid-template-columns: repeat(4, 1fr) !important }
+    [data-r="pexgrid"].pex-big { grid-template-columns: repeat(6, 1fr) !important; gap: 6px !important }
+    [data-r="pexgrid"].pex-big span { font-size: 16px !important }
     [data-r="pad"] { padding: 22px !important }
     [data-r="dlpad"] { padding: 26px !important }
     [data-r="preview3"] { gap: 8px !important }
@@ -189,8 +191,10 @@
         <div style="font-weight: 600; font-size: 17px; margin-top: 4px; max-width: 560px; text-wrap: pretty">{{ dailyQuote }}</div>
         <div style="font-weight: 700; font-size: 15px; margin-top: 12px; color: rgba(34,30,43,.66); text-wrap: pretty">{{ dailyQuestion }}</div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <button onClick="{{ speakDaily }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 999px; border: 2px solid #221E2B; background: #FFD23F; color: #221E2B">Přečti nahlas</button>
+      <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+        <button onClick="{{ speakDaily }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 46px; height: 46px; border-radius: 50%; border: 2px solid #221E2B; background: #FFD23F; color: #221E2B; display: grid; place-items: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        </button>
         <button onClick="{{ openDaily }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Otevřít kartu</button>
       </div>
     </div>
@@ -207,6 +211,17 @@
         <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
           <button onClick="{{ f.pick }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 999px; border: 2px solid #221E2B; background: {{ f.bg }}; color: {{ f.fg }}" style-hover="transform: translateY(-2px)">{{ f.label }}</button>
         </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top: 22px; background: #fff; border: 1.5px solid rgba(34,30,43,.14); border-radius: 18px; padding: 16px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
+      <div style="font-weight: 700; font-size: 13px; color: rgba(34,30,43,.7); max-width: 260px; line-height: 1.5">Proč mají karty barevné tečky? Emoce, které si jsou podobné, mají stejnou barvu — pomáhá to poznat, že třeba vztek a frustrace patří k sobě, jen v jiné síle.</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 18px">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #6E8C4A; flex-shrink: 0"></span>Vztek</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #22ADEE; flex-shrink: 0"></span>Smutek</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FF2E9A; flex-shrink: 0"></span>Radost</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FFD23F; flex-shrink: 0"></span>Strach</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #7B3DF5; flex-shrink: 0"></span>Tělo a překvapení</span>
       </div>
     </div>
 
@@ -263,7 +278,9 @@
             </div>
             <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
               <button onClick="{{ nextQuiz }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #FFD23F; color: #221E2B">Další emoce</button>
-              <button onClick="{{ speakQuiz }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Přečti zadání</button>
+              <button onClick="{{ speakQuiz }}" title="Přečíst zadání" aria-label="Přečíst zadání" style="cursor: pointer; width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              </button>
               <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Tip: zkuste se dítěte zeptat, jak na příšerce emoci poznalo.</span>
             </div>
           </div>
@@ -277,13 +294,23 @@
                 <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Paměťová hra s tvářemi</div>
                 <div style="font-weight: 600; font-size: 16px; margin-top: 6px; max-width: 620px">Otáčejte dvě karty. Když se shodují, zůstanou odkryté — a řekněte si, jakou emoci ta příšerka cítí.</div>
               </div>
-              <div style="text-align: right; font-weight: 800">
-                <div style="font-size: 34px">{{ pexFoundLabel }}</div>
-                <div style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(34,30,43,.5)">nalezené dvojice</div>
+              <div style="display: flex; gap: 18px">
+                <div style="text-align: right; font-weight: 800">
+                  <div style="font-size: 34px">{{ pexFoundLabel }}</div>
+                  <div style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(34,30,43,.5)">nalezené dvojice</div>
+                </div>
+                <div style="text-align: right; font-weight: 800">
+                  <div style="font-size: 34px; font-variant-numeric: tabular-nums">{{ pexTimeLabel }}</div>
+                  <div style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(34,30,43,.5)">nejlepší {{ pexBestLabel }}</div>
+                </div>
               </div>
             </div>
+            <div style="display: flex; gap: 8px; margin-top: 16px">
+              <button onClick="{{ pickPexSmall }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 13px; padding: 9px 16px; border-radius: 999px; border: 2px solid #221E2B; background: {{ pexSmallBg }}; color: {{ pexSmallFg }}">Malé (12 párů)</button>
+              <button onClick="{{ pickPexBig }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 13px; padding: 9px 16px; border-radius: 999px; border: 2px solid #221E2B; background: {{ pexBigBg }}; color: {{ pexBigFg }}">Velké (24 párů)</button>
+            </div>
             <div style="font-weight: 700; font-size: 15px; margin-top: 14px; color: #E8730C; min-height: 24px">{{ pexMessage }}</div>
-            <div data-r="pexgrid" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 8px">
+            <div data-r="pexgrid" class="{{ pexGridClass }}" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 8px">
               <sc-for list="{{ pexTiles }}" as="t" hint-placeholder-count="16">
                 <div onClick="{{ t.flip }}" style="cursor: pointer; position: relative; aspect-ratio: 0.676; border-radius: 12px; overflow: hidden; border: 2px solid #221E2B; opacity: {{ t.opacity }}; display: grid">
                   <div style="position: absolute; inset: 0; background: {{ t.backBg }}; opacity: {{ t.backOpacity }}; display: grid; place-items: center">
@@ -295,7 +322,7 @@
             </div>
             <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
               <button onClick="{{ newPexeso }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #E8730C; color: #fff">Nová hra</button>
-              <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Pro čtyřleté děti stačí poloviční sada — zkuste nejdřív osm karet.</span>
+              <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Pro čtyřleté děti stačí varianta Malé. Zkuste čas z minula porazit!</span>
             </div>
           </div>
         </sc-if>
@@ -316,7 +343,20 @@
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
               <sc-for list="{{ pairsChoices }}" as="ch" hint-placeholder-count="3">
-                <button onClick="{{ ch.choose }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: {{ ch.bg }}; color: {{ ch.fg }}">{{ ch.label }}</button>
+                <button onClick="{{ ch.choose }}" style="font-family: Montserrat, sans-serif; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; padding: 8px 20px 8px 8px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">
+                  <span style="width: 34px; height: 34px; border-radius: 50%; background: {{ ch.iconColor }}; display: grid; place-items: center; flex-shrink: 0">
+                    <sc-if value="{{ ch.isCheck }}" hint-placeholder-val="{{ false }}">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </sc-if>
+                    <sc-if value="{{ ch.isX }}" hint-placeholder-val="{{ false }}">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </sc-if>
+                    <sc-if value="{{ ch.isQ }}" hint-placeholder-val="{{ false }}">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                    </sc-if>
+                  </span>
+                  {{ ch.label }}
+                </button>
               </sc-for>
             </div>
             <div style="font-weight: 700; font-size: 16px; margin-top: 20px; color: {{ pairsFeedbackColor }}; min-height: 26px; max-width: 640px; text-wrap: pretty">{{ pairsFeedback }}</div>
@@ -340,10 +380,12 @@
                   <li>Co by jí pomohlo, aby jí bylo lépe?</li>
                 </ul>
                 <div style="font-weight: 600; font-size: 14px; color: rgba(34,30,43,.55); margin-top: 14px">Klepnutím na kartu ji otočíte na popis emoce.</div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; align-items: center">
                   <button onClick="{{ drawCard }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #22ADEE; color: #fff">Vytáhnout kartu</button>
                   <button onClick="{{ flipDrawn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Otočit</button>
-                  <button onClick="{{ speakDrawn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">Přečti nahlas</button>
+                  <button onClick="{{ speakDrawn }}" title="Přečíst nahlas" aria-label="Přečíst nahlas" style="cursor: pointer; width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: 2px solid #221E2B; background: #fff; color: #221E2B; display: grid; place-items: center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -488,25 +530,30 @@
               <a href="{{ g.src }}" download="{{ g.file }}" style="font-weight: 800; font-size: 13px; border: 2px solid #221E2B; border-radius: 999px; padding: 10px 16px; color: #221E2B" style-hover="background: #221E2B; color: #fff">Stáhnout list</a>
             </sc-if>
           </div>
-          <sc-if value="{{ g.hasSheet }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ g.showRawImage }}" hint-placeholder-val="{{ false }}">
             <div onClick="{{ g.open }}" style="cursor: zoom-in; margin-top: 18px; border-radius: 14px; overflow: hidden; background: #FBFAF7">
               <img src="{{ g.src }}" alt="{{ g.title }}" loading="lazy" decoding="async" style="width: 100%; display: block" />
             </div>
           </sc-if>
-          <sc-if value="{{ g.isPexesoRules }}" hint-placeholder-val="{{ false }}">
-            <div style="margin-top: 18px; background: #FFF3E6; border-radius: 16px; padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px">
+          <sc-if value="{{ g.hasCodedRules }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top: 18px; background: #FBFAF7; border-radius: 16px; padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px">
               <div>
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: #E8730C; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">1 · Příprava</div>
-                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Vytiskněte balíček dvakrát (nebo jen polovinu sady). Rozložte karty na stůl obrázky dolů.</p>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: {{ g.color }}; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">1 · Příprava</div>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">{{ g.rules.prep }}</p>
               </div>
               <div>
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: #E8730C; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">2 · Jak na to</div>
-                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Hráči střídavě otáčejí dvě karty. Pokud se shodují, nechají si je. U každé dvojice řekněte, jakou emoci příšerka cítí.</p>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: {{ g.color }}; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">2 · Jak na to</div>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">{{ g.rules.jak }}</p>
               </div>
               <div>
                 <div style="display: inline-flex; align-items: center; gap: 8px; background: #221E2B; color: #fff; font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em">3 · Tipy pro hru</div>
-                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">Zkuste hledat i „emoční sousedy“ — například <strong>vztek × frustrace</strong>. Cíl: rozvíjet paměť a schopnost porovnávat emoce.</p>
+                <p style="font-weight: 600; font-size: 15px; line-height: 1.6; margin: 10px 0 0">{{ g.rules.tipy }}</p>
               </div>
+              <sc-if value="{{ g.rules.hero }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 14px; overflow: hidden; min-height: 160px">
+                  <img src="{{ g.rules.hero }}" alt="{{ g.rules.heroAlt }}" loading="lazy" decoding="async" style="max-width: 100%; max-height: 220px; object-fit: contain; display: block" />
+                </div>
+              </sc-if>
             </div>
           </sc-if>
         </div>
@@ -554,6 +601,7 @@
 
   <sc-if value="{{ overlay }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeOverlay }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(20,17,26,.78); backdrop-filter: blur(6px); display: grid; place-items: center; padding: 32px; cursor: zoom-out; animation: pop .18s ease-out">
+      <button onClick="{{ closeOverlay }}" aria-label="Zavřít" style="position: fixed; top: 18px; right: 18px; z-index: 91; width: 46px; height: 46px; border-radius: 50%; border: none; background: #fff; color: #221E2B; font-size: 20px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.35)">✕</button>
       <div style="max-width: 1180px; width: 100%; max-height: 100%; overflow: auto">
         {{ overlayContent }}
       </div>
@@ -593,19 +641,55 @@ const DECK = [
 ];
 
 const GAMES = [
-  { num: "1", slug: "ukaz-mi-emoci", title: "Ukaž mi emoci", meta: "Věk 4+ · 2+ hráči · všechny karty · Poznat emoci podle obličeje a postoje těla", src: "games/hra1.webp", color: "#7B3DF5" },
-  { num: "2", slug: "co-se-ji-stalo", title: "Co se jí stalo?", meta: "Věk 5+ · 2+ hráči · balíček karet · Spojit pocit s konkrétní situací", src: "games/hra2.webp", color: "#22ADEE" },
-  { num: "3", slug: "najdi-kamarada-emoce", title: "Najdi kamaráda — porovnávejte emoce", meta: "Věk 5+ · 2+ hráči · vybrané dvojice karet · Rozlišovat jemné rozdíly a opaky", src: "games/hra3.webp", color: "#7B3DF5" },
-  { num: "4", slug: "najdi-kamarada-rozdily", title: "Najdi kamaráda — jemné rozdíly", meta: "Věk 5+ · 2+ hráči · vybrané dvojice a trojice · Vztek × netrpělivost, smutek × osamělost", src: "games/hra4.webp", color: "#6E8C4A" },
-  { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · celý balíček nebo polovina · Paměťová hra s tvářemi", color: "#E8730C", rules: "pexeso" },
-  { num: "6", slug: "hadej-kdo-jsem", title: "Hádej, kdo jsem? — emoční pantomima", meta: "Věk 5+ · 2+ hráči · balíček karet · Rozvíjet výrazové schopnosti", src: "games/hra6.webp", color: "#FF2E9A" },
-  { num: "7", slug: "pribeh-z-balicku", title: "Příběh z balíčku", meta: "Věk 5+ · 2+ hráči · 3–5 karet · Propojit karty s vlastní zkušeností", src: "games/hra7.webp", color: "#FF2E9A" },
+  { num: "1", slug: "ukaz-mi-emoci", title: "Ukaž mi emoci", meta: "Věk 4+ · 2+ hráči · všechny karty · Poznat emoci podle obličeje a postoje těla", src: "games/hra1.webp", color: "#7B3DF5", rules: {
+    prep: "Rozložte karty na stůl obrázky nahoru.",
+    jak: "Řekněte dítěti, ať vám ukáže příšerku, která se třeba bojí, nebo má velkou radost. Zeptejte se: „Aha, tahle se taky bojí? Čím to je?“",
+    tipy: "Hledejte situace („Najdi příšerku, která právě dostala zmrzlinu.“) i emoční sousedy („Najdi, která se cítí skoro stejně jako tahle smutná, ale jenom trošičku.“). Cíl: poznat emoci podle obličeje a postoje těla.",
+    hero: "games/crops/hra1-hero.webp", heroAlt: "Vystrašená příšerka"
+  } },
+  { num: "2", slug: "co-se-ji-stalo", title: "Co se jí stalo?", meta: "Věk 5+ · 2+ hráči · balíček karet · Spojit pocit s konkrétní situací", src: "games/hra2.webp", color: "#22ADEE", rules: {
+    prep: "Karty jsou na hromádce obrázky dolů.",
+    jak: "Dítě si vytáhne jednu kartu a prohlédne si ji. Zeptejte se: „Co myslíš, že se téhle příšerce stalo, že se takhle cítí?“ Dítě vymyslí krátký příběh.",
+    tipy: "Koukejte na její ruce — co asi dělaly, než se takhle naštvala? Zeptejte se dítěte, kdy se cítilo podobně. Cíl: spojit pocit s konkrétní situací a rozvíjet představivost.",
+    hero: "games/crops/hra2-hero.webp", heroAlt: "Naštvaná příšerka"
+  } },
+  { num: "3", slug: "najdi-kamarada-emoce", title: "Najdi kamaráda — porovnávejte emoce", meta: "Věk 5+ · 2+ hráči · vybrané dvojice karet · Rozlišovat jemné rozdíly a opaky", src: "games/hra3.webp", color: "#7B3DF5", rules: {
+    prep: "Vyberte z balíčku karty, které jsou si podobné. Rozložte je na stůl obrázky nahoru.",
+    jak: "Hráči hrají střídavě. Když najdou podobný pár, řeknou, čím se liší a co mají společného.",
+    tipy: "Zkuste najít i opaky — porovnejte, jak se cítí radost a jak smutek. Ptejte se, jak se tyto emoce cítí v těle. Cíl: naučit se rozlišovat jemné rozdíly a opaky mezi emocemi a rozvíjet empatii.",
+    hero: "games/crops/hra3-hero.webp", heroAlt: "Zmatená příšerka"
+  } },
+  { num: "4", slug: "najdi-kamarada-rozdily", title: "Najdi kamaráda — jemné rozdíly", meta: "Věk 5+ · 2+ hráči · vybrané dvojice a trojice · Vztek × netrpělivost, smutek × osamělost", src: "games/hra4.webp", color: "#6E8C4A", rules: {
+    prep: "Rozložte karty na stůl obrázky nahoru.",
+    jak: "Ukažte dítěti dvě příšerky, které jsou si hrozně podobné. Zeptejte se: „V čem jsou stejné? A v čem se liší?“",
+    tipy: "Zkuste dvojice vztek × netrpělivost, smutek × osamělost nebo strach × překvapení. Pomozte si příběhem: „Tuhle příšerku bolí nohy, protože celý den běhala — to je únava. Tahle nemá co dělat a nic ji nebaví — to je nuda.“ Cíl: rozlišovat jemné rozdíly mezi podobnými pocity.",
+    hero: "games/crops/hra4-hero.webp", heroAlt: "Unavená příšerka"
+  } },
+  { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · celý balíček nebo polovina · Paměťová hra s tvářemi", color: "#E8730C", rules: {
+    prep: "Vytiskněte balíček dvakrát (nebo jen polovinu sady). Rozložte karty na stůl obrázky dolů.",
+    jak: "Hráči střídavě otáčejí dvě karty. Pokud se shodují, nechají si je. U každé dvojice řekněte, jakou emoci příšerka cítí.",
+    tipy: "Zkuste hledat i „emoční sousedy“ — například vztek × frustrace. Cíl: rozvíjet paměť a schopnost porovnávat emoce."
+  } },
+  { num: "6", slug: "hadej-kdo-jsem", title: "Hádej, kdo jsem? — emoční pantomima", meta: "Věk 5+ · 2+ hráči · balíček karet · Rozvíjet výrazové schopnosti", src: "games/hra6.webp", color: "#FF2E9A", rules: {
+    prep: "Karty jsou na hromádce obrázky dolů.",
+    jak: "Jeden hráč si vytáhne kartu a předvádí emoci obličejem a tělem — beze slov. Ostatní hádají. Pro pětileté děti jsou povoleny i zvuky.",
+    tipy: "Vyzkoušejte různé pózy a gesta, buďte co nejvíce jasní. Cíl: rozvíjet výrazové schopnosti a pochopení emocí.",
+    hero: "games/crops/hra6-hero.webp", heroAlt: "Udivené příšerky"
+  } },
+  { num: "7", slug: "pribeh-z-balicku", title: "Příběh z balíčku", meta: "Věk 5+ · 2+ hráči · 3–5 karet · Propojit karty s vlastní zkušeností", src: "games/hra7.webp", color: "#FF2E9A", rules: {
+    prep: "Karty jsou na hromádce obrázky dolů.",
+    jak: "Dítě si vybere 3–5 náhodných karet. Společně z nich vytvořte příběh — třeba radost → zklamání → vztek („Jdeme ven!“ → „Začalo pršet…“ → „Nemůžu si hrát!“).",
+    tipy: "Zapojte se i vy — vytáhněte si kartu a sdílejte vlastní zkušenost. Cíl: propojit karty s vlastní zkušeností a normalizovat všechny pocity.",
+    hero: "games/crops/hra7-hero.webp", heroAlt: "Příběh příšerek — radost, zklamání, vztek"
+  } },
   { num: "+", slug: "superschopnosti", title: "Další superschopnosti karet", meta: "Rozvíjející aktivity — více emocí najednou, co se děje v těle, co by pomohlo", src: "games/superschopnosti.webp", color: "#221E2B" }
 ];
 
 const DAYS = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"];
 const DIARY_KEY = "emocni-priserky-dennik-v1";
 const SOUND_KEY = "emocni-priserky-zvuk-v1";
+const PEX_BEST_KEY = "emocni-priserky-pexeso-rekordy-v1";
+const formatTime = sec => Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0");
 
 const img = n => "cards/c" + String(n).padStart(2, "0") + ".png";
 const thumb = n => n <= 24 ? "thumbs/t" + String(n).padStart(2, "0") + ".webp" : img(n);
@@ -677,22 +761,29 @@ class Component extends DCLogic {
     quiz: null, score: 0, asked: 0, feedback: "", feedbackOk: true,
     drawn: DECK[0], drawnSide: "front", story: [],
     pex: [], pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
+    pexSize: "small", pexStartedAt: null, pexElapsedSec: 0, pexBest: {},
     pairs: null, pairsAnswer: null,
     diary: {}, today: isoDay(new Date()), activeSlot: "morning",
     bookOpen: false, bookDate: null
   };
 
   componentDidMount() {
-    let diary = {}, sound = true;
+    let diary = {}, sound = true, pexBest = {};
     try {
       diary = JSON.parse(localStorage.getItem(DIARY_KEY) || "{}") || {};
       const st = localStorage.getItem(SOUND_KEY);
       if (st !== null) sound = st === "1";
+      pexBest = JSON.parse(localStorage.getItem(PEX_BEST_KEY) || "{}") || {};
     } catch (e) { diary = {}; }
     this.setState({
       quiz: this.makeQuiz(), drawn: pick(DECK, 1)[0], story: pick(DECK, this.props.storyLength ?? 4),
-      pairs: this.makePairs(), pex: this.makePexeso(), diary, sound
+      pairs: this.makePairs(), diary, sound, pexBest
     });
+    this.startPexeso("small");
+  }
+
+  componentWillUnmount() {
+    if (this._pexInterval) clearInterval(this._pexInterval);
   }
 
   /* ---------- zvuk a hlas ---------- */
@@ -752,9 +843,21 @@ class Component extends DCLogic {
   }
 
   /* ---------- hra 5: pexeso ---------- */
-  makePexeso() {
-    const chosen = pick(DECK, 8);
+  makePexeso(size) {
+    const n = size === "big" ? 24 : 12;
+    const chosen = pick(DECK, n);
     return shuffle(chosen.concat(chosen).map((c, i) => ({ key: i + "-" + c.slug, slug: c.slug, f: c.f, name: c.name, done: false })));
+  }
+
+  startPexeso(size) {
+    if (this._pexInterval) clearInterval(this._pexInterval);
+    this.setState({
+      pex: this.makePexeso(size), pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false,
+      pexSize: size, pexStartedAt: Date.now(), pexElapsedSec: 0
+    });
+    this._pexInterval = setInterval(() => {
+      this.setState(s => s.pexStartedAt ? { pexElapsedSec: Math.floor((Date.now() - s.pexStartedAt) / 1000) } : null);
+    }, 1000);
   }
 
   flipTile(i) {
@@ -769,10 +872,25 @@ class Component extends DCLogic {
       this.tone([660, 880]);
       const pex = s.pex.map(t => t.slug === a.slug ? Object.assign({}, t, { done: true }) : t);
       const found = s.pexFound + 1;
-      this.setState({
-        pex, pexOpen: [], pexFound: found,
-        pexMessage: found === 8 ? "Máte všechny dvojice! Chcete si zahrát znovu?" : "Dvojice! " + a.name.toUpperCase() + " — jak se taková příšerka cítí?"
-      });
+      const total = s.pex.length / 2;
+      const finished = found === total;
+      if (finished) {
+        if (this._pexInterval) clearInterval(this._pexInterval);
+        const elapsed = Math.floor((Date.now() - s.pexStartedAt) / 1000);
+        const prevBest = s.pexBest[s.pexSize];
+        const isRecord = prevBest == null || elapsed < prevBest;
+        const pexBest = isRecord ? Object.assign({}, s.pexBest, { [s.pexSize]: elapsed }) : s.pexBest;
+        if (isRecord) { try { localStorage.setItem(PEX_BEST_KEY, JSON.stringify(pexBest)); } catch (e) { /* soukromý režim */ } }
+        this.setState({
+          pex, pexOpen: [], pexFound: found, pexElapsedSec: elapsed, pexBest,
+          pexMessage: (isRecord ? "Nový rekord! " : "Hotovo! ") + "Zvládli jste to za " + formatTime(elapsed) + ". Chcete si zahrát znovu?"
+        });
+      } else {
+        this.setState({
+          pex, pexOpen: [], pexFound: found,
+          pexMessage: "Dvojice! " + a.name.toUpperCase() + " — jak se taková příšerka cítí?"
+        });
+      }
     } else {
       this.tone([300]);
       this.setState({ pexOpen: open, pexLock: true, pexMessage: "Tyhle dvě k sobě nepatří." });
@@ -905,14 +1023,20 @@ class Component extends DCLogic {
   cardOverlay(c) {
     const sheet = { background: "#fff", borderRadius: "16px", overflow: "hidden", display: "block", width: "100%" };
     const btn = { fontWeight: 800, fontSize: "14px", padding: "12px 18px", borderRadius: "999px", background: "#fff", color: "#221E2B", border: "2px solid #221E2B", display: "inline-block", cursor: "pointer", fontFamily: "Montserrat, sans-serif" };
+    const roundBtn = { width: "46px", height: "46px", flexShrink: 0, borderRadius: "50%", background: "#fff", color: "#221E2B", border: "2px solid #221E2B", cursor: "pointer", display: "grid", placeItems: "center" };
     const chip = bg => ({ fontWeight: 700, fontSize: "13px", padding: "8px 14px", borderRadius: "999px", background: bg, color: "#fff", cursor: "pointer" });
+    const soundSvg = React.createElement("svg", { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2.2, strokeLinecap: "round", strokeLinejoin: "round" },
+      React.createElement("path", { d: "M11 5 6 9H2v6h4l5 4V5Z" }),
+      React.createElement("path", { d: "M15.54 8.46a5 5 0 0 1 0 7.07" }),
+      React.createElement("path", { d: "M19.07 4.93a10 10 0 0 1 0 14.14" })
+    );
     const rel = [];
     c.sim.forEach(s => { const d = bySlug(s); if (d) rel.push({ d, label: "podobné: " + d.name, bg: "#6E8C4A" }); });
     if (c.opp) { const d = bySlug(c.opp); if (d) rel.push({ d, label: "opak: " + d.name, bg: "#FF2E9A" }); }
     return React.createElement("div", { onClick: e => e.stopPropagation(), style: { cursor: "auto" } },
       React.createElement("div", { style: { display: "flex", alignItems: "flex-end", gap: "16px", flexWrap: "wrap", marginBottom: "16px", color: "#fff" } },
         React.createElement("div", { style: { fontFamily: "'Josefin Sans', Montserrat, sans-serif", fontWeight: 300, fontSize: "44px", letterSpacing: ".12em", textTransform: "uppercase", marginRight: "auto" } }, c.name),
-        React.createElement("button", { style: btn, onClick: () => this.speak(this.cardSpeech(c)) }, "Přečti nahlas"),
+        React.createElement("button", { style: roundBtn, title: "Přečíst nahlas", "aria-label": "Přečíst nahlas", onClick: () => this.speak(this.cardSpeech(c)) }, soundSvg),
         React.createElement("a", { href: img(c.f), download: "priserka-" + c.slug + "-obrazek.png", style: btn }, "↓ Obrázek"),
         React.createElement("a", { href: img(c.b), download: "priserka-" + c.slug + "-popis.png", style: btn }, "↓ Popis")
       ),
@@ -1088,17 +1212,30 @@ class Component extends DCLogic {
           flip: () => this.flipTile(i)
         };
       }),
-      pexFoundLabel: s.pexFound + "/8",
+      pexFoundLabel: s.pexFound + "/" + (s.pex.length / 2),
       pexMessage: s.pexMessage,
-      newPexeso: () => this.setState({ pex: this.makePexeso(), pexOpen: [], pexFound: 0, pexMessage: "", pexLock: false }),
+      pexGridClass: s.pexSize === "big" ? "pex-big" : "",
+      pexTimeLabel: formatTime(s.pexElapsedSec),
+      pexBestLabel: s.pexBest[s.pexSize] != null ? formatTime(s.pexBest[s.pexSize]) : "—",
+      pexSmallBg: s.pexSize === "small" ? "#E8730C" : "#fff",
+      pexSmallFg: s.pexSize === "small" ? "#fff" : "#221E2B",
+      pexBigBg: s.pexSize === "big" ? "#E8730C" : "#fff",
+      pexBigFg: s.pexSize === "big" ? "#fff" : "#221E2B",
+      pickPexSmall: () => this.startPexeso("small"),
+      pickPexBig: () => this.startPexeso("big"),
+      newPexeso: () => this.startPexeso(s.pexSize),
 
       pairsTitle: p ? p.a.name + " × " + p.b.name : "",
       pairsCards: p ? [{ front: thumb(p.a.f), name: p.a.name }, { front: thumb(p.b.f), name: p.b.name }] : [],
       pairsChoices: [
-        { key: "podobne", label: "Jsou si podobné", bg: "#fff", fg: "#221E2B" },
-        { key: "opaky", label: "Jsou to opaky", bg: "#fff", fg: "#221E2B" },
-        { key: "nic", label: "Ani jedno", bg: "#fff", fg: "#221E2B" }
-      ].map(ch => ({ label: ch.label, bg: ch.bg, fg: ch.fg, choose: () => this.answerPairs(ch.key) })),
+        { key: "podobne", label: "Jsou si podobné", icon: "check", iconColor: "#6E8C4A" },
+        { key: "opaky", label: "Jsou to opaky", icon: "x", iconColor: "#E14747" },
+        { key: "nic", label: "Ani jedno", icon: "q", iconColor: "#8A8391" }
+      ].map(ch => ({
+        label: ch.label, iconColor: ch.iconColor,
+        isCheck: ch.icon === "check", isX: ch.icon === "x", isQ: ch.icon === "q",
+        choose: () => this.answerPairs(ch.key)
+      })),
       pairsFeedback: pa ? pa.text : "",
       pairsFeedbackColor: pa && pa.ok ? "#6E8C4A" : "#FF2E9A",
       nextPairs: () => this.setState({ pairs: this.makePairs(), pairsAnswer: null }),
@@ -1148,7 +1285,8 @@ class Component extends DCLogic {
 
       games: GAMES.map(g => ({
         num: g.num, title: g.title, meta: g.meta, src: g.src || "", color: g.color,
-        hasSheet: !!g.src, isPexesoRules: g.rules === "pexeso",
+        hasSheet: !!g.src, hasCodedRules: !!g.rules, showRawImage: !!g.src && !g.rules,
+        rules: g.rules || null,
         file: "emocni-priserky-" + g.slug + ".webp",
         open: () => g.src && this.setState({ overlay: React.createElement("img", { src: g.src, alt: g.title, style: { width: "100%", borderRadius: "16px", background: "#fff" } }) })
       })),
