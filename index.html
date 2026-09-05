@@ -334,8 +334,8 @@
           <div>
             <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #6E8C4A">Hry 3 a 4 · Podobné, nebo opak?</div>
             <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ pairsTitle }}</div>
-            <div style="display: flex; gap: 36px; flex-wrap: wrap; margin-top: 26px; align-items: center">
-              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 160px)); gap: 18px; max-width: 100%">
+            <div style="display: flex; gap: 36px; flex-wrap: wrap; margin-top: 26px; align-items: center; max-width: 820px">
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 180px)); gap: 18px; max-width: 100%">
                 <sc-for list="{{ pairsCards }}" as="p" hint-placeholder-count="2">
                   <div style="text-align: center">
                     <div style="background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 22px rgba(34,30,43,.1); aspect-ratio: 0.676">
@@ -345,7 +345,7 @@
                   </div>
                 </sc-for>
               </div>
-              <div style="flex: 1; min-width: 240px">
+              <div style="flex: 0 1 360px; min-width: 240px">
                 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
                   <sc-for list="{{ pairsChoices }}" as="ch" hint-placeholder-count="3">
                     <button onClick="{{ ch.choose }}" style="font-family: Montserrat, sans-serif; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; padding: 8px 20px 8px 8px; border-radius: 999px; border: 2px solid #221E2B; background: #fff; color: #221E2B">
@@ -375,7 +375,7 @@
           <div>
             <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #22ADEE">Hra 2 a 6 · Vytáhni kartu</div>
             <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">Co se jí stalo?</div>
-            <div data-r="draw" style="display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 34px; margin-top: 22px; align-items: start">
+            <div data-r="draw" style="display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 420px); gap: 34px; margin-top: 22px; align-items: start; max-width: 780px">
               <div onClick="{{ flipDrawn }}" style="cursor: pointer; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px rgba(34,30,43,.14); aspect-ratio: 0.676">
                 <img src="{{ drawnImage }}" alt="Vytažená karta" style="width: 100%; height: 100%; object-fit: contain; display: block" />
               </div>
@@ -403,7 +403,7 @@
           <div>
             <div style="font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7B3DF5">Co mi pomůže?</div>
             <div style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px">{{ helpName }}</div>
-            <div style="display: grid; grid-template-columns: minmax(0, 200px) 1fr; gap: 30px; margin-top: 22px; align-items: start">
+            <div style="display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 420px); gap: 30px; margin-top: 22px; align-items: start; max-width: 650px">
               <div style="background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px rgba(34,30,43,.14); aspect-ratio: 0.676">
                 <img src="{{ helpFront }}" alt="{{ helpName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
               </div>
@@ -487,9 +487,7 @@
                   </div>
                 </sc-if>
                 <sc-if value="{{ wheelNoResult }}" hint-placeholder-val="{{ true }}">
-                  <div style="width: 100%; height: 100%; border-radius: 16px; border: 2px dashed rgba(34,30,43,.2); display: grid; place-items: center; padding: 20px; text-align: center">
-                    <span style="font-weight: 700; font-size: 13px; color: rgba(34,30,43,.4)">Tady se objeví vylosovaná příšerka</span>
-                  </div>
+                  <div style="width: 100%; height: 100%"></div>
                 </sc-if>
               </div>
               <div style="flex: 1 1 260px; min-width: 260px">
