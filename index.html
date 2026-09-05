@@ -64,6 +64,7 @@
     [data-r="pad"] { padding: 22px !important }
     [data-r="dlpad"] { padding: 26px !important }
     [data-r="preview3"] { gap: 8px !important }
+    [data-r="notegrid"] { grid-template-columns: 1fr !important }
     .diary-peek { padding: 10px 6px 10px 12px !important }
     .diary-peek-slots { gap: 3px !important }
     .diary-peek-chip { width: 19px !important; height: 19px !important }
@@ -100,16 +101,17 @@
   .book-page { flex: 1; min-width: 0; padding: 34px 32px; display: flex; flex-direction: column; overflow-y: auto; }
   .book-eyebrow { font-family: 'Josefin Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #7B3DF5; }
   .book-date { font-family: 'Josefin Sans', sans-serif; font-weight: 300; font-size: 28px; text-transform: uppercase; letter-spacing: .02em; margin: 2px 0 16px; }
-  .book-monsters { display: flex; gap: 12px; margin-bottom: 16px; }
-  .book-monster { text-align: center; }
-  .book-monster-circle { width: 50px; height: 50px; border-radius: 50%; background: rgba(34,30,43,.05); border: 1.5px dashed rgba(34,30,43,.22); overflow: hidden; }
-  .book-monster-circle:has(img) { border-style: solid; border-color: #fff; box-shadow: 0 4px 10px rgba(34,30,43,.18); }
-  .book-monster-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .book-monster span { display: block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(34,30,43,.5); margin-top: 4px; }
-  .book-lines { flex: 1; background-image: repeating-linear-gradient(180deg, transparent, transparent 27px, rgba(34,30,43,.14) 28px); min-height: 140px; }
-  .book-lines textarea { width: 100%; height: 100%; min-height: 140px; border: none; background: transparent; resize: none;
-    font-family: 'Josefin Sans', cursive; font-size: 16px; line-height: 28px; color: #221E2B; outline: none; box-sizing: border-box }
-  .book-lines textarea::placeholder { color: rgba(34,30,43,.35); font-style: italic; }
+  .book-notes { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+  .book-note-row { display: flex; flex-direction: column; }
+  .book-note-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .book-monster-circle-sm { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: rgba(34,30,43,.05); border: 1.5px dashed rgba(34,30,43,.22); overflow: hidden; }
+  .book-monster-circle-sm:has(img) { border-style: solid; border-color: #fff; box-shadow: 0 3px 8px rgba(34,30,43,.18); }
+  .book-monster-circle-sm img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .book-note-head span { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(34,30,43,.5); }
+  .book-note-row textarea { width: 100%; flex: 1; min-height: 54px; border: none; resize: none; box-sizing: border-box;
+    background-color: transparent; background-image: repeating-linear-gradient(180deg, transparent, transparent 25px, rgba(34,30,43,.14) 26px);
+    font-family: 'Josefin Sans', cursive; font-size: 15px; line-height: 26px; color: #221E2B; outline: none; padding: 0; }
+  .book-note-row textarea::placeholder { color: rgba(34,30,43,.35); font-style: italic; }
   .book-page-right { background: linear-gradient(160deg, #FFF7DE, #FFE9B8); align-items: center; justify-content: center; text-align: center; }
   .book-page-right img { max-width: 78%; max-height: 78%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(34,30,43,.2)); }
   .book-quote { font-family: 'Josefin Sans', sans-serif; font-style: italic; font-weight: 400; font-size: 13px; color: rgba(34,30,43,.6); margin-top: 12px; }
@@ -180,7 +182,7 @@
     </div>
   </section>
 
-  <section style="max-width: 1180px; margin: 30px auto 0; padding: 0 24px">
+  <section style="max-width: 1180px; margin: 30px auto 0; padding: 0 24px; position: relative; z-index: 1">
     <div data-r="daily" style="background: #fff; border: 2px solid #221E2B; border-radius: 28px; padding: 26px; display: grid; grid-template-columns: 180px 1fr auto; gap: 26px; align-items: center; box-shadow: 0 14px 32px rgba(34,30,43,.08)">
       <div onClick="{{ openDaily }}" style="cursor: pointer; background: #fff; border: 1px solid rgba(34,30,43,.16); border-radius: 12px; overflow: hidden; aspect-ratio: 0.676" style-hover="transform: translateY(-4px)">
         <img src="{{ dailyFront }}" alt="{{ dailyName }}" style="width: 100%; height: 100%; object-fit: contain; display: block" />
@@ -440,10 +442,6 @@
             </div>
           </sc-for>
         </div>
-        <div style="margin-top: 20px">
-          <label style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.6); display: block; margin-bottom: 7px">Co se dnes dělo?</label>
-          <textarea value="{{ todayNote }}" onChange="{{ onTodayNoteChange }}" placeholder="Napište pár slov, proč se dnes takhle cítil/a…" style="width: 100%; min-height: 76px; border: 2px solid rgba(34,30,43,.16); border-radius: 16px; padding: 13px 15px; font-family: Montserrat, sans-serif; font-size: 14px; line-height: 1.5; resize: vertical; outline: none; box-sizing: border-box"></textarea>
-        </div>
       </div>
       <div style="background: #fff; border: 2px solid #221E2B; border-radius: 22px; padding: 24px">
         <div style="font-weight: 800; font-size: 17px; margin-bottom: 16px">Poslední dny</div>
@@ -465,12 +463,24 @@
             </div>
           </sc-for>
         </div>
-        <button onClick="{{ openBookBtn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; font-weight: 800; font-size: 15px; padding: 15px 18px; border-radius: 999px; border: none; background: #221E2B; color: #fff; margin-top: 20px" style-hover="background: #7B3DF5">📖 Otevřít celý deník</button>
+        <button onClick="{{ openBookBtn }}" style="font-family: Montserrat, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; font-weight: 800; font-size: 15px; padding: 15px 18px; border-radius: 999px; border: none; background: #221E2B; color: #fff; margin-top: 20px" style-hover="background: #7B3DF5">Otevřít celý deník</button>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px">
           <span onClick="{{ downloadBackup }}" style="cursor: pointer; font-weight: 700; font-size: 12px; color: #7B3DF5">⤓ Stáhnout zálohu</span>
           <span onClick="{{ triggerRestore }}" style="cursor: pointer; font-weight: 700; font-size: 12px; color: rgba(34,30,43,.5)">Nahrát zálohu</span>
         </div>
         <button onClick="{{ clearToday }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 700; font-size: 12px; padding: 10px 16px; border-radius: 999px; border: 1.5px solid rgba(34,30,43,.2); background: #fff; color: rgba(34,30,43,.6); margin-top: 14px; width: 100%">Vymazat dnešní záznam</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px">
+      <label style="font-weight: 700; font-size: 12px; color: rgba(34,30,43,.6); display: block; margin-bottom: 10px">Co se dnes dělo?</label>
+      <div data-r="notegrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
+        <sc-for list="{{ todayNotes }}" as="tn" hint-placeholder-count="3">
+          <div>
+            <div style="font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #7B3DF5; margin-bottom: 6px">{{ tn.label }}</div>
+            <textarea value="{{ tn.value }}" onChange="{{ tn.onChange }}" placeholder="Co se dělo…" style="width: 100%; min-height: 76px; border: 2px solid rgba(34,30,43,.16); border-radius: 16px; padding: 13px 15px; font-family: Montserrat, sans-serif; font-size: 14px; line-height: 1.5; resize: vertical; outline: none; box-sizing: border-box"></textarea>
+          </div>
+        </sc-for>
       </div>
     </div>
 
@@ -482,20 +492,20 @@
           <div class="book-page">
             <div class="book-eyebrow">{{ bookPage.dayName }}</div>
             <div class="book-date">{{ bookPage.dateBig }}</div>
-            <div class="book-monsters">
+            <div class="book-notes">
               <sc-for list="{{ bookPage.monsters }}" as="m" hint-placeholder-count="3">
-                <div class="book-monster">
-                  <div class="book-monster-circle">
-                    <sc-if value="{{ m.front }}" hint-placeholder-val="{{ false }}">
-                      <img src="{{ m.front }}" alt="" />
-                    </sc-if>
+                <div class="book-note-row">
+                  <div class="book-note-head">
+                    <div class="book-monster-circle-sm">
+                      <sc-if value="{{ m.front }}" hint-placeholder-val="{{ false }}">
+                        <img src="{{ m.front }}" alt="" />
+                      </sc-if>
+                    </div>
+                    <span>{{ m.label }}</span>
                   </div>
-                  <span>{{ m.label }}</span>
+                  <textarea value="{{ m.note }}" onChange="{{ m.onNoteChange }}" placeholder="Co se dělo?"></textarea>
                 </div>
               </sc-for>
-            </div>
-            <div class="book-lines">
-              <textarea value="{{ bookPage.note }}" onChange="{{ bookPage.onNoteChange }}" placeholder="Co se ten den stalo?"></textarea>
             </div>
           </div>
           <sc-if value="{{ bookPage.hasIllustration }}" hint-placeholder-val="{{ false }}">
@@ -581,12 +591,12 @@
           <div style="font-weight: 600; font-size: 12px; margin-top: 14px; max-width: 440px; color: rgba(34,30,43,.62)">Stáhne se jeden soubor ZIP — rozbalte ho a máte všechny obrázky pohromadě.</div>
         </div>
         <div data-r="dlthumbs" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-content: start">
-          <img src="thumbs/t19.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
-          <img src="cards/c36.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
-          <img src="thumbs/t17.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
-          <img src="cards/c40.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
-          <img src="thumbs/t21.webp" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
-          <img src="cards/c34.png" alt="" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="thumbs/t19.webp" alt="Karta emoce" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="coloring/o19.png" alt="Ukázka omalovánky" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="thumbs/t17.webp" alt="Karta emoce" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="coloring/o17.png" alt="Ukázka omalovánky" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="thumbs/t21.webp" alt="Karta emoce" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
+          <img src="cards/c34.png" alt="Popis emoce" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; background: #fff; border: 1px solid rgba(34,30,43,.2)" />
         </div>
       </div>
     </div>
@@ -686,6 +696,8 @@ const GAMES = [
 ];
 
 const DAYS = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"];
+const EMPTY_DIARY_ENTRY = { morning: null, day: null, evening: null, noteMorning: "", noteDay: "", noteEvening: "" };
+const NOTE_KEY = { morning: "noteMorning", day: "noteDay", evening: "noteEvening" };
 const DIARY_KEY = "emocni-priserky-dennik-v1";
 const SOUND_KEY = "emocni-priserky-zvuk-v1";
 const PEX_BEST_KEY = "emocni-priserky-pexeso-rekordy-v1";
@@ -946,23 +958,24 @@ class Component extends DCLogic {
     const today = isoDay(new Date());
     const slot = this.state.activeSlot;
     const diary = Object.assign({}, this.state.diary);
-    const entry = Object.assign({ morning: null, day: null, evening: null, note: "" }, diary[today]);
+    const entry = Object.assign({}, EMPTY_DIARY_ENTRY, diary[today]);
     entry[slot] = entry[slot] === slug ? null : slug;
     diary[today] = entry;
     this.tone([520]);
     this.saveDiary(diary);
   }
 
-  updateNote(dateKey, text) {
+  updateNote(dateKey, slot, text) {
     const diary = Object.assign({}, this.state.diary);
-    const entry = Object.assign({ morning: null, day: null, evening: null, note: "" }, diary[dateKey]);
-    entry.note = text;
+    const entry = Object.assign({}, EMPTY_DIARY_ENTRY, diary[dateKey]);
+    entry[NOTE_KEY[slot]] = text;
     diary[dateKey] = entry;
     this.saveDiary(diary);
   }
 
   diaryDates() {
-    const hasData = e => e && (e.morning || e.day || e.evening || (e.note && e.note.trim()));
+    const hasText = t => t && t.trim();
+    const hasData = e => e && (e.morning || e.day || e.evening || hasText(e.noteMorning) || hasText(e.noteDay) || hasText(e.noteEvening));
     const dates = Object.keys(this.state.diary).filter(k => hasData(this.state.diary[k]));
     const today = isoDay(new Date());
     if (!dates.includes(today)) dates.push(today);
@@ -1111,18 +1124,17 @@ class Component extends DCLogic {
     const SLOT_TAGS = { morning: "ráno", day: "den", evening: "večer" };
     const slotBg = { morning: "#FFD23F", day: "#22ADEE", evening: "#7B3DF5" };
     const MONTHS_GEN = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
-    const emptyEntry = { morning: null, day: null, evening: null, note: "" };
     const todayKey = isoDay(new Date());
-    const todayEntry = Object.assign({}, emptyEntry, s.diary[todayKey]);
+    const todayEntry = Object.assign({}, EMPTY_DIARY_ENTRY, s.diary[todayKey]);
 
     const PREVIEW_ROTATE = [-4, 2, -2];
     const preview3 = [0, 1, 2].map(i => {
       const d = new Date();
       d.setDate(d.getDate() - i);
       const key = isoDay(d);
-      const entry = Object.assign({}, emptyEntry, s.diary[key]);
+      const entry = Object.assign({}, EMPTY_DIARY_ENTRY, s.diary[key]);
       const slots = ["morning", "day", "evening"].map(slot => ({ front: entry[slot] ? thumb(bySlug(entry[slot]).f) : "" }));
-      const noteText = (entry.note || "").trim();
+      const noteText = [entry.noteMorning, entry.noteDay, entry.noteEvening].filter(t => t && t.trim()).join(" · ");
       return {
         dateKey: key,
         label: i === 0 ? "Dnes" : i === 1 ? "Včera" : DAYS[d.getDay()],
@@ -1139,7 +1151,7 @@ class Component extends DCLogic {
     const bookDates = this.diaryDates();
     const bookKey = s.bookDate || todayKey;
     const bookIdx = bookDates.indexOf(bookKey);
-    const bookEntry = Object.assign({}, emptyEntry, s.diary[bookKey]);
+    const bookEntry = Object.assign({}, EMPTY_DIARY_ENTRY, s.diary[bookKey]);
     const bookD = new Date(bookKey + "T00:00:00");
     const bookMonsterSlug = bookEntry.morning || bookEntry.day || bookEntry.evening || null;
     const bookMonster = bookMonsterSlug ? bySlug(bookMonsterSlug) : null;
@@ -1148,16 +1160,18 @@ class Component extends DCLogic {
       dateBig: bookD.getDate() + ". " + MONTHS_GEN[bookD.getMonth()],
       monsters: ["morning", "day", "evening"].map(slot => {
         const c = bookEntry[slot] ? bySlug(bookEntry[slot]) : null;
-        return { front: c ? thumb(c.f) : "", label: SLOT_TAGS[slot], filled: !!c };
+        return {
+          front: c ? thumb(c.f) : "", label: SLOT_TAGS[slot], filled: !!c,
+          note: bookEntry[NOTE_KEY[slot]] || "",
+          onNoteChange: e => this.updateNote(bookKey, slot, e.target.value)
+        };
       }),
-      note: bookEntry.note || "",
       hasIllustration: !!bookMonster,
       illustrationSrc: bookMonster ? img(bookMonster.f) : "",
       illustrationQuote: bookMonster ? bookMonster.quote : "",
       pageLabel: bookDates.length ? (bookIdx + 1) + " / " + bookDates.length : "1 / 1",
       prevOpacity: bookIdx > 0 ? 1 : .3,
-      nextOpacity: (bookIdx >= 0 && bookIdx < bookDates.length - 1) ? 1 : .3,
-      onNoteChange: e => this.updateNote(bookKey, e.target.value)
+      nextOpacity: (bookIdx >= 0 && bookIdx < bookDates.length - 1) ? 1 : .3
     };
 
     return {
@@ -1264,8 +1278,13 @@ class Component extends DCLogic {
         log: () => this.logToday(c.slug)
       })),
       preview3,
-      todayNote: todayEntry.note || "",
-      onTodayNoteChange: e => this.updateNote(todayKey, e.target.value),
+      todayNotes: [
+        { slot: "morning", label: "Ráno" }, { slot: "day", label: "Přes den" }, { slot: "evening", label: "Večer" }
+      ].map(sl => ({
+        label: sl.label,
+        value: todayEntry[NOTE_KEY[sl.slot]] || "",
+        onChange: e => this.updateNote(todayKey, sl.slot, e.target.value)
+      })),
       openBookBtn: () => this.openBook(),
       downloadBackup: () => this.downloadBackup(),
       triggerRestore: () => this.triggerRestore(),
