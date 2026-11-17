@@ -326,6 +326,7 @@
             <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
               <button onClick="{{ newPexeso }}" style="font-family: Montserrat, sans-serif; cursor: pointer; font-weight: 800; font-size: 15px; padding: 14px 22px; border-radius: 999px; border: 2px solid #221E2B; background: #E8730C; color: #fff">Nová hra</button>
               <span style="font-weight: 600; font-size: 13px; color: rgba(34,30,43,.55)">Pro čtyřleté děti stačí varianta Malé. Zkuste čas z minula porazit!</span>
+              <a href="pexeso-k-tisku.html" style="font-weight: 800; font-size: 13px; color: #221E2B; text-decoration: underline; text-underline-offset: 3px" style-hover="color: #E8730C">Chcete hrát u stolu? Pexeso k tisku</a>
             </div>
           </div>
         </sc-if>
@@ -632,6 +633,9 @@
             <sc-if value="{{ g.hasSheet }}" hint-placeholder-val="{{ true }}">
               <a href="{{ g.src }}" download="{{ g.file }}" style="font-weight: 800; font-size: 13px; border: 2px solid #221E2B; border-radius: 999px; padding: 10px 16px; color: #221E2B" style-hover="background: #221E2B; color: #fff">Stáhnout list</a>
             </sc-if>
+            <sc-if value="{{ g.hasPrint }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ g.printHref }}" style="font-weight: 800; font-size: 13px; border: 2px solid #221E2B; border-radius: 999px; padding: 10px 16px; color: #221E2B" style-hover="background: #221E2B; color: #fff">Pexeso k tisku</a>
+            </sc-if>
           </div>
           <sc-if value="{{ g.showRawImage }}" hint-placeholder-val="{{ false }}">
             <div onClick="{{ g.open }}" style="cursor: zoom-in; margin-top: 18px; border-radius: 14px; overflow: hidden; background: #FBFAF7">
@@ -700,8 +704,11 @@
       <div data-r="dl" style="position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 40px">
         <div>
           <h2 data-r="h2" style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 48px; letter-spacing: .04em; text-transform: uppercase; margin: 0">Stáhnout<br /><span style="font-weight: 600">a vytisknout</span></h2>
-          <p style="font-weight: 600; font-size: 16px; line-height: 1.6; margin: 18px 0 0; max-width: 460px">Nejjednodušší je hotový dokument k tisku — archy A4 se čtyřmi kartami, plakát do třídy a metodický list. Vytiskněte obousměrně, překlopení po delší straně.</p>
-          <a href="karty-k-tisku.html" style="display: inline-flex; align-items: center; gap: 12px; background: #221E2B; color: #fff; font-weight: 800; font-size: 16px; padding: 16px 24px; border-radius: 999px; margin-top: 22px" style-hover="background: #7B3DF5; color: #fff">Otevřít dokument k tisku (PDF) →</a>
+          <p style="font-weight: 600; font-size: 16px; line-height: 1.6; margin: 18px 0 0; max-width: 460px">Nejjednodušší je hotový dokument k tisku — archy A4 se čtyřmi kartami, plakát do třídy a metodický list. Vytiskněte obousměrně, překlopení po delší straně. Pexeso má vlastní dokument s menšími kartičkami 6 × 6 cm.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px">
+            <a href="karty-k-tisku.html" style="display: inline-flex; align-items: center; gap: 12px; background: #221E2B; color: #fff; font-weight: 800; font-size: 16px; padding: 16px 24px; border-radius: 999px" style-hover="background: #7B3DF5; color: #fff">Otevřít dokument k tisku (PDF) →</a>
+            <a href="pexeso-k-tisku.html" style="display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #221E2B; border: 2px solid #221E2B; font-weight: 800; font-size: 16px; padding: 14px 22px; border-radius: 999px" style-hover="background: #221E2B; color: #fff">Pexeso k tisku →</a>
+          </div>
           <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px; max-width: 440px">
             <sc-for list="{{ bundles }}" as="b" hint-placeholder-count="4">
               <button onClick="{{ b.go }}" style="font-family: Montserrat, sans-serif; cursor: {{ b.cursor }}; text-align: left; display: flex; align-items: center; gap: 14px; background: #fff; border: 2px solid #221E2B; border-radius: 16px; padding: 16px 18px; box-shadow: 3px 3px 0 #221E2B; opacity: {{ b.opacity }}" style-hover="transform: translate(2px,2px); box-shadow: 1px 1px 0 #221E2B">
@@ -802,8 +809,8 @@ const GAMES = [
     tipy: "Zkuste dvojice vztek × netrpělivost, smutek × osamělost nebo strach × překvapení. Pomozte si příběhem: „Tuhle příšerku bolí nohy, protože celý den běhala — to je únava. Tahle nemá co dělat a nic ji nebaví — to je nuda.“ Cíl: rozlišovat jemné rozdíly mezi podobnými pocity.",
     hero: "games/crops/t24-cutout.webp", heroAlt: "Unavená příšerka", heroBlend: true, heroStep: 1, heroSize: 94, heroBlobRadius: "58% 42% 39% 61% / 48% 55% 45% 52%"
   } },
-  { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · celý balíček nebo polovina · Paměťová hra s tvářemi", color: "#FF2E9A", rules: {
-    prep: "Vytiskněte balíček dvakrát (nebo jen polovinu sady). Rozložte karty na stůl obrázky dolů.",
+  { num: "5", slug: "emocni-pexeso", title: "Emoční pexeso", meta: "Věk 4+ · 2+ hráči · pexeso k tisku, 24 dvojic · Paměťová hra s tvářemi", color: "#FF2E9A", printHref: "pexeso-k-tisku.html", rules: {
+    prep: "Vytiskněte si pexeso k tisku: 4 archy s kartičkami 6 × 6 cm, na začátek stačí první arch. Kartičky rozstříhejte a rozložte obrázky dolů.",
     jak: "Hráči střídavě otáčejí dvě karty. Pokud se shodují, nechají si je. U každé dvojice řekněte, jakou emoci příšerka cítí.",
     tipy: "Zkuste hledat i „emoční sousedy“ — například vztek × frustrace. Cíl: rozvíjet paměť a schopnost porovnávat emoce.",
     hero: "games/crops/hra5-cutout.webp", heroAlt: "Přemýšlející příšerka", heroBlend: true, heroStep: 3, heroSize: 90, heroBlobRadius: "50% 50% 44% 56% / 46% 54% 50% 50%"
@@ -1514,6 +1521,7 @@ class Component extends DCLogic {
       games: GAMES.map(g => ({
         num: g.num, title: g.title, meta: g.meta, src: g.src || "", color: g.color,
         hasSheet: !!g.src, hasCodedRules: !!g.rules, showRawImage: !!g.src && !g.rules,
+        hasPrint: !!g.printHref, printHref: g.printHref || "",
         rules: g.rules ? Object.assign({}, g.rules, {
           heroAtStep1: !!(g.rules.heroBlend && (g.rules.heroStep || 1) === 1),
           heroAtStep2: !!(g.rules.heroBlend && g.rules.heroStep === 2),

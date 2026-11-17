@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emoční pexeso k tisku — Emoční příšerky</title>
+<meta name="description" content="Pexeso k vytištění: 24 dvojic příšerek, které cítí různé emoce. Kartičky 6 × 6 cm, 4 archy A4, návod a pravidla." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "./vendor/react.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "./vendor/react-dom.production.min.js"
+  };
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden }
+  body { margin: 0; font-family: Lexend, 'Segoe UI', Arial, sans-serif; color: #2F2B45 }
+  /* stránky jsou ve stínovém DOM komponenty doc-page, písmo musí být přímo na nich */
+  .page { font-family: Lexend, 'Segoe UI', Arial, sans-serif; color: #2F2B45 }
+  a { color: #6A55C9 }
+
+  /* ---------- kartička (6 × 6 cm) ---------- */
+  .card { position: relative; overflow: hidden; width: 60mm; height: 60mm; box-sizing: border-box }
+  .card .peb { position: absolute; left: 6mm; top: 4.5mm; width: 48mm; height: 44mm; background: #fff }
+  .card .art { position: absolute; left: 9mm; top: 5.5mm; width: 42mm; height: 42mm; display: block; mix-blend-mode: multiply }
+  .card .nm { position: absolute; left: 0; right: 0; bottom: 3.9mm; text-align: center; font-weight: 400; font-size: 9.5pt; line-height: 1; letter-spacing: .02em; color: #34304A }
+  .card.rub-card { background: #fff url(pexeso/rub.svg) 0 0 / 60mm 60mm repeat }
+
+  /* ---------- archy s kartičkami ---------- */
+  .sheet-head, .sheet-foot { position: absolute; left: 15mm; right: 15mm; display: flex; justify-content: space-between; gap: 6mm; font-size: 8.5pt; line-height: 1.3; color: #6B6680 }
+  .sheet-head { top: 14mm }
+  .sheet-foot { bottom: 14mm }
+  .sheet-head b { font-weight: 500; color: #2F2B45 }
+  .grid { position: absolute; left: 15mm; top: 28.5mm; display: grid; grid-template-columns: repeat(3, 60mm); grid-template-rows: repeat(4, 60mm) }
+  .cuts { position: absolute; left: 15mm; top: 28.5mm; width: 180mm; height: 240mm; box-sizing: border-box; border: .2mm solid #C4BFD2;
+    background: linear-gradient(to right, #C4BFD2 .2mm, transparent .2mm) 0 0 / 60mm 100% repeat-x, linear-gradient(to bottom, #C4BFD2 .2mm, transparent .2mm) 0 0 / 100% 60mm repeat-y }
+  .tick { position: absolute; box-sizing: border-box; border-color: #B3AEC2; border-style: solid; border-width: 0 }
+  .tick.t, .tick.b { left: 15mm; width: 180.2mm; height: 4mm; border-right-width: .2mm;
+    background: linear-gradient(to right, #B3AEC2 .2mm, transparent .2mm) 0 0 / 60mm 100% repeat-x }
+  .tick.t { top: 23mm }
+  .tick.b { top: 270.5mm }
+  .tick.l, .tick.r { top: 28.5mm; width: 4mm; height: 240.2mm; border-bottom-width: .2mm;
+    background: linear-gradient(to bottom, #B3AEC2 .2mm, transparent .2mm) 0 0 / 100% 60mm repeat-y }
+  .tick.l { left: 9mm }
+  .tick.r { left: 197mm }
+  .rub { position: absolute; left: 10mm; top: 23.5mm; width: 190mm; height: 250mm; background: #fff url(pexeso/rub.svg) 5mm 5mm / 60mm 60mm repeat }
+
+  /* ---------- návod a pravidla ---------- */
+  .info { padding: 20mm 20mm 16mm; box-sizing: border-box; display: flex; flex-direction: column; gap: 7mm }
+  .eyebrow { font-weight: 500; font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; color: #6A55C9 }
+  .info h1 { font-weight: 300; font-size: 38pt; line-height: 1; letter-spacing: -.01em; margin: 3mm 0 0 }
+  .info h2 { font-weight: 300; font-size: 26pt; line-height: 1.05; margin: 0 }
+  .info h3 { font-weight: 500; font-size: 12pt; margin: 0 0 2.5mm }
+  .info p { margin: 0 }
+  .lead { font-size: 11.5pt; line-height: 1.6; color: #4A4560; max-width: 100mm; margin-top: 5mm !important }
+  .hero { display: flex; justify-content: space-between; align-items: flex-start; gap: 6mm }
+  .info.cover { gap: 10mm }
+  /* ukázka: rub a líc kartičky, zmenšené na 65 % (margin vyrovná zmenšení kolem středu) */
+  .fan { position: relative; width: 66mm; height: 56mm; flex-shrink: 0 }
+  .fan .card { position: absolute; margin: -10.5mm; transform-origin: center; box-shadow: 0 .6mm 2.4mm rgba(47, 43, 69, .16) }
+  .fan .f1 { left: 0; top: 4mm; transform: scale(.65) rotate(-8deg) }
+  .fan .f2 { left: 25mm; top: 12mm; transform: scale(.65) rotate(7deg) }
+  .panel { border-radius: 6mm; padding: 6mm 7mm }
+  .tint-green { background: #E3EDD8 }
+  .tint-blue { background: #D9EFFB }
+  .tint-pink { background: #FCE0EE }
+  .tint-yellow { background: #FFF1C2 }
+  .tint-lav { background: #E9E1FD }
+  .ages { display: flex; flex-direction: column; gap: 3mm }
+  .age { display: grid; grid-template-columns: 22mm 1fr; gap: 4mm; align-items: baseline; font-size: 10.5pt; line-height: 1.5 }
+  .age .chip { display: inline-block; text-align: center; font-weight: 500; font-size: 9pt; padding: 1.2mm 0; border-radius: 99mm; background: #fff }
+  .age .pg { color: #6B6680 }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm }
+  .steps { margin: 0; padding-left: 5mm; font-size: 10.2pt; line-height: 1.5; display: flex; flex-direction: column; gap: 1.8mm }
+  .steps li::marker { color: #6A55C9; font-weight: 500 }
+  .small { font-size: 10pt; line-height: 1.55 }
+  .muted { color: #6B6680 }
+  .info-foot { margin-top: auto; display: flex; justify-content: space-between; gap: 6mm; font-size: 8.5pt; color: #6B6680 }
+  .prompts { display: flex; flex-direction: column; gap: 2.5mm }
+  .prompt { background: #fff; border-radius: 4mm; padding: 2.6mm 4mm; font-size: 10.5pt; line-height: 1.4 }
+  .variants { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm }
+  .variants .panel { padding: 4.5mm 5.5mm }
+  .variants h3 { font-size: 11pt; margin-bottom: 1.5mm }
+  .fams { display: flex; flex-direction: column; gap: 2.2mm }
+  .fam { display: grid; grid-template-columns: 9mm 54mm 1fr; gap: 3mm; align-items: center; font-size: 10pt; line-height: 1.35 }
+  .fam .sw { width: 9mm; height: 6.5mm; border-radius: 45% 55% 52% 48% / 55% 45% 55% 45% }
+  .fam b { font-weight: 500 }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page size="a4">
+
+  <section class="page info cover">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Emoční příšerky · pexeso k tisku</div>
+        <h1>Emoční pexeso</h1>
+        <p class="lead">24 dvojic příšerek, které cítí různé emoce. Hledejte stejné kartičky a u každé nalezené dvojice si povídejte, jak se příšerka cítí a co by jí pomohlo.</p>
+      </div>
+      <div class="fan" aria-hidden="true">
+        <div class="card f1 rub-card"></div>
+        <div class="card f2" style="background: #FCE0EE"><span class="peb" style="border-radius: 61% 39% 46% 54% / 45% 52% 48% 55%"></span><img class="art" src="pexeso/radost.webp" alt="" /><span class="nm">Radost</span></div>
+      </div>
+    </div>
+
+    <div class="panel tint-lav">
+      <h3>Co vytisknout</h3>
+      <p class="small" style="margin-bottom: 4mm">Dokument má 10 stran: návod a pravidla (strany 1–2) a 4 archy s kartičkami, za každým následuje jeho rub (strany 3–10).</p>
+      <div class="ages">
+        <div class="age"><span class="chip">na začátek</span><span><b>Arch 1</b> <span class="pg">(strany 3–4)</span>: 6 dvojic se základními emocemi — radost, smutek, vztek, strach, překvapení a znechucení.</span></div>
+        <div class="age"><span class="chip">od 4 let</span><span><b>Archy 1 a 2</b> <span class="pg">(strany 3–6)</span>: 12 dvojic, poloviční sada. Přibude únava, bolest, láska, nuda, stydlivost a nadšení.</span></div>
+        <div class="age"><span class="chip">od 5 let</span><span><b>Všechny 4 archy</b> <span class="pg">(strany 3–10)</span>: 24 dvojic, i jemnější emoce jako lítost, nejistota nebo závist.</span></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div>
+        <h3>Jak tisknout</h3>
+        <ol class="steps">
+          <li><b>Silnější papír</b>, ideálně 160–250 g/m². Obrázky pak neprosvítají a kartičky vydrží.</li>
+          <li><b>Velikost 100 %</b> (skutečná velikost), ne „přizpůsobit stránce“. Jen tak bude kartička měřit 6 × 6 cm.</li>
+          <li><b>Oboustranný tisk</b> s převracením po delší straně. Za každým archem s příšerkami následuje jeho rub.</li>
+          <li><b>Bez oboustranného tisku:</b> vytiskněte liché strany, papíry vložte zpátky podle návodu tiskárny a vytiskněte sudé.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Jak stříhat</h3>
+        <p class="small">Stříhejte po tenkých šedých linkách, nejlépe řezačkou nebo dlouhými nůžkami. Krátké čárky na okrajích archu ukazují, kudy linky vedou.</p>
+        <p class="small" style="margin-top: 3mm">Rub je duhový vzor přes celý arch. Když tiskárna papír trochu posune, kartičky budou zezadu pořád stejné a nikdo je nepozná.</p>
+        <p class="small muted" style="margin-top: 3mm">Tip: rohy můžete zakulatit a kartičky zalaminovat. Vydrží pak i hodně hraní.</p>
+      </div>
+    </div>
+
+    <div class="info-foot"><span>Emoční příšerky · katerinamlsnova.cz/emoce</span><span>Bavte se objevováním světa v sobě.</span></div>
+  </section>
+
+  <section class="page info">
+    <h2>Jak hrát</h2>
+    <div class="two">
+      <div>
+        <h3>Pravidla</h3>
+        <ol class="steps">
+          <li>Zamíchejte kartičky a rozložte je obrázkem dolů do řad.</li>
+          <li>Hráč na tahu otočí dvě kartičky, aby je všichni viděli.</li>
+          <li>Když jsou stejné, řekne, jak se příšerka cítí, nechá si dvojici a hraje znovu.</li>
+          <li>Když stejné nejsou, otočí je zpátky a hraje další hráč.</li>
+          <li>Hra končí, když jsou venku všechny dvojice. Vyhrává ten, kdo jich má nejvíc.</li>
+        </ol>
+      </div>
+      <div class="panel tint-pink">
+        <h3>U nalezené dvojice se zeptejte</h3>
+        <div class="prompts">
+          <div class="prompt">„Jak se tahle příšerka cítí? Podle čeho to poznáš?“</div>
+          <div class="prompt">„Kdy ses takhle cítil(a) ty?“</div>
+          <div class="prompt">„Co by jí mohlo pomoct?“</div>
+        </div>
+        <p class="small muted" style="margin-top: 3mm">Nemusíte se ptát pokaždé na všechno. Stačí jedna otázka a chvilka povídání.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Varianty</h3>
+      <div class="variants">
+        <div class="panel tint-yellow"><h3>Pro nejmenší</h3><p class="small">Hrajte jen s archem 1 a kartičky rozložte do pravidelných řad 3 × 4. Na začátku si je můžete chvíli prohlížet obrázkem nahoru.</p></div>
+        <div class="panel tint-blue"><h3>Hra pro jednoho</h3><p class="small">Počítejte, kolikrát jste otočili dvě kartičky. Příště to zkuste na méně tahů.</p></div>
+        <div class="panel tint-green"><h3>Pantomima</h3><p class="small">Kdo najde dvojici, předvede emoci obličejem a tělem. Ostatní hádají, o jakou jde.</p></div>
+        <div class="panel tint-lav"><h3>Emoční sousedé (od 5 let)</h3><p class="small">Dvojici tvoří i dvě kartičky stejné barvy, když hráč řekne, v čem jsou si emoce podobné a v čem se liší.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Barvy kartiček</h3>
+      <p class="small muted" style="margin-bottom: 3mm">Barva kartičky prozrazuje rodinu emoce, stejně jako na velkých kartách Emočních příšerek.</p>
+      <div class="fams">
+        <div class="fam"><span class="sw tint-green"></span><b>Zelená · vztek</b><span>vztek, frustrace, netrpělivost, znechucení</span></div>
+        <div class="fam"><span class="sw tint-blue"></span><b>Modrá · smutek</b><span>smutek, neštěstí, lítost, osamělost, nuda</span></div>
+        <div class="fam"><span class="sw tint-pink"></span><b>Růžová · radost</b><span>radost, nadšení, očekávání, hrdost, láska, důvěra</span></div>
+        <div class="fam"><span class="sw tint-yellow"></span><b>Žlutá · strach</b><span>strach, nervozita, nejistota, stydlivost, zmatenost</span></div>
+        <div class="fam"><span class="sw tint-lav"></span><b>Fialová · tělo a překvapení</b><span>překvapení, závist, bolest, únava</span></div>
+      </div>
+    </div>
+
+    <div class="info-foot"><span>Emoční příšerky · katerinamlsnova.cz/emoce</span><span>strana 2</span></div>
+  </section>
+
+  <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="8">
+    <section class="page">
+      <div class="sheet-head"><span><b>Emoční pexeso</b> · {{ pg.head }}</span><span>{{ pg.side }}</span></div>
+      <sc-if value="{{ pg.isFront }}" hint-placeholder-val="{{ true }}">
+        <div class="grid">
+          <sc-for list="{{ pg.cards }}" as="c" hint-placeholder-count="12">
+            <div class="card" style="background: {{ c.tint }}">
+              <span class="peb" style="border-radius: {{ c.peb }}"></span>
+              <img class="art" src="{{ c.src }}" alt="{{ c.name }}" />
+              <span class="nm">{{ c.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div class="cuts"></div>
+        <div class="tick t"></div>
+        <div class="tick b"></div>
+        <div class="tick l"></div>
+        <div class="tick r"></div>
+      </sc-if>
+      <sc-if value="{{ pg.isBack }}" hint-placeholder-val="{{ false }}">
+        <div class="rub"></div>
+      </sc-if>
+      <div class="sheet-foot"><span>{{ pg.foot }}</span><span>{{ pg.pageNo }}</span></div>
+    </section>
+  </sc-for>
+
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+/* Emoce a čísla obrázků odpovídají DECK v index.html (ověřené mapování). */
+const DECK = {
+  vztek: { name: 'Vztek', fam: 'vztek' }, frustrace: { name: 'Frustrace', fam: 'vztek' },
+  netrpelivost: { name: 'Netrpělivost', fam: 'vztek' }, znechuceni: { name: 'Znechucení', fam: 'vztek' },
+  smutek: { name: 'Smutek', fam: 'smutek' }, nestesti: { name: 'Neštěstí', fam: 'smutek' },
+  litost: { name: 'Lítost', fam: 'smutek' }, osamelost: { name: 'Osamělost', fam: 'smutek' },
+  nuda: { name: 'Nuda', fam: 'smutek' }, radost: { name: 'Radost', fam: 'radost' },
+  nadseni: { name: 'Nadšení', fam: 'radost' }, ocekavani: { name: 'Očekávání', fam: 'radost' },
+  hrdost: { name: 'Hrdost', fam: 'radost' }, laska: { name: 'Láska', fam: 'radost' },
+  duvera: { name: 'Důvěra', fam: 'radost' }, strach: { name: 'Strach', fam: 'strach' },
+  nervozita: { name: 'Nervozita', fam: 'strach' }, nejistota: { name: 'Nejistota', fam: 'strach' },
+  stydlivost: { name: 'Stydlivost', fam: 'strach' }, zmatenost: { name: 'Zmatenost', fam: 'strach' },
+  prekvapeni: { name: 'Překvapení', fam: 'telo' }, zavist: { name: 'Závist', fam: 'telo' },
+  bolest: { name: 'Bolest', fam: 'telo' }, unava: { name: 'Únava', fam: 'telo' }
+};
+
+/* pastelový podklad kartičky a tvar bílého oblázku podle rodiny emoce */
+const FAM = {
+  vztek:  { tint: '#E3EDD8', peb: '56% 44% 49% 51% / 47% 55% 45% 53%' },
+  smutek: { tint: '#D9EFFB', peb: '47% 53% 58% 42% / 52% 44% 56% 48%' },
+  radost: { tint: '#FCE0EE', peb: '61% 39% 46% 54% / 45% 52% 48% 55%' },
+  strach: { tint: '#FFF1C2', peb: '44% 56% 52% 48% / 57% 46% 54% 43%' },
+  telo:   { tint: '#E9E1FD', peb: '53% 47% 41% 59% / 49% 57% 43% 51%' }
+};
+
+/* 4 archy po 6 dvojicích; arch 1 = základní emoce pro nejmenší */
+const SHEETS = [
+  { title: 'základní emoce', cards: ['radost', 'smutek', 'vztek', 'strach', 'prekvapeni', 'znechuceni'] },
+  { title: 'další emoce', cards: ['unava', 'bolest', 'laska', 'nuda', 'stydlivost', 'nadseni'] },
+  { title: 'jemnější emoce', cards: ['frustrace', 'nestesti', 'ocekavani', 'nervozita', 'zavist', 'hrdost'] },
+  { title: 'jemnější emoce', cards: ['netrpelivost', 'litost', 'osamelost', 'duvera', 'nejistota', 'zmatenost'] }
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    const pages = [];
+    SHEETS.forEach((sh, i) => {
+      const n = i + 1;
+      const cards = [];
+      sh.cards.forEach(slug => {
+        const d = DECK[slug];
+        const f = FAM[d.fam];
+        const card = { src: 'pexeso/' + slug + '.webp', name: d.name, tint: f.tint, peb: f.peb };
+        cards.push(card, card);
+      });
+      pages.push({
+        isFront: true, isBack: false, cards,
+        head: 'arch ' + n + ' ze 4 · ' + sh.title, side: 'líc',
+        foot: 'Stříhejte po tenkých linkách. Kartička měří 6 × 6 cm.', pageNo: 'strana ' + (3 + i * 2)
+      });
+      pages.push({
+        isFront: false, isBack: true, cards: [],
+        head: 'arch ' + n + ' ze 4 · rub', side: 'rub',
+        foot: 'Rub archu ' + n + '. Při oboustranném tisku vyjde na zadní stranu sám.', pageNo: 'strana ' + (4 + i * 2)
+      });
+    });
+    return { pages };
+  }
+}
+</script>
+</body>
+</html>
