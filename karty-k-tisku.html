@@ -25,6 +25,8 @@
 <style>
   doc-page:not(:defined) { visibility: hidden }
   body { margin: 0; font-family: Montserrat, sans-serif; color: #221E2B }
+  /* stránky jsou ve stínovém DOM komponenty doc-page, písmo z body se do nich nedědí */
+  .page { font-family: Montserrat, sans-serif; color: #221E2B }
   a { color: #7B3DF5 }
   a:hover { color: #FF2E9A }
 </style>
@@ -76,7 +78,7 @@
     <div style="font-weight: 800; font-size: 10pt; letter-spacing: .16em; text-transform: uppercase; color: #6E8C4A">Metodický list</div>
     <h2 style="font-family: 'Josefin Sans', Montserrat, sans-serif; font-weight: 300; font-size: 32pt; letter-spacing: .04em; text-transform: uppercase; margin: 3mm 0 6mm">Pro školky a poradny</h2>
 
-    <div style="font-size: 11.5pt; line-height: 1.6; font-weight: 500">
+    <div style="font-size: 10.5pt; line-height: 1.5; font-weight: 500">
       <h3 style="font-size: 13pt; margin: 0 0 2mm">K čemu karty slouží</h3>
       <p style="margin: 0 0 4mm">Karty pomáhají dětem <strong>pojmenovat</strong>, co se v nich děje. Dítě nejdřív pozná emoci na obličeji a v postoji příšerky, potom si pro ni najde vlastní situaci a nakonec zkusí říct, co by mu pomohlo. Právě tohle třetí je cíl — emoce se nemá „vypnout“, ale zvládnout.</p>
 
