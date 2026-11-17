@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 297" width="210mm" height="297mm">
+  <!-- linky na stříhání: mřížka 3 × 4 kartiček 60 mm od (15; 28,5) mm a krátké značky na okrajích archu -->
+  <g fill="none" stroke-width="0.2" stroke-linecap="butt">
+    <g stroke="#C4BFD2">
+      <path d="M15 28.5V268.5M75 28.5V268.5M135 28.5V268.5M195 28.5V268.5"/>
+      <path d="M15 28.5H195M15 88.5H195M15 148.5H195M15 208.5H195M15 268.5H195"/>
+    </g>
+    <g stroke="#B3AEC2">
+      <path d="M15 23V27M75 23V27M135 23V27M195 23V27M15 270V274M75 270V274M135 270V274M195 270V274"/>
+      <path d="M9 28.5H13M9 88.5H13M9 148.5H13M9 208.5H13M9 268.5H13M197 28.5H201M197 88.5H201M197 148.5H201M197 208.5H201M197 268.5H201"/>
+    </g>
+  </g>
+</svg>
